@@ -1,0 +1,22 @@
+connection: &connection
+  adapter: postgresql
+  host: localhost
+  pool: 5
+  timeout: 5000
+  min_messages: warning
+  username: postgres
+  password: postgres
+
+development:
+  <<: *connection  
+  database: react_development
+test: &test
+  <<: *connection
+  database: react_test
+
+production:
+  <<: *connection
+  database: react_production
+
+cucumber:
+  <<: *test
