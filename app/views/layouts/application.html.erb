@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>React</title>
+    <title>Slack test</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <div class="container">
+        <%= render partial: 'shared/header' %>
+      </div>
+    </header>
     <div class="container">
-      <%= render partial: 'shared/header' %>
-      
+      <div class="row">
+      <div class="col-md-12">
       <% if flash[:notice].present? %>
         <div class="alert alert-success mt-3">
           <div class="notice"><%= notice %></div>
@@ -22,6 +28,8 @@
           <div class="alert"><%= alert %></div>
         </div>  
       <% end %>
+      </div>
+      </div>
       <%= yield %>
     </div>
   </body>
