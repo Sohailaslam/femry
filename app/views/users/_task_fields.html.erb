@@ -1,7 +1,15 @@
-<div class='nested-fields'>
-    <%= f.text_field :title %>
-    <%= f.hidden_field :task_date %>
-    <%= f.check_box :status  %>
-    <%= link_to_remove_association "remove task", f %>
+<li class='nested-fields'>
+  <div class="checkbox checkbox-success pull-left">
+		<%= f.check_box :status, id: "check#{f.object.id}", class: 'styled'  %>
+    <label for="check<%= f.object.id %>" class="m-0">
+			<%= f.text_field :title, class: 'm-0' %>
+    </label>
+  </div>
+  <%= f.hidden_field :task_date %>
+  <div class="pull-right icon-fa">
+    <%= link_to_remove_association f, :partial => 'new_task_fields' do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </div>
+</li>
 
-</div>

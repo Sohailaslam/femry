@@ -18,4 +18,5 @@
 //= require parsley
 //= require jquery-3.3.1.slim.min
 //= require cocoon
+//= require custom
 

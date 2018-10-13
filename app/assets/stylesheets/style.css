@@ -121,7 +121,7 @@ padding-left: 5px; }
   top: 0;
   margin-left: -20px;
   padding-left: 4px;
-  padding-top: 1px;
+  padding-top: 4px;
   font-size: 12px;
   color: #555555; }
 .checkbox input[type="checkbox"],
@@ -319,6 +319,18 @@ input[type="radio"] .styled:checked + label::after {
 .add-task ul li:hover label{
 	cursor: pointer;
 }
+.add-task ul li .checkbox{
+  width: 90%;
+  line-height: 10px;
+}
+.add-task ul li label{
+  width: 90%;
+}
+
+.add-task ul li label input{
+  border: none;
+  width: 90%;
+}
 .add-task ul li:hover{
 transition-duration: 1s;
 cursor: pointer;
@@ -343,7 +355,10 @@ cursor: pointer;
 	font-size: 14px;
 }
 .add-task ul li .icon-fa a:hover{
-	color: #007bff;
+	color: #007bff;}
+.add-task-list{
+  border: none;
+  border-bottom: 1px solid #ddd;
 }
 /*****MObile and Ipad View CSS****/
 @media (min-width: 768px){

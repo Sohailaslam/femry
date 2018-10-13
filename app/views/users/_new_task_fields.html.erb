@@ -1,0 +1,21 @@
+<div class="col-md-12 nested-fields">
+  <div class="add-task p-4 add-task-list">
+    <ul>
+      <li>
+        <div class="checkbox checkbox-success pull-left">
+      		<%= f.check_box :status, id: 'check#{f.object.id}', class: 'styled'  %>
+          <label for="check<%= f.object.id %>"  class="m-0">
+      			<%= f.text_field :title, class: 'm-0', placeholder: 'Add task here' %>
+          </label>
+        </div>
+
+        <%= f.hidden_field :task_date, value: @key %>
+        <div class="pull-right icon-fa">
+          <%= link_to_remove_association f, :partial => 'new_task_fields' do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+      </li>
+    </ul> 
+  </div>
+</div>
