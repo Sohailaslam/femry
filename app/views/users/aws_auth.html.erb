@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="login mt-5">
+      <h1>Please Confirm Your Account</h1>
+      <%= form_tag(validate_code_path, method: :post) do %>
+        <div class="form-group">
+          <%= hidden_field_tag 'user_id', @user.id %>
+          <label for="verify_code">Please enter verification code sent to your email:</label>
+          <%= number_field_tag "verify_code",{}, {class: "form-control", id: "verify_code"} %>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">Verify</button>
+      <% end %>
+    </div>
+  </div>
+</div>
