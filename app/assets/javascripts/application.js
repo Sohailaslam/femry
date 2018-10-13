@@ -17,3 +17,5 @@
 //= require bootstrap.min
 //= require parsley
 //= require jquery-3.3.1.slim.min
+//= require cocoon
+

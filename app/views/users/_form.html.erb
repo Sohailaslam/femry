@@ -1,0 +1,14 @@
+<%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {"data-parsley-validate" => true} do |f| %>
+
+    <h3>Tasks</h3>
+    <div id='tasks'>
+      <%= f.fields_for :tasks do |task| %>
+        <%= render 'task_fields', :f => task %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add task', f, :tasks %>
+      </div>
+    </div>
+    <%= f.submit 'Save' %>
+    
+<% end %>

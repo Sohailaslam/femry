@@ -1,15 +1,16 @@
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-6">
 		<a hrf="#">
 			<%= image_tag 'logo.jpg' %>
 		</a>
 	</div>
-	<div class="col-md-6 text-right">
+	<div class="col-6 text-right">
 		<% if current_user.present? %>
-			<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+			<%= link_to 'Settings', edit_user_registration_path(current_user), class: 'btn btn-success btn-sm' %> 
+			<%= link_to 'Sign out', destroy_user_session_path, class: 'btn btn-outline-primary btn-sm', method: :delete %>
 		<% else %>
-			<%= link_to 'Sign in', new_user_session_path %> |
-			<%= link_to 'Sign up', new_user_registration_path %>
+			<%= link_to 'Sign in', new_user_session_path, class: 'btn btn-success btn-sm' %>
+			<%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-primary btn-sm' %>
 		<% end %>
 	</div>
 </div>
