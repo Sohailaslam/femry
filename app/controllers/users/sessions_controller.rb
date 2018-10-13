@@ -22,7 +22,6 @@ class Users::SessionsController < Devise::SessionsController
     rescue => e
       redirect_to root_path, notice: e.message
     end
-    debugger
     session[:user_id] = resource.id
     if (aws_sign_in_resp.authentication_result.access_token.present? && resource.update(access_token: aws_sign_in_resp.authentication_result.access_token))
       set_flash_message!(:notice, :signed_in)
