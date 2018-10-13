@@ -1,14 +1,36 @@
 <%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {"data-parsley-validate" => true} do |f| %>
-
-    <h3>Tasks</h3>
-    <div id='tasks'>
-      <%= f.fields_for :tasks do |task| %>
-        <%= render 'task_fields', :f => task %>
-      <% end %>
-      <div class='links'>
-        <%= link_to_add_association 'add task', f, :tasks %>
-      </div>
+  <% hh = user.tasks.order("task_date DESC").group_by(&:task_date) %>
+  <% hh.keys.each do |key| %>
+    <% tasks_count = hh[key].count %>
+    <div class="row">
+      <div class="col-md-2"></div>  
+      <div class="col-md-8">
+        <div id='tasks'>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="mt-5"><%= key %></h3>
+              <div class="add-task p-4">                
+                <ul>
+                  <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC") do |task| %>
+                    <%= render 'task_fields', :f => task if key == task.object.task_date.to_date %>
+                  <% end %>     
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12">
+              <% @key = key %>
+              <%= link_to_add_association 'Add task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3' %>
+              <button type="button" class="btn btn-outline-dark mt-3">Add Thoughts</button>
+            </div>
+          </div>
+          <div class='links'>
+          </div>
+        </div>
+      </div>  
     </div>
-    <%= f.submit 'Save' %>
-    
+    <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %>
+  <% end %>
 <% end %>
