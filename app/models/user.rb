@@ -6,7 +6,10 @@ class User < ApplicationRecord
 
   # attr_accessible :first_name, :last_name, :tasks_attributes
   has_many :tasks, dependent: :destroy
-  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true       
+  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
+
+  has_many :thoughts, dependent: :destroy
+  accepts_nested_attributes_for :thoughts, reject_if: :all_blank, allow_destroy: true       
 
   validate :password_complexity
 

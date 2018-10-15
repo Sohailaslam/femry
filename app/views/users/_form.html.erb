@@ -10,9 +10,16 @@
             <div class="col-md-12">
               <h3 class="mt-5"><%= display_date(key) %></h3>
               <div class="add-task p-4">                
-                <ul>
+                <ul class="sortable">
                   <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC") do |task| %>
                     <%= render 'task_fields', :f => task if key == task.object.task_date.to_date %>
+                  <% end %>     
+                </ul>
+              </div>
+              <div class="add-thought p-4">                
+                <ul>
+                  <%= f.fields_for :thoughts, f.object.thoughts.order("thought_date DESC") do |thought| %>
+                    <%= render 'thought_fields', :f => thought if key == task.object.thought_date.to_date %>
                   <% end %>     
                 </ul>
               </div>
@@ -22,8 +29,9 @@
           <div class="row">
             <div class="col-md-12">
               <% @key = key %>
-              <%= link_to_add_association 'Add task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3' %>
-              <button type="button" class="btn btn-outline-dark mt-3">Add Thoughts</button>
+              <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3' %>
+              <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: 'add-thoughts btn btn-outline-dark mt-3', id: 'add_thoughts' %>
+              <!-- <button type="button" class="btn btn-outline-dark mt-3">Add Thoughts</button> -->
             </div>
           </div>
           <div class='links'>
@@ -34,3 +42,7 @@
     <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %>
   <% end %>
 <% end %>
+
+<script type="text/javascript">
+  
+</script>

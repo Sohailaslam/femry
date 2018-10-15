@@ -1,0 +1,14 @@
+<li class='nested-fields'>
+  <div class="checkbox checkbox-success pull-left">
+    <label for="check<%= f.object.id %>" class="m-0">
+			<%= f.text_area :title, class: 'm-0' %>
+    </label>
+  </div>
+  <%= f.hidden_field :thought_date %>
+  <div class="pull-right icon-fa">
+    <%= link_to_remove_association f, :partial => 'new_thought_fields' do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </div>
+</li>
+
