@@ -1,10 +1,11 @@
-<li class='nested-fields' id="<%= f.object.sortable_id %>">
+<li class='nested-fields'>
   <div class="checkbox checkbox-success pull-left">
-		<%= f.check_box :status, id: "check#{f.object.id}", class: 'styled'  %>
+		<%= f.check_box :status, id: "check#{f.object.id}", class: 'styled check-box'  %>
     <label for="check<%= f.object.id %>" class="m-0">
-			<%= f.text_field :title, class: 'm-0' %>
+			<%= f.text_field :title, class: 'm-0 title' %>
     </label>
   </div>
+  <a href="javascript:;" data-url=" <%= sort_tasks_path %> " data-behavior="sortable"><i class="fa fa-arrows gray-icon push-5-r push-3-t sortable-handle"></i></a>
   <%= f.hidden_field :task_date %>
   <div class="pull-right icon-fa">
     <%= link_to_remove_association f, :partial => 'new_task_fields' do %>

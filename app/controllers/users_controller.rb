@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 	 end
 
 	def update
+		debugger
 	  @user.update(user_params)
 	end
 

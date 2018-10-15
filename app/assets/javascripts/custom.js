@@ -3,6 +3,15 @@ $(document).ready(function(e){
    	$('body').find('input#submit_tag')[0].click()
   });
 
+
+  $('body').on('change', '.check-box', function(e) {
+    $('body').find('input#submit_tag')[0].click()
+  });
+
+  $('body').on('focusout', '.title, .new-title', function(e) {
+    $('body').find('input#submit_tag')[0].click()
+  });
+
   $('').on('cocoon:after-insert', function(e, insertedItem) {
     debugger
     // ... do something
