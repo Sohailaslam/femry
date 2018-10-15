@@ -8,7 +8,7 @@
         <div id='tasks'>
           <div class="row">
             <div class="col-md-12">
-              <h3 class="mt-5"><%= key %></h3>
+              <h3 class="mt-5"><%= display_date(key) %></h3>
               <div class="add-task p-4">                
                 <ul>
                   <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC") do |task| %>
