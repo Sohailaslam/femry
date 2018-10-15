@@ -13,8 +13,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-gem "parsley-rails"
-
+gem 'jquery-rails', '~> 4.3.1'
+gem 'parsley-rails'
+# gem 'summernote-rails', '~> 0.8.10.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -25,6 +26,8 @@ gem 'font-awesome-rails'
 gem 'aws-sdk', '~> 3'
 gem "figaro"
 gem "cocoon"
+gem 'jquery-ui-rails'
+gem 'rails_sortable'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

@@ -11,12 +11,14 @@
 // about supported directives.
 //
 // require jquery
+//= require jquery-3.3.1.slim.min
 //= require rails-ujs
+// require popper.min
+// require bootstrap.min
+// require jquery-ui/widgets/sortable
+// require rails_sortable
 //= require activestorage
 //= require turbolinks
-//= require bootstrap.min
 //= require parsley
-//= require jquery-3.3.1.slim.min
 //= require cocoon
 //= require custom
-
