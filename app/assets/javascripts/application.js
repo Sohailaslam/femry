@@ -15,10 +15,9 @@
 //= require rails-ujs
 // require popper.min
 // require bootstrap.min
-// require jquery-ui/widgets/sortable
-// require rails_sortable
 //= require activestorage
 //= require turbolinks
 //= require parsley
 //= require cocoon
 //= require custom
+//= require tasks

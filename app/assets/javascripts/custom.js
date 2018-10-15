@@ -5,6 +5,7 @@ $(document).ready(function(e){
 
 
   $('body').on('change', '.check-box', function(e) {
+    debugger
     $('body').find('input#submit_tag')[0].click()
   });
 
