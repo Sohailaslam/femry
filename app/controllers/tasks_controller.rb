@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :sort
   def index
-    @tasks = current_user.tasks.order("task_date DESC").group_by(&:task_date)
+    @tasks = current_user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
   end
 
   def new
@@ -23,6 +24,12 @@ class TasksController < ApplicationController
   def destroy
   end
 
+  def sort
+    params[:order].each do |key,value|
+      Task.find(value[:id]).update_attribute(:sort,value[:position])
+    end
+    render plain: "OK"
+  end
   private
   def task_params
     params[:task].permit(:title, :thought, :user_id)

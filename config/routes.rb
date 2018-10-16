@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   post '/users/validate_code', to: 'users#validate_code', as: 'validate_code'
 
   get 'users/index'
-  resources :tasks
+  resources :tasks do
+  	collection do
+  		put :sort
+  	end
+  end
   resources :users
 end

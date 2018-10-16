@@ -19,6 +19,11 @@ class User < ApplicationRecord
     end
   end
 
+  def incomplete_tasks
+    incomplete_tasks = tasks.where(status: 0).where.not(task_date: Date.today)
+    incomplete_tasks.map{|task| task.update_attributes(task_date: Date.today)} if incomplete_tasks.present?
+  end
+
   def add_to_aws_cognito
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
     resp = client.sign_up({

@@ -4,11 +4,11 @@ class UsersController < ApplicationController
 
 
 	def new
-	  @user = current_user
+		current_user.incomplete_tasks if current_user.present?
+	  @user = current_user.present? ? current_user : User.find(3)
 	 end
 
 	def update
-		debugger
 	  @user.update(user_params)
 	end
 
