@@ -14,7 +14,7 @@
 //= require jquery-3.3.1.slim.min
 //= require rails-ujs
 // require popper.min
-// require bootstrap.min
+//= require bootstrap.min
 //= require activestorage
 //= require turbolinks
 //= require cocoon

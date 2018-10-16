@@ -1,8 +1,27 @@
 <div id='tasks'>
+  <div class="row mt-5">
+    <div class="col-md-10">
+      <% day = key.present? ? display_date(key) : 'Today' %>
+      <h3 class="mb-3"><%= key.present? ? display_date(key) : 'Today' %></h3>
+    </div>
+    <% if day == "Today" && f.object.tasks.present? %>
+      <div class="col-md-2 mb-2">
+        <div class="progress" data-percentage="<%= completed_percentage(f) %>">
+          <span class="progress-left">
+            <span class="progress-bar"></span>
+          </span>
+          <span class="progress-right">
+            <span class="progress-bar"></span>
+          </span>
+          <div class="progress-value">
+          </div>
+        </div>
+      </div>
+    <% end %>    
+  </div>  
   <div class="row">
-    <div class="col-md-12">
-      <h3 class="mt-5"><%= key.present? ? display_date(key) : 'Today' %></h3>
-      <div class="add-task p-4">                
+    <div class="col-md-12">     
+      <div class="add-task p-4">           
         <ul id="sortable<%= Date.today %>" class="sortable ui-sortable ">
           <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC").order(:sort) do |task| %>
             <%= render 'task_fields', :f => task if key == task.object.task_date.to_date %>

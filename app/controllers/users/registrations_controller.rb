@@ -55,9 +55,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       #   # flash_key = :updated
       # end
       resource.aws_update_firstname_and_last_name(params[:user][:first_name], params[:user][:last_name])
-        set_flash_message :notice, :updated
+      #set_flash_message :notice, :updated
       bypass_sign_in resource, scope: resource_name
-      respond_with resource, location: after_update_path_for(resource)
+      # respond_with resource, location: after_update_path_for(resource)
     else
       clean_up_passwords resource
       set_minimum_password_length
