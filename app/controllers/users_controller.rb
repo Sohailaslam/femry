@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :update]
   skip_before_action :verify_authenticity_token, only: :update
-	before_action :set_user, only: :update
+  before_action :set_user, only: :update
 
 	def new
 		current_user.incomplete_tasks if current_user.present?
