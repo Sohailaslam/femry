@@ -401,6 +401,9 @@ cursor: pointer;
   position: relative;
   z-index: 1000;
 }
+.modal-backdrop{
+  background-color: transparent;
+}
 
 /*****MObile and Ipad View CSS****/
 @media (min-width: 768px){
