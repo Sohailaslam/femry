@@ -37,3 +37,4 @@ yarn.lock
 /config/application.yml
 /config/database.yml
 config/puma.rbconfig/database.yml
+config/puma.rb
