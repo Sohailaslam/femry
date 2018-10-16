@@ -18,5 +18,10 @@ module ApplicationHelper
         when 'error' then "alert alert-dismissable alert-danger"
         when 'alert' then "alert alert-dismissable alert-danger"
     end
-end
+	end
+
+	def completed_percentage(f)
+		today_task = f.object.tasks.where(task_date: Date.today)
+		((today_task.where(status: true).count.to_f/today_task.count.to_f) * 100).to_i
+	end
 end
