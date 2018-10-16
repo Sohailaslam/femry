@@ -49,7 +49,7 @@ class User < ApplicationRecord
     client.admin_confirm_sign_up({user_pool_id: ENV["AWS_COGNITO_USER_POOL_ID"], username: self.email,})
   end
 
-  def authenticate_with_aws
+  def authenticate_with_aws password
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
     resp = client.admin_initiate_auth({
       user_pool_id: ENV["AWS_COGNITO_USER_POOL_ID"],
@@ -57,7 +57,7 @@ class User < ApplicationRecord
       auth_flow: "ADMIN_NO_SRP_AUTH",
       auth_parameters: {
         "USERNAME" => self.email,
-        "PASSWORD" => "Hamza!23"
+        "PASSWORD" => password
       },
     })
     resp
@@ -71,6 +71,15 @@ class User < ApplicationRecord
     })
     self.update(access_token: nil)
     resp
+  end
+
+  def aws_update_firstname_and_last_name(first_name, last_name)
+    full_name = "#{first_name} #{last_name}"
+    client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
+    begin
+      resp = client.update_user_attributes({user_attributes: [{name: "name",value: full_name,},],access_token: self.access_token,})
+    rescue
+    end
   end
   
 end
