@@ -5,7 +5,7 @@ connection: &connection
   timeout: 5000
   min_messages: warning
   username: postgres
-  password: postgres
+  password: postgress
 
 development:
   <<: *connection  
