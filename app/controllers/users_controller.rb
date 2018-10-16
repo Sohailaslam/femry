@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :update
 	before_action :set_user, only: :update
 
-
 	def new
 		current_user.incomplete_tasks if current_user.present?
 	  @user = current_user.present? ? current_user : User.find(3)

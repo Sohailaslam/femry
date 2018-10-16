@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 	devise_for :users, :controllers => {:registrations => "users/registrations", sessions: 'users/sessions'}
   get 'home/index'
   root to: "home#index"
@@ -14,4 +15,9 @@ Rails.application.routes.draw do
   	end
   end
   resources :users
+
+  namespace :admin do
+    resources :dashboard, only: :index
+    resources :users
+  end
 end
