@@ -1,8 +1,8 @@
 class Admin::DashboardController < ApplicationController
-	before_action :authenticate_user!
-	before_action :validate_admin
+	# before_action :authenticate_user!
+	# before_action :validate_admin
   def index
-  	@users = User.all.order('created_at DESC')
+  	@users = User.includes(:tasks).all.order('created_at DESC')
   end
 
 
