@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :update]
   skip_before_action :verify_authenticity_token, only: :update
-	before_action :set_user, only: :update
+  before_action :set_user, only: :update
 
 	def new
 		current_user.incomplete_tasks if current_user.present?
@@ -12,6 +13,10 @@ class UsersController < ApplicationController
 	end
 
 	def aws_auth
+		@user = User.find(params[:user_id])
+	end
+
+	def password_auth
 		@user = User.find(params[:user_id])
 	end
 
@@ -29,6 +34,26 @@ class UsersController < ApplicationController
       # sign_in(@user, scope: :user)
 		rescue => e
 			redirect_to aws_auth_path(@user.id), notice: e.message
+		end
+	end
+
+	def validate_password_reset_code
+		@user = User.find(params[:user_id])
+		client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
+		begin
+			resp = client.confirm_forgot_password({
+  				client_id: ENV["AWS_COGNITO_CLIENT_ID"],
+  				username: @user.email, # required
+  				confirmation_code: params["verify_code"],
+  				password: params["new_password"],
+			})
+			if @user.update(password: params["new_password"])
+				redirect_to root_path, notice: "Password Changed Successfully"
+			else
+				redirect_to password_auth_path(@user.id), notice: @user.errors.full_messages
+			end
+		rescue => e
+			redirect_to password_auth_path(@user.id), notice: e.message
 		end
 	end
 

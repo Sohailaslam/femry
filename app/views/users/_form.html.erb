@@ -1,14 +1,14 @@
 <%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {"data-parsley-validate" => true} do |f| %>
   
-  <% hh = user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date) %>
+  <% grouped_tasks = user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date) %>
   <div class="row">
     <div class="col-md-2"></div>  
     <div class="col-md-8">
       <input type="checkbox" class="read-more-state" id="post-2" />
       <% if user.tasks.present? %>
         <ul class="read-more-wrap list-style-none">
-          <% hh.keys.each_with_index do |key, index| %>
-            <% tasks_count = hh[key].count %>
+          <% grouped_tasks.keys.each_with_index do |key, index| %>
+            <% tasks_count = grouped_tasks[key].count %>
             <li class="<%=  index > 1 ? 'read-more-target' : '' %>">
               <%= render partial: 'form_parts', locals: {f: f, key: key} %>
             </li>

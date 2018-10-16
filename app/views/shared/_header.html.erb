@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col-6">
-		<%= link_to root_path do %>
+		<%= link_to current_user.present? ? authenticated_root_path : root_path do %>
 			<%= image_tag 'logo.jpg', alt: '' %>
 		<% end %>
 	</div>
 	<div class="col-6 text-right">
 		<% if current_user.present? %>
-			<%= link_to 'Settings', edit_user_registration_path(current_user), class: 'btn btn-success btn-sm' %> 
+			<%= link_to 'Settings', edit_user_registration_path, class: 'btn btn-success btn-sm' %> 
 			<%= link_to 'Sign out', destroy_user_session_path, class: 'btn btn-outline-primary btn-sm', method: :delete %>
 		<% else %>
 			<%= link_to 'Sign in', new_user_session_path, class: 'btn btn-success btn-sm' %>

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   	if resource.is_admin?
   		admin_dashboard_index_path
     else
-    	new_user_path
+    	authenticated_root_path
     end
   end
 end
