@@ -32,9 +32,8 @@
 /puma/*
 /shared/*
 yarn.lock
+
 # Ignore application configuration
 /config/application.yml
 /config/database.yml
-puma
-puma/*
 config/puma.rb
