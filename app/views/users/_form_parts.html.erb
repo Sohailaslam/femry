@@ -4,7 +4,7 @@
       <% day = key.present? ? display_date(key) : 'Today' %>
       <h3 class="mt-5"><%= key.present? ? display_date(key) : 'Today' %></h3>
     </div>
-    <% if day == "Today" %>
+    <% if day == "Today" && f.object.tasks.present? %>
       <div class="col-md-2">
         <div class="progress" data-percentage="<%= completed_percentage(f) %>">
           <span class="progress-left">
