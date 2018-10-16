@@ -55,7 +55,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # if is_flashing_format?
       #   # flash_key = :updated
       # end
-      set_flash_message :notice, :updated
+      # set_flash_message :notice, :updated
       bypass_sign_in resource, scope: resource_name
       # respond_with resource, location: after_update_path_for(resource)
     else
