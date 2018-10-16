@@ -47,16 +47,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # the current user in place.
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    # prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
     resource_updated = update_resource(resource, account_update_params)
     yield resource if block_given?
     if resource_updated
-      if is_flashing_format?
-        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
-        set_flash_message :notice, flash_key
-      end
+      # if is_flashing_format?
+      #   # flash_key = :updated
+      # end
+        set_flash_message :notice, :updated
       bypass_sign_in resource, scope: resource_name
       respond_with resource, location: after_update_path_for(resource)
     else
@@ -96,7 +95,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # By default we want to require a password checks on update.
   # You can overwrite this method in your own RegistrationsController.
   def update_resource(resource, params)
-    resource.update_with_password(params)
+    resource.update(params)
   end
 
   # Build a devise resource passing in the session. Useful to move
@@ -130,7 +129,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The default url to be used after updating a resource. You need to overwrite
   # this method in your own RegistrationsController.
   def after_update_path_for(resource)
-    signed_in_root_path(resource)
+    edit_user_registration_path(resource)
   end
 
   # Authenticates the current scope and gets the current resource from the session.
@@ -144,7 +143,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    devise_parameter_sanitizer.sanitize(:account_update)
+    params.require(:user).permit(:first_name, :last_name, :email, :timezone, :password, :password_confirmation)
   end
 
   def translation_scope

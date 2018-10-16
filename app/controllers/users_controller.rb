@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	  @user = current_user.present? ? current_user : User.find(3)
 	 end
 
-	def update
+	def update		
 	  @user.update(user_params)
 	end
 
