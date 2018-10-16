@@ -1,21 +1,15 @@
-<div class='nested-fields'>
-  <div class="row">
-    <div class="col-11">
-      <ul class ="add-task-list">
-        <li>
-          <div class="form-group">
-            <%= f.text_area :title, class: 'm-0 thought-area form-control' %>
-            <%= f.hidden_field :thought_date, value: @key %>
-          </div>   
-        </li>
-      </ul> 
-    </div>
-    <div class="col-1">
-      <div class="pull-right icon-fa">
-        <%= link_to_remove_association f, :partial => 'new_thought_fields' do %>
-          <i class="fa fa-trash"></i>
-        <% end %>
-      </div>      
+<div class='nested-fields add-thougt-box'>
+  <div class="col-11 mt-3 float-left">
+    <div class="form-group">
+      <%= f.text_area :title, class: 'm-0 thought-area form-control' %>
+      <%= f.hidden_field :thought_date, value: @key %>
+    </div>   
+  </div>
+  <div class="col-1 mt-3 pt-2 float-left">
+    <div class="icon-fa">
+      <%= link_to_remove_association f, :partial => 'new_thought_fields' do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
     </div>  
   </div>
 </div>
