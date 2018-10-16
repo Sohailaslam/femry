@@ -29,12 +29,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-config/database.yml
-/config/database.yml
-config/puma.rb
-/config/puma.rb
 /puma/*
 /shared/*
 yarn.lock
 # Ignore application configuration
 /config/application.yml
+/config/database.yml
+puma
+puma/*
+config/puma.rb
