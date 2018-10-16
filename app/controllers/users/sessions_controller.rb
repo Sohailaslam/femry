@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate!(auth_options)
     begin
-      aws_sign_in_resp = resource.authenticate_with_aws
+      aws_sign_in_resp = resource.authenticate_with_aws(params[:user][:password])
     rescue => e
       redirect_to root_path, notice: e.message
     end

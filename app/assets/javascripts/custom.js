@@ -18,7 +18,6 @@ $(document).ready(function(e){
   });
 
   $('body').on('click', '#add_thoughts', function(e){
-  	debugger
     // $('.summernote').summernote({
     //   height: 100,
     // width: 100,

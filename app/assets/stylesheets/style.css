@@ -407,6 +407,9 @@ cursor: pointer;
 #thoughts .add-task{
   border-top: none;
 }
+.add-thougt-box{
+  width: 100%;
+}
 
 /*****MObile and Ipad View CSS****/
 @media (min-width: 768px){
