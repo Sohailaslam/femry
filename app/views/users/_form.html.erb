@@ -16,7 +16,7 @@
           <% end %>
         </ul>
       <% else %>
-          <%= render partial: 'form_parts', locals: {f: f, key: key, task: task} %>
+          <%= render partial: 'form_parts', locals: {f: f, key: Date.today, task: nil} %>
           <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %> 
       <% end %>
       <label for="post-2" class="read-more-trigger mt-3 btn btn-block"></label>
