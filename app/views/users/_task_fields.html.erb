@@ -7,7 +7,7 @@
   </div>
   <%= f.hidden_field :task_date %>
   <div class="pull-right icon-fa">
-    <%= link_to_remove_association f, :partial => 'new_task_fields' do %>
+    <%= link_to_remove_association f, :partial => 'task_fields', id: 'delete_button' do %>
       <i class="fa fa-trash"></i>
     <% end %>
   </div>

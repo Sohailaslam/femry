@@ -17,7 +17,7 @@
 // require bootstrap.min
 //= require activestorage
 //= require turbolinks
-//= require parsley
 //= require cocoon
+//= require parsley
 //= require custom
 //= require tasks

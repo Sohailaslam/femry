@@ -3,20 +3,20 @@ $(document).ready(function(e){
    	$('body').find('input#submit_tag')[0].click()
   });
 
-
+  
+  $('body').on('click', '#delete_button', function(e) {
+    $(this).prev().val(1)
+    $('body').find('input#submit_tag')[0].click()
+    
+  });
   $('body').on('change', '.check-box', function(e) {
-    debugger
     $('body').find('input#submit_tag')[0].click()
   });
 
-  $('body').on('focusout', '.title, .new-title', function(e) {
+  $('body').on('focusout', '.title, .new-title, .thought-area', function(e) {
     $('body').find('input#submit_tag')[0].click()
   });
 
-  $('').on('cocoon:after-insert', function(e, insertedItem) {
-    debugger
-    // ... do something
-  });
   $('body').on('click', '#add_thoughts', function(e){
   	debugger
     // $('.summernote').summernote({
