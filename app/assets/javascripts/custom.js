@@ -42,12 +42,8 @@ $(document).ready(function(e){
           console.log('after remove');
       });
 
-   $("a.add-thoughts").on('click', function(){
-     console.log('looks like clicking works...');
-   });
+    $("a.add-thoughts").on('click', function(){
+      console.log('looks like clicking works...');
+    });
+  });
 });
-});
-
-// $(function() {
-//   $('.sortable').railsSortable();
-// });
