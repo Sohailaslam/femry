@@ -24,4 +24,10 @@ module ApplicationHelper
 		today_task = f.object.tasks.where(task_date: Date.today)
 		((today_task.where(status: true).count.to_f/today_task.count.to_f) * 100).to_i
 	end
+
+	def completed_status(f)
+		today_task = f.object.tasks.where(task_date: Date.today)
+		completed = today_task.where(status: true)
+		today_task.present? ? completed.present? ? "#{completed.count}/#{today_task.count}" : "0/#{today_task.count}" : 0
+	end
 end
