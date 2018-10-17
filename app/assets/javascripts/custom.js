@@ -17,6 +17,7 @@ $(document).ready(function(e){
   
   $('body').on('click', '#delete_button', function(e) {
     $(this).prev().val(1)
+    $('#page-loader').removeClass('d-none');
     $('body').find('input#submit_tag')[0].click()
     
   });
