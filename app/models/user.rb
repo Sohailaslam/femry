@@ -65,10 +65,12 @@ class User < ApplicationRecord
 
   def aws_sign_out_resp
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
-
-    resp = client.global_sign_out({
-      access_token: self.access_token,
-    })
+    begin
+      resp = client.global_sign_out({
+        access_token: self.access_token,
+      })
+    rescue
+    end
     self.update(access_token: nil)
     resp
   end
