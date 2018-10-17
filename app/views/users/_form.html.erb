@@ -4,12 +4,14 @@
   <div class="row">
     <div class="col-md-2"></div>  
     <div class="col-md-8">
+      <% if grouped_tasks.keys.present? && grouped_tasks.keys.count > 14  %>
       <input type="checkbox" class="read-more-state" id="post-2" />
+      <% end %>
       <% if user.tasks.present? %>
         <ul class="read-more-wrap list-style-none">
           <% grouped_tasks.keys.each_with_index do |key, index| %>
             <% tasks_count = grouped_tasks[key].count %>
-            <li class="<%=  index > 1 ? 'read-more-target' : '' %>">
+            <li class="<%=  index > 14 ? 'read-more-target' : '' %>">
               <%= render partial: 'form_parts', locals: {f: f, key: key} %>
             </li>
             <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %>
@@ -19,7 +21,9 @@
           <%= render partial: 'form_parts', locals: {f: f, key: Date.today, task: nil} %>
           <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %> 
       <% end %>
-      <label for="post-2" class="read-more-trigger mt-3 btn btn-block"></label>
+      <% if grouped_tasks.keys.present? && grouped_tasks.keys.count > 14  %>
+        <label for="post-2" class="read-more-trigger mt-3 btn btn-block"></label>
+      <% end %>
     </div>  
   </div>
  

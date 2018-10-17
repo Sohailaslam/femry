@@ -1,4 +1,10 @@
 $(".profile-message").removeClass("d-none");
-$(".profile-message").first().hide().fadeIn(600).delay(500).fadeOut(1000, function () { 
+<% if resource.errors.present? %>	
+	$('#message_container').html("<%= escape_javascript(render partial: 'shared/messages', locals: {flash: flash})%>")
 	$(".profile-message").addClass("d-none");
-});
+<% else %>
+	$(".profile-message").first().hide().fadeIn(600).delay(500).fadeOut(1000, function () { 
+		$(".profile-message").addClass("d-none");
+	});
+<% end %>
+
