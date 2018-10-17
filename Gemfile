@@ -28,6 +28,7 @@ gem "figaro"
 gem "cocoon"
 gem 'jquery-ui-rails'
 gem 'rails_sortable'
+gem 'tinymce-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
