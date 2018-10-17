@@ -7,28 +7,20 @@
       </h2>
     </div>
   </div>
-  <div class="row mt-2">
-    <div class="col-md-12">
-      <div class="pt-3 pb-3 border-bottom">
-        <h4 class="mb-0">Name</h4>
-        <a href="#" class="text-muted">info@gmail.com</a>
-        <div class="mb-3"></div>
-        <p class="mb-1"><i class="fa fa-check-square text-success"></i> Single navbar example of a static top navbar</p>
-        <p class="mb-1"><i class="fa fa-check-square text-success"></i> Single navbar example of a static top navbar</p>
+  <% @users.present? &&  @users.each do |user| %>
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <div class="pt-3 pb-3 border-bottom">
+          <h4 class="mb-0"><%= user.first_name %></h4>
+          <a href="#" class="text-muted"><%= user.email %></a>
+          <div class="mb-3"></div>
+          <% user.tasks.present? && user.tasks.each do |task| %>
+            <p class="mb-1"><i class="fa fa-check-square <%= task.status? ? 'text-success' : ''%>"></i> <%= task.title %></p>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col-md-12">
-      <div class="pt-3 pb-3 border-bottom">
-        <h4 class="mb-0">Name</h4>
-        <a href="#" class="text-muted">info@gmail.com</a>
-        <div class="mb-3"></div>
-        <p class="mb-1"><i class="fa fa-check-square text-success"></i> Single navbar example of a static top navbar</p>
-        <p class="mb-1"><i class="fa fa-check-square text-success"></i> Single navbar example of a static top navbar</p>
-      </div>
-    </div>
-  </div>  
+  <% end %>  
 </div>
 
 

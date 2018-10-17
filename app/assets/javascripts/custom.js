@@ -4,6 +4,16 @@ $(document).ready(function(e){
    	$('body').find('input#submit_tag')[0].click()
   });
 
+
+  CKEDITOR.on( 'instanceReady', function( evt ) {
+    var editor = evt.editor,
+      body = CKEDITOR.document.getBody();
+    
+    editor.on( 'blur', function() {
+      $('body').find('input#submit_tag')[0].click()
+    } );    
+  } );
+
   
   $('body').on('click', '#delete_button', function(e) {
     $(this).prev().val(1)
@@ -20,15 +30,6 @@ $(document).ready(function(e){
     $('#page-loader').removeClass('d-none');
     $('body').find('input#submit_tag')[0].click()
   });
-
-  $('body').on('click', '#add_thoughts', function(e){
-    // $('.summernote').summernote({
-    //   height: 100,
-    // width: 100,
-    //   toolbar: [['style', ['bold', 'italic', 'underline', 'clear']]]
-    // });
-  })
-
 
 
   $(function(){
