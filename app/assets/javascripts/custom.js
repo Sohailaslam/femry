@@ -1,7 +1,17 @@
 $(document).ready(function(e){
-	$('body').on('cocoon:after-remove', function(e, insertedItem) {
-   	$('body').find('input#submit_tag')[0].click()
+  $('body').on('cocoon:after-remove', function(e, insertedItem) {
+    $('body').find('input#submit_tag')[0].click()
   });
+
+
+  CKEDITOR.on( 'instanceReady', function( evt ) {
+    var editor = evt.editor,
+      body = CKEDITOR.document.getBody();
+    
+    editor.on( 'blur', function() {
+      $('body').find('input#submit_tag')[0].click()
+    } );    
+  } );
 
   
   $('body').on('click', '#delete_button', function(e) {
@@ -16,15 +26,6 @@ $(document).ready(function(e){
   $('body').on('focusout', '.title, .new-title, .thought-area', function(e) {
     $('body').find('input#submit_tag')[0].click()
   });
-
-  $('body').on('click', '#add_thoughts', function(e){
-    // $('.summernote').summernote({
-    //   height: 100,
-    // width: 100,
-    //   toolbar: [['style', ['bold', 'italic', 'underline', 'clear']]]
-    // });
-  })
-
 
 
   $(function(){
