@@ -1,19 +1,23 @@
 $(document).ready(function(e){
 	$('body').on('cocoon:after-remove', function(e, insertedItem) {
+    $('#page-loader').removeClass('d-none');
    	$('body').find('input#submit_tag')[0].click()
   });
 
   
   $('body').on('click', '#delete_button', function(e) {
     $(this).prev().val(1)
+    $('#page-loader').removeClass('d-none');
     $('body').find('input#submit_tag')[0].click()
     
   });
   $('body').on('change', '.check-box', function(e) {
+    $('#page-loader').removeClass('d-none');
     $('body').find('input#submit_tag')[0].click()
   });
 
   $('body').on('focusout', '.title, .new-title, .thought-area', function(e) {
+    $('#page-loader').removeClass('d-none');
     $('body').find('input#submit_tag')[0].click()
   });
 
