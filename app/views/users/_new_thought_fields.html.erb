@@ -1,7 +1,7 @@
 <div class='nested-fields add-thougt-box'>
   <div class="col-11 mt-3 float-left">
     <div class="form-group">
-      <%= f.text_area :title, rows: 1, cols: 25, :class => "m-0 thought-area form-control tinymce" %>
+      <%= f.cktext_area :title, class: 'm-0 thought-area form-control editor'%>
       <%= f.hidden_field :thought_date, value: @key %>
     </div>   
   </div>
@@ -13,5 +13,3 @@
     </div>  
   </div>
 </div>
-
-<%= tinymce %>

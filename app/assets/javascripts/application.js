@@ -20,4 +20,4 @@
 //= require cocoon
 //= require parsley
 //= require custom
-//= require tinymce
+//= require ckeditor/init
