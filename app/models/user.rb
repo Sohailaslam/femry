@@ -14,8 +14,8 @@ class User < ApplicationRecord
   validate :password_complexity
 
   def password_complexity
-    if password.present? and not password.match(/^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){6,}$/)
-      errors.add :password, "must include at least one letter, and one digit"
+    if password.present? and !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)((?=.*\W)).{6,70}./)
+      errors.add :password, "must include at least one letter, one digit and one special character"
     end
   end
 
@@ -24,12 +24,12 @@ class User < ApplicationRecord
     incomplete_tasks.map{|task| task.update_attributes(task_date: Date.today)} if incomplete_tasks.present?
   end
 
-  def add_to_aws_cognito
+  def add_to_aws_cognito(password)
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
     resp = client.sign_up({
       client_id: ENV["AWS_COGNITO_CLIENT_ID"],
       username: self.email,
-      password: "Hamza!23",
+      password: password,
       user_attributes: [
         {
           name: "email",
@@ -65,10 +65,12 @@ class User < ApplicationRecord
 
   def aws_sign_out_resp
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
-
-    resp = client.global_sign_out({
-      access_token: self.access_token,
-    })
+    begin
+      resp = client.global_sign_out({
+        access_token: self.access_token,
+      })
+    rescue
+    end
     self.update(access_token: nil)
     resp
   end

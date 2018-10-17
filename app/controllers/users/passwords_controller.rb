@@ -14,6 +14,7 @@ class Users::PasswordsController < Devise::PasswordsController
     yield resource if block_given?
 
     if resource.present?
+      session[:user_id] = resource.id
       client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
       begin
         resp = client.forgot_password({
@@ -25,7 +26,7 @@ class Users::PasswordsController < Devise::PasswordsController
         redirect_to new_user_password_path, notice: e.message
       end
     else
-      respond_with(resource)
+      redirect_to new_user_password_path, notice: "Email not found"
     end
   end
 
@@ -53,6 +54,8 @@ class Users::PasswordsController < Devise::PasswordsController
           resp = client.confirm_forgot_password({client_id: ENV["AWS_COGNITO_CLIENT_ID"], username: user.email, confirmation_code: params["verify_code"], password: params["new_password"],})
           set_flash_message!(:notice, flash_message)
           sign_in(resource_name, resource)
+        rescue
+        end
       else
         set_flash_message!(:notice, :updated_not_active)
       end

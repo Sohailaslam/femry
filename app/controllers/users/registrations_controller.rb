@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
-      aws_sign_up_resp = resource.add_to_aws_cognito
+      aws_sign_up_resp = resource.add_to_aws_cognito(params[:user][:password])
       if !aws_sign_up_resp.user_confirmed
         redirect_to aws_auth_path(resource.id)
       else

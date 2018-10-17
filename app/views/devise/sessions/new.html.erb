@@ -5,7 +5,7 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {"data-parsley-validate" => ''}, validate: true) do |f| %>
         <div class="form-group">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: true, class: 'form-control' %>
+          <%= f.email_field :email, autofocus: false, autocomplete: "email", placeholder: "Email", required: true, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :password %><br />
