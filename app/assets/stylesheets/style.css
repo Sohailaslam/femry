@@ -417,6 +417,28 @@ cursor: pointer;
 .mce-menubar, .mce-statusbar{
   display: none !important;
 }
+
+#page-loader{
+  border-radius: 0;
+  position: fixed;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  left: 0%;
+  top: 0%;
+  padding-top: 20%;
+  z-index: 1000000000;
+  background-color: rgba(40, 167, 69, 0.49);
+  color: white;
+  pointer-events: none !important;
+}
+#page-loader h3 {
+    margin: 20px 0 10px 0;
+    font-size: 24px;
+}
+#page-loader h4 {
+    font-size: 18px;
+}
 /*****MObile and Ipad View CSS****/
 @media (max-width: 1024px) { 
 	.contant-block{
