@@ -411,6 +411,9 @@ cursor: pointer;
   width: 100%;
 }
 
+.mce-menubar, .mce-statusbar{
+  display: none !important;
+}
 /*****MObile and Ipad View CSS****/
 @media (min-width: 768px){
 .container {
