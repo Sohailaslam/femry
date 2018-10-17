@@ -1,12 +1,12 @@
 <div id='tasks'>
   <div class="row mt-5">
-    <div class="col-9">
+    <div class="col-10">
       <% day = key.present? ? display_date(key) : 'Today' %>
       <h3 class="mb-3"><%= key.present? ? display_date(key) : 'Today' %></h3>
     </div>
     <% if day == "Today" && f.object.tasks.present? %>
-      <div class="col-3 mb-2 pt-2">
-        <div class="progress float-left ml-5" data-percentage="<%= completed_percentage(f) %>">
+      <div class="col-2 mb-2 pt-2">
+        <div class="progress float-right ml-2" data-percentage="<%= completed_percentage(f) %>">
           <span class="progress-left">
             <span class="progress-bar"></span>
           </span>
@@ -16,9 +16,8 @@
           <div class="progress-value">
           </div>
         </div>
-        <div class="float-left ml-2">
-
-          <small class="text-muted"><%= completed_status(f) %> Completed</small>
+        <div class="float-right ml-2 mt-2">
+          <small class="text-muted"><%= completed_status(f) %></small>
         </div>
       </div>
     <% end %>    
