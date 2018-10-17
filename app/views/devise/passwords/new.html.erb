@@ -4,7 +4,7 @@
 		<h2>Forgot your password?</h2>
 		<div class="row form-setting">
 			<div class="col-md-12">
-				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, "data-parsley-validate" => true }) do |f| %>
 	  			<%= devise_error_messages! %>
 
 				  <div class="field form-group mt-4">

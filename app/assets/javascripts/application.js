@@ -20,5 +20,4 @@
 //= require cocoon
 //= require parsley
 //= require custom
-//= require tasks
 //= require tinymce
