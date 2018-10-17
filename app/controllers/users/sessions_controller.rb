@@ -33,11 +33,11 @@ class Users::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
-    user = User.find(session[:user_id])
+    user = User.find_by(id: session[:user_id])
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     if signed_out
       set_flash_message! :notice, :signed_out
-      user.aws_sign_out_resp
+      user.aws_sign_out_resp if user.present?
     end
     yield if block_given?
     respond_to_on_destroy
