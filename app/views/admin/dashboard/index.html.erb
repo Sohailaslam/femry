@@ -26,5 +26,17 @@
         	</tbody>
        </table>      
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class='mt-4'>New Users</h2>
+      <% @users.each do |user| %>
+        <% user.email %>
+        <% user.tasks.each do |task| %>
+          <% task.status == true %>
+          <% task.title %>
+        <% end %>  
+      <% end %>      
+    </div>
   </div>  
 </div>

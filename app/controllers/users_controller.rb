@@ -3,18 +3,18 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :update
   before_action :set_user, only: :update
 
-	def new
-		current_user.incomplete_tasks if current_user.present?
-	  @user = current_user.present? ? current_user : User.find(3)
-	 end
+  def new
+    current_user.incomplete_tasks if current_user.present?
+    @user = current_user.present? ? current_user : User.find(3) 
+  end
 
-	def update		
-	  @user.update(user_params)
-	end
+  def update		
+    @user.update(user_params)
+  end
 
-	def aws_auth
-		@user = User.find(params[:user_id])
-	end
+  def aws_auth
+    @user = User.find(params[:user_id])
+  end
 
 	def password_auth
 		@user = User.find(params[:user_id])
@@ -32,10 +32,10 @@ class UsersController < ApplicationController
 			})
 			redirect_to root_path, notice: "Account Authenticated Successfully"
       # sign_in(@user, scope: :user)
-		rescue => e
-			redirect_to aws_auth_path(@user.id), notice: e.message
-		end
-	end
+    rescue => e
+      redirect_to aws_auth_path(@user.id), notice: e.message
+    end
+  end
 
 	def validate_password_reset_code
 		@user = User.find(params[:user_id])
@@ -64,6 +64,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 end
