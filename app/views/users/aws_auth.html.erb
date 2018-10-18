@@ -5,10 +5,12 @@
       <%= form_tag(validate_code_path, method: :post) do %>
         <div class="form-group">
           <%= hidden_field_tag 'user_id', @user.id %>
-          <label for="verify_code">Please enter verification code sent to your email:</label>
+          <label for="verify_code" class="font-normal">Please enter verification code sent to your email:</label>
           <%= number_field_tag "verify_code",{}, {class: "form-control", id: "verify_code"} %>
         </div>
-        <button type="submit" class="btn btn-primary pull-right">Verify</button>
+        <div class="form-group text-right">
+          <button type="submit" class="btn btn-success btn-custom">Verify</button>
+        </div>
       <% end %>
     </div>
   </div>

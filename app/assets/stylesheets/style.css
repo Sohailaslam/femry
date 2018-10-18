@@ -332,6 +332,9 @@ input[type="radio"] .styled:checked + label::after {
   border: none;
   width: 90%;
 }
+.add-task ul li label input:focus{
+  outline: none;
+}
 .add-task ul li:hover{
 transition-duration: 1s;
 cursor: pointer;
@@ -438,6 +441,9 @@ cursor: pointer;
 }
 #page-loader h4 {
     font-size: 18px;
+}
+.font-normal{
+  font-weight: normal !important;
 }
 /*****MObile and Ipad View CSS****/
 @media (max-width: 1024px) { 
