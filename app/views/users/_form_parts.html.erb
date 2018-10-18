@@ -24,7 +24,7 @@
   </div>  
   <div class="row">
     <div class="col-md-12">     
-      <div class="add-task p-4">           
+      <div class="<%= f.object.tasks.present? ? 'add-task' : 'd-none' %> p-4">           
         <ul id="sortable<%= Date.today %>" class="sortable ui-sortable ">
           <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC").order(:sort) do |task| %>
             <%= render 'task_fields', :f => task if key == task.object.task_date.to_date %>
@@ -37,7 +37,7 @@
 <div id='thoughts'>  
   <div class="row">
     <div class="col-md-12">
-      <div class="add-task add-thought p-4">                
+      <div class="<%= f.object.thoughts.present? ? 'add-task' : 'd-none' %> add-thought p-4">                
         <ul>
           <%= f.fields_for :thoughts, f.object.thoughts.order("thought_date DESC") do |thought| %>
             <%= render 'thought_fields', :f => thought  %>
