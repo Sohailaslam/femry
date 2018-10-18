@@ -2,10 +2,10 @@
   <div class="row mt-5">
     <div class="col-10">
       <% day = key.present? ? display_date(key) : 'Today' %>
-      <h3 class="mb-3"><%= key.present? ? display_date(key) : 'Today' %></h3>
+      <h4 class="mb-3"><%= key.present? ? display_date(key) : "<b>Today</b>".html_safe %></h4>
     </div>
     <% if day == "Today" && f.object.tasks.present? %>
-      <div class="col-2 mb-2 pt-2">
+      <div class="col-2 mb-2">
         <div class="progress float-right ml-2" data-percentage="<%= completed_percentage(f) %>">
           <span class="progress-left">
             <span class="progress-bar"></span>
