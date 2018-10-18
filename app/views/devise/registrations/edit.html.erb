@@ -1,6 +1,5 @@
 <div class="row mt-5 mb-4">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-12 login">
     <div class="row">
       <div class="col-md-12">
         <div class="alert alert-success profile-message d-none">Profile updated successfully</div>
@@ -14,23 +13,23 @@
             <%= f.label :first_name do %>
               First Name<span class="text-danger">(required)</span>
             <% end %>
-            <%= f.text_field :first_name, autofocus: true, required: true, class: 'form-control form-control-lg' %>
+            <%= f.text_field :first_name, autofocus: true, required: true, class: 'form-control' %>
           </div>
           <div class="form-group mt-4">
             <%= f.label :last_name do %>
               Last Name<span class="text-muted">(optional)</span>
             <% end %>
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg' %>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: 'form-control' %>
           </div>
           <div class="form-group mt-4">
             <%= f.label :timezone do %>
               Timezone<span class="text-muted">(optional)</span>
             <% end %>
-            <%= f.time_zone_select :timezone, ActiveSupport::TimeZone.us_zones, {}, class: 'form-control form-control-lg' %>
+            <%= f.time_zone_select :timezone, ActiveSupport::TimeZone.us_zones, {}, class: 'form-control' %>
           </div>
           <div class="form-group mt-4">
             <div class="text-right">
-              <button class="btn btn-primary">Save Changes</button>
+              <button class="btn btn-success btn-custom">Save Changes</button>
             </div>
           </div>
         <% end %>  
@@ -40,8 +39,7 @@
 </div>
 
 <div class="row mt-5 mb-4">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-12 login">
     <h2>Email</h2>
     <div class="row form-setting">
       <div class="col-md-12">
@@ -50,11 +48,11 @@
             <%= f.label :email do %>
               Email<span class="text-danger">(required)</span>
             <% end %>
-            <%= f.email_field :email, autofocus: true, required: true, class: 'form-control form-control-lg' %>
+            <%= f.email_field :email, autofocus: true, required: true, class: 'form-control' %>
           </div>
           <div class="form-group mt-4">
             <div class="text-right">
-              <button class="btn btn-primary">Save Changes</button>
+              <button class="btn btn-success btn-custom">Save Changes</button>
             </div>
           </div>
         <% end %>  
@@ -64,8 +62,7 @@
 </div>
 
 <div class="row mt-5 mb-4">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-12 login">
     <h2>Password</h2>
     <div class="row form-setting">
       <div class="col-md-12">
@@ -73,24 +70,24 @@
           
           <div class="form-group mt-4">
             <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-            <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control form-control-lg' %>
+            <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control' %>
           </div>
 
           <div class="form-group mt-4">
             <%= f.label :password do %>
               Password<span class="text-danger">(required)</span>
             <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control form-control-lg' %>
+            <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control' %>
           </div>
           <div class="form-group mt-4">
             <%= f.label :password_confirmation do %>
               Password Confirmation<span class="text-danger">(required)</span>
             <% end %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control form-control-lg' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control' %>
           </div>
           <div class="form-group mt-4">
             <div class="text-right">
-              <button class="btn btn-primary">Save Changes</button>
+              <button class="btn btn-success btn-custom">Save Changes</button>
             </div>
           </div>
         <% end %>  
