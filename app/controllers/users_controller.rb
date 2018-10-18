@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 		  	confirmation_code: params["verify_code"],
 		  	force_alias_creation: false,
 			})
+			sign_in(:user, @user)
 			redirect_to root_path, notice: "Account Authenticated Successfully"
       # sign_in(@user, scope: :user)
     rescue => e
