@@ -6,11 +6,11 @@
       <%= form_for @user, url: admin_user_path(id: @user.id), method: :put, html: { "data-parsley-validate" => true } do |f| %>
         <div class="form-group mt-4">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
         </div>
         <div class="form-group mt-4">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg' %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
         </div>
         <div class="form-group mt-4">
         </div>
