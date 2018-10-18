@@ -14,10 +14,10 @@
 //= require jquery-3.3.1.slim.min
 //= require rails-ujs
 // require popper.min
-// require bootstrap.min
 //= require activestorage
 //= require turbolinks
 //= require cocoon
 //= require parsley
 //= require custom
 //= require ckeditor/init
+//= require bootstrap.min
