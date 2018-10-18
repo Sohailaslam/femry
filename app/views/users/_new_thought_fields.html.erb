@@ -1,15 +1,13 @@
 <div class='nested-fields add-thougt-box'>
-  <div class="col-11 mt-3 float-left">
+  <div class="col-md-12 mt-3">
     <div class="form-group">
       <%= f.cktext_area :title, class: 'm-0 thought-area form-control editor', required: true%>
       <%= f.hidden_field :thought_date, value: @key %>
-    </div>   
-  </div>
-  <div class="col-1 mt-3 pt-2 float-left">
-    <div class="icon-fa">
+    </div>
+    <div class="icon-fa close-thought">
       <%= link_to_remove_association f, :partial => 'new_thought_fields' do %>
         <i class="fa fa-trash"></i>
       <% end %>
-    </div>  
+    </div>   
   </div>
 </div>
