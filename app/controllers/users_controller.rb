@@ -31,8 +31,7 @@ class UsersController < ApplicationController
 		  	force_alias_creation: false,
 			})
 			sign_in(:user, @user)
-			redirect_to root_path, notice: "Account Authenticated Successfully"
-      # sign_in(@user, scope: :user)
+			redirect_to root_path, notice: "Please add your to-do’s at the bottom"
     rescue => e
       redirect_to aws_auth_path(@user.id), notice: e.message
     end
