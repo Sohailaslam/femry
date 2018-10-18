@@ -9,15 +9,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
 
   has_many :thoughts, dependent: :destroy
-  accepts_nested_attributes_for :thoughts, reject_if: :all_blank, allow_destroy: true       
-
-  validate :password_complexity
-
-  def password_complexity
-    if password.present? and !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)((?=.*\W)).{7,70}./)
-      errors.add :password, "must include at least one letter, one digit and one special character"
-    end
-  end
+  accepts_nested_attributes_for :thoughts, reject_if: :all_blank, allow_destroy: true
 
   def incomplete_tasks
     incomplete_tasks = tasks.where(status: 0).where.not(task_date: Date.today)
