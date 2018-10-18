@@ -5,9 +5,9 @@ module ApplicationHelper
 		if key.to_date == Date.today
 			"Today"
 		elsif key.to_date == Date.today - 1
-			"Yesterday"
+			"<b>Yesterday,</b> ".html_safe + key.strftime("%B #{key.day.ordinalize}")
 		else
-			key.strftime('%a %d %b %Y') 
+			key.strftime("%B #{key.day.ordinalize}")
 		end
 	end
 
