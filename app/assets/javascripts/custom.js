@@ -5,6 +5,12 @@ $(document).ready(function(e){
   });
 
 
+  $('body').on('keyup', 'textarea', function(e){
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  })
+
   CKEDITOR.on( 'instanceReady', function( evt ) {
     var editor = evt.editor,
       body = CKEDITOR.document.getBody();

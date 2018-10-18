@@ -337,11 +337,15 @@ input[type="radio"] .styled:checked + label::after {
   width: 90%;
 }
 
-.add-task ul li label input{
+.add-task ul li label textarea{
   border: none;
   width: 90%;
+  resize: none;
+  line-height: 22px;
+  font-size: 14px;s
+  overflow: hidden;
 }
-.add-task ul li label input:focus{
+.add-task ul li label textarea:focus{
   outline: none;
 }
 .add-task ul li:hover{
@@ -491,6 +495,9 @@ footer{
 }
 .copy-right{
   color: #d3dbe3;
+}
+.alert-height{
+  height: 60px;
 }
 /*****MObile and Ipad View CSS****/
 @media (max-width: 1024px) { 
