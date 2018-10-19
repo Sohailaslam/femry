@@ -43,10 +43,14 @@ body {
 .login p{
 	font-size: 14px;
 }
-
+.btn-success{
+  background-color: #008952;
+  border-color: #008952;
+}
 .btn-custom{
 	background-color: #008952;
-	padding: 7px 32px;
+	padding: 10px 32px;
+  font-weight: 600;
 	transition-delay: 2s;
 }
 /** Start Login Form CSS **/
