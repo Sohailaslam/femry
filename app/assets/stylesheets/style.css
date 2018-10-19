@@ -323,7 +323,6 @@ input[type="radio"] .styled:checked + label::after {
 	float: left;
 	width: 100%;
 	border-bottom: 1px solid #ddd;
-	padding-bottom: 15px;
 	margin-bottom:15px;
 }
 .add-task ul li:hover label{
