@@ -37,7 +37,7 @@
 <div id='thoughts'>  
   <div class="row">
     <div class="col-md-12">
-      <div class="<%= f.object.thoughts.present? ? 'add-task' : 'd-none' %> add-thought p-4">                
+      <div class="<%= f.object.thoughts.present? ? 'add-task' : 'd-none' %> add-thought p-4" >                
         <ul>
           <%= f.fields_for :thoughts, f.object.thoughts.order("thought_date DESC") do |thought| %>
             <%= render 'thought_fields', :f => thought  %>
@@ -50,12 +50,19 @@
 <div class="row">
   <div class="col-md-12">
     <% @key = Date.today %>
+    
     <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3' %>
-    <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: 'add-thoughts btn btn-outline-dark mt-3', id: 'add_thoughts' %>
+    <% if f.object.thoughts.find_by_thought_date(@key).present? %>
+      <%= link_to 'Add Thought', 'javascript:void(0);', class: 'save-thoughts btn btn-outline-dark mt-3', id: 'edit_thoughts' %>
+    <% else %>
+      <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: 'add-thoughts btn btn-outline-dark mt-3', id: 'add_new_thoughts'  %>
+    <% end %>  
+    <%= link_to 'Save Thought', 'javascript:void(0);', class: 'save-thoughts btn btn-outline-dark mt-3 d-none', id: 'save_thoughts' %>
   </div>
 </div>
 
 <script type="text/javascript">
+
   var ready, set_positions;
 
   set_positions = function(){
