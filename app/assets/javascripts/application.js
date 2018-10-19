@@ -10,14 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// require jquery
-//= require jquery-3.3.1.slim.min
-//= require rails-ujs
-// require popper.min
-//= require activestorage
-//= require turbolinks
+//= require jquery
+//= require jquery_ujs
 //= require cocoon
+//= require turbolinks
+//= require jquery-ui
+//= require bootstrap.min
 //= require parsley
 //= require custom
 //= require ckeditor/init
-//= require bootstrap.min
