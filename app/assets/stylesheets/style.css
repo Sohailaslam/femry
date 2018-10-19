@@ -341,7 +341,7 @@ input[type="radio"] .styled:checked + label::after {
   width: 90%;
   resize: none;
   line-height: 22px;
-  font-size: 14px;s
+  font-size: 14px;
   overflow: hidden;
 }
 .add-task ul li label textarea:focus{
