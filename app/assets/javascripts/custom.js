@@ -3,6 +3,13 @@ $(document).ready(function(e){
    	$('body').find('input#submit_tag')[0].click()
   });
 
+  $('body').on('cocoon:before-remove', function(event, insertedItem) {
+    var confirmation = confirm("Are you sure?");
+    if( confirmation === false ){
+      event.preventDefault();
+    }
+});
+
 
   $('body').on('keyup', 'textarea', function(e){
     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
@@ -20,22 +27,22 @@ $(document).ready(function(e){
     // });    
   } );
 
-  $('body').on('click', '#delete_thought_button', function(e) {
-    thought_id = $(this).attr('data-id')
+  // $('body').on('click', '#delete_thought_button', function(e) {
+  //   thought_id = $(this).attr('data-id')
 
-    $.ajax({
-      url: '/thoughts/'+thought_id,
-      method: "DELETE",
-      success: (function(_this) {
-      })(this)
-    });
-  });
+  //   $.ajax({
+  //     url: '/thoughts/'+thought_id,
+  //     method: "DELETE",
+  //     success: (function(_this) {
+  //     })(this)
+  //   });
+  // });
 
-  $('body').on('click', '#delete_button', function(e) {
-    $(this).prev().val(1)
-    $('body').find('input#submit_tag')[0].click()
+  // $('body').on('click', '#delete_button', function(e) {
+  //   $(this).prev().val(1)
+  //   $('body').find('input#submit_tag')[0].click()
     
-  });
+  // });
   $('body').on('change', '.check-box', function(e) {
     $('body').find('input#submit_tag')[0].click()
   });
