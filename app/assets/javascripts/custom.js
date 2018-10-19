@@ -44,21 +44,26 @@ $(document).ready(function(e){
     $('body').find('input#submit_tag')[0].click()
   });
 
-  $('body').on('click', '.add-thoughts', function(e) {
+  $('body').on('click', '#add_new_thoughts', function(e) {
+    data_id = $(this).attr('data-id')
     $(this).addClass('d-none')
-    $('#save_thoughts').removeClass('d-none')
+    $('.st_'+data_id).removeClass('d-none')
   });
 
   $('body').on('click', '#edit_thoughts', function(e) {
-    $('div#thoughts').find('.cke_top').removeClass('d-none')
-    $('div#thoughts').find('.cke_bottom').removeClass('d-none')
+    data_id = $(this).attr('data-id')
+    $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
+    $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
     $(this).addClass('d-none')
-    $('#save_thoughts').removeClass('d-none')
+    $('.st_'+data_id).removeClass('d-none')
   });
 
   $('body').on('click', '#save_thoughts', function(e) {
+    data_id = $(this).attr('data-id')
+    $(this).addClass('d-none')
+    $('.et_'+data_id).removeClass('d-none')
     $('body').find('input#submit_tag')[0].click()
-    $(this).text("Add Thought");    
+    
   });
 
   // $('body').on('focusin', '.cke_contents', function(e) {
