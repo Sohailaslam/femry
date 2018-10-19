@@ -1,16 +1,18 @@
 <div class="height">
   <div class="row">
-    <div class="col-md-12">
-      <h2 class="mb-3 mt-5">
+  <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h3 class="mb-1 mt-5">
         Total Users
         <span class="badge badge-primary"><%= @users.present? ? @users.count : 0 %></span>
-      </h2>
+      </h3>
     </div>
   </div>
   <% @users.present? &&  @users.each do |user| %>
     <div class="row mt-2">
-      <div class="col-md-12">
-        <div class="pt-3 pb-3 border-bottom">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="border-bottom">
           <h4 class="mb-0"><%= user.first_name %></h4>
           <a href="#" class="text-muted"><%= user.email %></a>
           <div class="mb-3"></div>
