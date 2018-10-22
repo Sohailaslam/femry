@@ -503,6 +503,20 @@ footer{
 .alert-height{
   height: 60px;
 }
+#profile_alert_box{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 101%;
+  z-index: 1000;
+  text-align: center;
+  border-radius: 0;
+  max-width: 650px;
+  right: 0;
+  margin: auto;
+  transition: all 1s ease;
+}
+
 /*****MObile and Ipad View CSS****/
 @media (max-width: 1024px) { 
 	.contant-block{
