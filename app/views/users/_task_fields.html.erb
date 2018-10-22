@@ -7,7 +7,8 @@
   </div>
   <%= f.hidden_field :task_date %>
   <div class="pull-right icon-fa">
-    <%= link_to_remove_association f, :partial => 'task_fields', id: 'delete_button' do %>
+    <%= f.hidden_field :_destroy, value: false %>
+    <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button', data: { toggle: 'modal', target: "#myModal" } do %>
       <i class="fa fa-trash"></i>
     <% end %>
   </div>

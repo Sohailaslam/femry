@@ -5,13 +5,28 @@ $(document).ready(function(e){
   });
 
   $('body').on('cocoon:before-remove', function(event, insertedItem) {
-    var confirmation = confirm("Are you sure?");
-    if( confirmation === false ){
-      event.preventDefault();
-    }
+    // debugger
+    // $('#myModal').modal("show");
+     // event.preventDefault();
+    // var confirmation = confirm("Are you sure?");
+    // if( confirmation === false ){
+    //   event.preventDefault();
+    // }
   });
 
+  $('body').on('click', '#delete_button', function(e){
+    previous_destroy_field = $(this).prev().attr("id");
+    timer = setTimeout( function(){ 
+      $('#'+previous_destroy_field).val(1)
+      $('body').find('input#submit_tag')[0].click()
+      $('#myModal').modal("hide")
+    }  , 5000 );
 
+    $('#undo').click(function(event){
+      clearTimeout(timer);
+      e.preventDefault()
+    })
+  })
 
   $('body').on('keyup', 'textarea', function(e){
     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
