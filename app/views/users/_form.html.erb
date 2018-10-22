@@ -1,4 +1,4 @@
-<%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {"data-parsley-validate" => true} do |f| %>
+<%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {} do |f| %>
   
   <% grouped_tasks = user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date) %>
   <div class="row">

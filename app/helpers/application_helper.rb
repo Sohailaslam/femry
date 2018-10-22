@@ -3,11 +3,11 @@ module ApplicationHelper
 
 	def display_date(key)
 		if key.to_date == Date.today
-			"Today"
+			"<b>Today,</b> ".html_safe + key.strftime("%B #{key.day}")
 		elsif key.to_date == Date.today - 1
-			"<b>Yesterday,</b> ".html_safe + key.strftime("%B #{key.day.ordinalize}")
+			"<b>Yesterday,</b> ".html_safe + key.strftime("%B #{key.day}")
 		else
-			key.strftime("%B #{key.day.ordinalize}")
+			"<b>#{key.strftime('%A')},</b> ".html_safe + key.strftime("%B #{key.day.ordinalize}")
 		end
 	end
 
