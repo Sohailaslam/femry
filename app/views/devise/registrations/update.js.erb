@@ -3,8 +3,7 @@ $(".profile-message").removeClass("d-none");
 	$('#message_container').html("<%= escape_javascript(render partial: 'shared/messages', locals: {flash: flash})%>")
 	$(".profile-message").addClass("d-none");
 <% else %>
-	$(".profile-message").first().hide().fadeIn(600).delay(500).fadeOut(1000, function () { 
-		$(".profile-message").addClass("d-none");
-	});
+	_html = "<div class='col-md-12'><div class='alert alert-success profile-message'><button type='button' class='close' data-dismiss='alert'>x</button>Profile updated successfully</div></div>";
+	$("#profile_alert_box").html(_html);
 <% end %>
 

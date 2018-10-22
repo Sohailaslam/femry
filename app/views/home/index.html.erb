@@ -7,10 +7,11 @@
   <div class="where-work col-md-6">
     <h1>Where Work Happens</h1>
     <p>When your team needs to kick off a project, hire a new employee, deploy some code, review a sales contract, finalize next year's budget, measure an A/B test, plan your next office opening, and more, Slack has you covered.</p>
-    <form class="form-inline get-started-from">
+    <%= form_tag new_user_registration_path, class: "form-inline get-started-from", method: :get do %>
       <label class="sr-only" for="inlineFormInputName2">Name</label>
-      <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Email address">             
+      <%= text_field_tag 'email',nil, class: "form-control mb-2 mr-sm-2", placeholder: "Email address" %>
       <button type="submit" class="btn btn-success mb-2 pl-4  pr-4">Get Started</button>
+    <% end %>
   </form>
   <p class="account mt-2">Already using Slack? <%= link_to 'Sign in ', new_user_session_path unless current_user.present? %></p>
   </div>  
