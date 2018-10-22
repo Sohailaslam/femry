@@ -1,6 +1,7 @@
 $(document).ready(function(e){
-	$('body').on('cocoon:after-remove', function(e, insertedItem) {
-   	$('body').find('input#submit_tag')[0].click()
+  multiline_support();
+  $('body').on('cocoon:after-remove', function(e, insertedItem) {
+    $('body').find('input#submit_tag')[0].click()
   });
 
   $('body').on('cocoon:before-remove', function(event, insertedItem) {
@@ -8,7 +9,8 @@ $(document).ready(function(e){
     if( confirmation === false ){
       event.preventDefault();
     }
-});
+  });
+
 
 
   $('body').on('keyup', 'textarea', function(e){
@@ -80,5 +82,13 @@ $(document).ready(function(e){
   //   $(this).addClass('d-none')
   //   $('#edit_thoughts').addClass('d-none')
   //   $('#save_thoughts').removeClass('d-none')
-  // });  
+  // }); 
 });
+
+function multiline_support(){
+  $( "textarea.title" ).each(function( index ) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  });
+}
