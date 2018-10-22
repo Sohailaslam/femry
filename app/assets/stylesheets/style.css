@@ -529,6 +529,44 @@ footer{
   transition: all 1s ease;
 }
 
+.pincode-input-text, .form-control.pincode-input-text{
+  width: 16%;
+  height: 80px;
+  font-size: 24px;
+}
+.undo-modal{}
+.undo-modal .modal-dialog{
+  max-width: 200px;
+}
+.undo-modal .modal-content{
+  border: none;
+  max-width: 200px;
+}
+.undo-modal .modal-header{
+  background-color: #000;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+    font-size: 11px;
+    padding: 5px 8px;
+    border-radius: 25px;
+    text-align: center;
+}
+.undo-modal .modal-header h6{
+  font-size: 13px;
+}
+.undo-modal .modal-header a{
+  color: #fff;
+  text-decoration: underline;
+}
+.undo-modal .close{
+  color: #fff;
+  opacity: 1;
+}
+.undo-modal .modal-header:hover .close{
+  color: #fff;
+  opacity: 1;
+}
 /*****MObile and Ipad View CSS****/
 @media (max-width: 1024px) { 
 	.contant-block{
@@ -600,6 +638,10 @@ footer{
   }
   .login h1{
     margin-bottom: 20px;
+  }
+  .keep-text br{
+    display: none;
+
   }
  }
 
