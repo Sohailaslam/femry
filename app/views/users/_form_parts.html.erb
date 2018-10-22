@@ -50,8 +50,7 @@
 <div class="row">
   <div class="col-md-12">
     <% @key = key %>
-    
-    <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3' %>
+    <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'task_fields', class: 'btn btn-success mt-3', data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#sortable#{Date.today}" } %>
     <% if f.object.thoughts.find_by_thought_date(key).present? %>
       <%= link_to 'Edit Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 et_#{key}", id: 'edit_thoughts', 'data-id' => key %>
     <% else %>
