@@ -118,7 +118,7 @@ body {
 display: inline-block;
 vertical-align: middle;
 position: relative;
-padding-left: 5px; }
+padding-left: 8px; }
 .checkbox label::before {
   content: "";
   display: inline-block;
@@ -586,10 +586,20 @@ footer{
     margin-top: 15px;
   }
   .login{
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
   }
   footer{
     position: relative;
+  }
+  .height{
+    min-height: auto;
+  }
+  .header-bg{
+    padding-left: 0 !important;
+    padding-right: 0 !important;;
+  }
+  .login h1{
+    margin-bottom: 20px;
   }
  }
 
