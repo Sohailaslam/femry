@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require jquery-ui
 //= require bootstrap.min
+//= require bootstrap-pincode-input
 //= require parsley
 //= require custom
 //= require ckeditor/init
