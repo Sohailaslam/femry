@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def new
   	require 'will_paginate/array'
-    # current_user.incomplete_tasks if current_user.present?
+    current_user.incomplete_tasks if current_user.present?
     @user = current_user.present? ? current_user : User.find(3)
     @user.tasks.create(task_date: Date.today, status: false) unless @user.tasks.present?
     
