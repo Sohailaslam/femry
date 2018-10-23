@@ -1,4 +1,5 @@
 $(document).ready(function(e){
+
   multiline_support();
   $('body').on('cocoon:after-remove', function(e, insertedItem) {
     $('body').find('input#submit_tag')[0].click()
@@ -70,6 +71,7 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', '.title, .new-title', function(e) {
+    debugger
     $('body').find('input#submit_tag')[0].click()
   });
 
@@ -103,6 +105,27 @@ $(document).ready(function(e){
   //   $('#edit_thoughts').addClass('d-none')
   //   $('#save_thoughts').removeClass('d-none')
   // }); 
+
+  if ($('#infinite-scrolling').size() > 0) {
+    return $(window).on('scroll', function() {
+      // var more_posts_url;
+      // more_posts_url = $('.pagination .next_page a').attr('href');
+    setTimeout( function(){ 
+      if ($(window).scrollTop() > ($(document).height() - $(window).height()) * 0.95 )  {
+        $('.loader').removeClass('d-none');
+        $.ajax({
+          type:'GET', 
+          url: '/',
+          data: {page: $('.loader').attr('data-page')},
+          success: function(result) {
+            $('.loader').addClass('d-none');
+          }
+        });
+      }
+    }  , 2000 );
+      return;
+    });
+  }
 });
 
 function multiline_support(){
