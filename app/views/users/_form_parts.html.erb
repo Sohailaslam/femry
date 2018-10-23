@@ -25,8 +25,8 @@
   </div>  
   <div class="row">
     <div class="col-md-12">     
-      <div class="<%= f.object.tasks.present? ? 'add-task' : 'd-none' %> p-4">           
-        <ul id="sortable<%= Date.today %>" class="sortable ui-sortable ">
+      <div class="<%= f.object.tasks.present? ? 'add-task' : 'd-none' %> pr-4 pl-4 pt-3 pb-0">           
+        <ul id="sortable<%= key %>" class="sortable ui-sortable ">
           <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC").order(:sort) do |task| %>
             <%= render 'task_fields', :f => task if key == task.object.task_date.to_date %>
           <% end %>       
@@ -35,27 +35,28 @@
     </div>
   </div>
 </div>
+
 <div id='thoughts' class="thoughts_<%= key %>">  
   <div class="row">
     <div class="col-md-12">
       <div class="<%= f.object.thoughts.present? ? 'add-task' : 'd-none' %> add-thought p-4" >                
-        <ul>
+        <ul id="thoughts<%=key%>">
           <%= f.fields_for :thoughts, f.object.thoughts.order("thought_date DESC") do |thought| %>
-            <%= render 'thought_fields', :f => thought  if key == thought.object.thought_date.to_date %>
+            <%= render 'thought_fields', :f => thought, :key => key  if key == thought.object.thought_date.to_date %>
           <% end %>     
         </ul>
       </div>
     </div>
   </div>
-</div>    
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <% @key = key %>
-    <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'task_fields', class: 'btn btn-success mt-3', data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#sortable#{Date.today}" } %>
-    <% if f.object.thoughts.find_by_thought_date(key).present? %>
-      <%= link_to 'Edit Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 et_#{key}", id: 'edit_thoughts', 'data-id' => key %>
-    <% else %>
-      <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: "add-thoughts btn btn-outline-dark mt-3 ant_#{key}", id: 'add_new_thoughts', 'data-id' => key  %>
+    <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3', data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#sortable#{@key}" } %>
+    <% unless f.object.thoughts.find_by_thought_date(key).present? %>
+      <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: "add-thoughts btn btn-outline-dark mt-3 ant_#{key}", id: 'add_new_thoughts', 'data-id' => key, data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#thoughts#{@key}" }  %>
+      
     <% end %>  
     <%= link_to 'Save Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 d-none st_#{key}", id: 'save_thoughts', 'data-id' => key %>
   </div>

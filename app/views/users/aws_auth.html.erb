@@ -2,20 +2,13 @@
   <div class="col-md-12">
     <div class="login mt-2">
       <h1>Check your Email</h1>
-      <p>We've sent a six-digit confirmation code to your <b>info@gmail.com</b> it will expire shortly so enter your code soon</p>
-      <%= form_tag(validate_code_path, method: :post) do %>
+      <p>We've sent a six-digit confirmation code to your <b><%= @user.email %></b> it will expire shortly so enter your code soon</p>
+      <%= form_tag(validate_code_path, method: :post, id: 'vaidate_code_form') do %>
         <div class="form-group">
           <%= hidden_field_tag 'user_id', @user.id %>
-          <label for="verify_code" class="font-normal">Please enter verification code sent to your email:</label>
-          <%= number_field_tag "verify_code",{}, {class: "form-control", id: "verify_code"} %>
-        </div>
-        <div class="form-group text-right">
-          <button type="submit" class="btn btn-success btn-custom">Verify</button>
-        </div>
-
-        <div class="form-group">
+          <%= hidden_field_tag "verify_code",{}, {class: "form-control", id: "verify_code"} %>
           <label for="verify_code" class="font-normal">Your confirmation code</label>
-         <input type="text" id="pincode-input" class="form-control">
+          <input type="text" id="pincode-input" class="form-control">
         </div>
         <div class="form-group text-center">
           <small class="keep-text">Keep the window open while checking your code<br> Haven't received our email ?Try your spam folder.</small>
@@ -26,6 +19,13 @@
 </div>
 
 <script type="text/javascript">
-  $('#pincode-input').pincodeInput({hidedigits:false, inputs:6});
-
+  $('#pincode-input').pincodeInput({
+    inputs:6,
+    hideDigits:true,
+  complete : function(value, e, errorElement){
+    $('#verify_code').val(value);
+    $('#vaidate_code_form').submit();
+  }
+  
+});
 </script>

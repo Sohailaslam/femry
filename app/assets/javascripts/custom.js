@@ -16,17 +16,13 @@ $(document).ready(function(e){
 
   $('body').on('click', '#delete_button', function(e){
     previous_destroy_field = $(this).prev().attr("id");
-    $('#'+previous_destroy_field).val(1)
-    li_id = $(this).closest('li.nested-fields').attr('id')
-    $(this).closest('li.nested-fields').addClass('d-none')
-    
     timer = setTimeout( function(){ 
       $('#'+previous_destroy_field).val(1)
       $('body').find('input#submit_tag')[0].click()
+      $('#myModal').modal("hide")
     }  , 5000 );
 
     $('#undo').click(function(event){
-      $("li#"+li_id).removeClass('d-none')
       clearTimeout(timer);
       e.preventDefault()
     })
@@ -38,14 +34,19 @@ $(document).ready(function(e){
     };
   })
 
+  
   CKEDITOR.on( 'instanceReady', function( evt ) {
     var editor = evt.editor,
       body = CKEDITOR.document.getBody();
       $('div#thoughts').find('.cke_top').addClass('d-none')
       $('div#thoughts').find('.cke_bottom').addClass('d-none')
-    // editor.on( 'blur', function() {
-    //   $('body').find('input#submit_tag')[0].click()
-    // });    
+      $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+    editor.on( 'focus', function(e) {
+      data_id = e.editor.element.getAttribute('data-id')
+      $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
+      $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
+      $('.st_'+data_id).removeClass('d-none')
+    });    
   } );
 
   // $('body').on('click', '#delete_thought_button', function(e) {
