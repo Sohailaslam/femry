@@ -71,7 +71,6 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', '.title, .new-title', function(e) {
-    debugger
     $('body').find('input#submit_tag')[0].click()
   });
 
