@@ -1,5 +1,5 @@
 <div id='tasks'>
-  <div class="row mt-5">
+  <div class="row mt-2">
     <div class="col-10">
       <% day = key.present? ? display_date(key) : 'Today' %>
       <h4 class="mb-3"><%= key.present? ? display_date(key) : "<b>Today</b>".html_safe %></h4>
@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row mb-5">
   <div class="col-md-12">
     <% @key = key %>
     <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3', data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#sortable#{@key}" } %>
