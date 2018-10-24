@@ -17,6 +17,8 @@ $(document).ready(function(e){
 
   $('body').on('click', '#delete_button', function(e){
     previous_destroy_field = $(this).prev().attr("id");
+    li_id = $(this).closest('li.nested-fields').attr('id')
+    $(this).closest('li.nested-fields').addClass('d-none')
     timer = setTimeout( function(){ 
       $('#'+previous_destroy_field).val(1)
       $('body').find('input#submit_tag')[0].click()
@@ -24,6 +26,7 @@ $(document).ready(function(e){
     }  , 5000 );
 
     $('#undo').click(function(event){
+      $('#'+li_id).removeClass('d-none')
       clearTimeout(timer);
       e.preventDefault()
     })
