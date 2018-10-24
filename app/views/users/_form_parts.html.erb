@@ -55,8 +55,7 @@
     <% @key = key %>
     <%= link_to_add_association 'Add Task', f, :tasks, :partial => 'new_task_fields', class: 'btn btn-success mt-3', data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#sortable#{@key}" } %>
     <% unless f.object.thoughts.find_by_thought_date(key).present? %>
-      <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: "add-thoughts btn btn-outline-dark mt-3 ant_#{key}", id: 'add_new_thoughts', 'data-id' => key, data: {'association-insertion-method' => 'append', 'association-insertion-node' => "#thoughts#{@key}" }  %>
-      
+      <%= link_to_add_association 'Add Thought', f, :thoughts, :partial => 'new_thought_fields', class: "add-thoughts btn btn-outline-dark mt-3 ant_#{key}", id: 'add_new_thoughts', 'data-id' => key  %>
     <% end %>  
     <%= link_to 'Save Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 d-none st_#{key}", id: 'save_thoughts', 'data-id' => key %>
   </div>
