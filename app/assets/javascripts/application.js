@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require cocoon
-//= require turbolinks
+// require turbolinks
 //= require jquery-ui
 //= require bootstrap.min
 //= require bootstrap-pincode-input
