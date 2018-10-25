@@ -5,15 +5,19 @@ $(document).ready(function(e){
     $('body').find('input#submit_tag')[0].click()
   });
 
-  $('body').on('cocoon:before-remove', function(event, insertedItem) {
-    // debugger
-    // $('#myModal').modal("show");
-     // event.preventDefault();
-    // var confirmation = confirm("Are you sure?");
-    // if( confirmation === false ){
-    //   event.preventDefault();
-    // }
+  $('body').on('cocoon:after-insert', function(e, insertedItem) {
+    $('.new-title').focus();
   });
+
+  // $('body').on('cocoon:before-remove', function(event, insertedItem) {
+  //   // debugger
+  //   // $('#myModal').modal("show");
+  //    // event.preventDefault();
+  //   // var confirmation = confirm("Are you sure?");
+  //   // if( confirmation === false ){
+  //   //   event.preventDefault();
+  //   // }
+  // });
 
   $('body').on('click', '#delete_button', function(e){
     previous_destroy_field = $(this).prev().attr("id");
