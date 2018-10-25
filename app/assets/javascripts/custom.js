@@ -48,7 +48,7 @@ $(document).ready(function(e){
       $('#'+previous_destroy_field).val(1)
       $('body').find('input#submit_tag')[0].click()
       $('#myModal').modal("hide")
-    }  , 5000 );
+    }  , 2000 );
 
     $('#undo').click(function(event){
       $('#'+li_id).removeClass('d-none')
