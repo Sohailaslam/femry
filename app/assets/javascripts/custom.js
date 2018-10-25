@@ -1,5 +1,15 @@
 $(document).ready(function(e){
 
+
+  multiline_support();
+  $('body').on('cocoon:after-remove', function(e, insertedItem) {
+    $('body').find('input#submit_tag')[0].click()
+  });
+
+  $('body').on('cocoon:after-insert', function(e, insertedItem) {
+    $('.new-title').focus();
+  });
+
   CKEDITOR.on( 'instanceReady', function( evt ) {
     
     var editor = evt.editor, 
@@ -19,15 +29,6 @@ $(document).ready(function(e){
       $('#'+textarea_name).val(editorText)
     });
   } );
-
-  multiline_support();
-  $('body').on('cocoon:after-remove', function(e, insertedItem) {
-    $('body').find('input#submit_tag')[0].click()
-  });
-
-  $('body').on('cocoon:after-insert', function(e, insertedItem) {
-    $('.new-title').focus();
-  });
 
   // $('body').on('cocoon:before-remove', function(event, insertedItem) {
   //   // debugger
@@ -95,13 +96,13 @@ $(document).ready(function(e){
     $('.st_'+data_id).removeClass('d-none')
   });
 
-  $('body').on('click', '#edit_thoughts', function(e) {
-    data_id = $(this).attr('data-id')
-    $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-    $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
-    $(this).addClass('d-none')
-    $('.st_'+data_id).removeClass('d-none')
-  });
+  // $('body').on('click', '#edit_thoughts', function(e) {
+  //   data_id = $(this).attr('data-id')
+  //   $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
+  //   $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
+  //   $(this).addClass('d-none')
+  //   $('.st_'+data_id).removeClass('d-none')
+  // });
 
   $('body').on('click', '#save_thoughts', function(e) {
     data_id = $(this).attr('data-id')
@@ -112,16 +113,20 @@ $(document).ready(function(e){
     
     thought_id = $('.thoughts_'+data_id).find('input#thought_id').val()
     thought_text = $('.thoughts_'+data_id).find('textarea').val()
-    $.ajax({
+    
+    if ($('.new-thought-area').length > 0){
+      $('body').find('input#submit_tag')[0].click()
+    }
+    else {
+      $.ajax({
       type:'PUT', 
       url: '/thoughts/'+thought_id,
       data: {title: thought_text},
       success: function(result) {
-        $('.loader').addClass('d-none');
       }
     });
-    // $('body').find('input#submit_tag')[0].click()
-    $
+    }
+
   });
 
   // $('body').on('focusin', '.cke_contents', function(e) {
