@@ -49,13 +49,11 @@ body {
 	font-size: 14px;
 }
 .btn-success{
-  background-color: #008952;
-  border-color: #008952;
+  background-color: #5fb760;
+  border-color: #5fb760;
 }
 .btn-custom{
-	background-color: #008952;
-	padding: 10px 32px;
-  font-weight: 600;
+	background-color: #5fb760;
 	transition-delay: 2s;
 }
 .height{
@@ -367,8 +365,6 @@ transition-duration: 1s;
 cursor: pointer;
 }
 .add-task ul li:last-child{
-	margin-bottom: 0;
-	border-bottom: none;
 	padding-bottom: 0;
 }
 .add-task ul li .icon-fa{
@@ -389,7 +385,6 @@ cursor: pointer;
 	color: #007bff;}
 .add-task-list{
   border: none;
-  border-bottom: 1px solid #ddd;
 }
 .read-more-state {
   display: none;
@@ -632,7 +627,7 @@ footer{
 /*****MObile and Ipad View CSS****/
 @media (max-width: 1024px) { 
 	.contant-block{
-    	width: 100%;
+    	width: auto;
     	display: inline-flex;
 	}
 	.left-image{
@@ -716,6 +711,9 @@ footer{
   ul.read-more-wrap li  h4.mb-3{
     margin-bottom: 5px !important;
     font-size: 20px;
+  }
+  .contant-block{
+    margin-top: 0px !important;
   }
  }
 
