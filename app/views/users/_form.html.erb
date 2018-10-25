@@ -6,7 +6,6 @@
       <% if user.tasks.present? %>
         <ul class="read-more-wrap list-style-none">
           <% keys.each_with_index do |key, index| %>
-            <%# debugger %>
             <% tasks_count = @grouped_tasks.select{|c| c[0] == key}.flatten(1).last.count %>
             <li class="<%=  index > 14 ? 'read-more-target' : '' %>">
               <%= render partial: 'form_parts', locals: {f: f, key: key} %>

@@ -1,5 +1,25 @@
 $(document).ready(function(e){
 
+  CKEDITOR.on( 'instanceReady', function( evt ) {
+    
+    var editor = evt.editor, 
+    body = CKEDITOR.document.getBody();
+      $('div#thoughts').find('.cke_top').addClass('d-none')
+      $('div#thoughts').find('.cke_bottom').addClass('d-none')
+      $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+    editor.on( 'focus', function(e) {
+      data_id = e.editor.element.getAttribute('data-id')
+      $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
+      $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
+      $('.st_'+data_id).removeClass('d-none')
+    });
+    editor.on( 'change', function(e) {    
+      textarea_name = $(this).attr('name')
+      editorText = CKEDITOR.instances[textarea_name].getData()
+      $('#'+textarea_name).val(editorText)
+    });
+  } );
+
   multiline_support();
   $('body').on('cocoon:after-remove', function(e, insertedItem) {
     $('body').find('input#submit_tag')[0].click()
@@ -43,19 +63,7 @@ $(document).ready(function(e){
   })
 
   
-  CKEDITOR.on( 'instanceReady', function( evt ) {
-    var editor = evt.editor,
-      body = CKEDITOR.document.getBody();
-      $('div#thoughts').find('.cke_top').addClass('d-none')
-      $('div#thoughts').find('.cke_bottom').addClass('d-none')
-      $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-    editor.on( 'focus', function(e) {
-      data_id = e.editor.element.getAttribute('data-id')
-      $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-      $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
-      $('.st_'+data_id).removeClass('d-none')
-    });    
-  } );
+  
 
   // $('body').on('click', '#delete_thought_button', function(e) {
   //   thought_id = $(this).attr('data-id')
@@ -98,9 +106,22 @@ $(document).ready(function(e){
   $('body').on('click', '#save_thoughts', function(e) {
     data_id = $(this).attr('data-id')
     $(this).addClass('d-none')
+    $('.thoughts_'+data_id).find('.cke_top').addClass('d-none')
+    $('.thoughts_'+data_id).find('.cke_bottom').addClass('d-none')
     $('.et_'+data_id).removeClass('d-none')
-    $('body').find('input#submit_tag')[0].click()
     
+    thought_id = $('.thoughts_'+data_id).find('input#thought_id').val()
+    thought_text = $('.thoughts_'+data_id).find('textarea').val()
+    $.ajax({
+      type:'PUT', 
+      url: '/thoughts/'+thought_id,
+      data: {title: thought_text},
+      success: function(result) {
+        $('.loader').addClass('d-none');
+      }
+    });
+    // $('body').find('input#submit_tag')[0].click()
+    $
   });
 
   // $('body').on('focusin', '.cke_contents', function(e) {
