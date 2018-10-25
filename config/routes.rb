@@ -28,4 +28,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: :index
     resources :users
   end
+
+  resources :thoughts, only: :update
+  
 end

@@ -1,5 +1,5 @@
 $('#user_form').html('<%= escape_javascript(render(:partial => "form", :locals => {user: @user}))%>');
-$('div#thoughts').find('.cke_top').addClass('d-none')
-$('div#thoughts').find('.cke_bottom').addClass('d-none')
+$('div#thoughts').find('.cke_top').addClass('visibility-hidden')
+$('div#thoughts').find('.cke_bottom').addClass('visibility-hidden')
 multiline_support()
 $('#myModal').modal("hide")
