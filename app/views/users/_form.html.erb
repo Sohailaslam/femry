@@ -1,5 +1,5 @@
 <%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {"data-parsley-validate" => true} do |f| %>
-  <% keys = @grouped_tasks.map{|c| c[0]} %>
+  <% keys = get_date_keys(@grouped_tasks) %>
   <div class="row">
     <div class="col-md-2"></div>  
     <div class="col-md-8">

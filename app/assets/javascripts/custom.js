@@ -8,6 +8,7 @@ $(document).ready(function(e){
 
   $('body').on('cocoon:after-insert', function(e, insertedItem) {
     $('.new-title').focus();
+    $('#no_task_text').remove()
   });
 
   CKEDITOR.on( 'instanceReady', function( evt ) {
