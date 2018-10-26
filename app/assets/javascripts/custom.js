@@ -97,6 +97,7 @@ $(document).ready(function(e){
     $('body').on('click', '#undo', function(e){
       $('#'+li_id).removeClass('d-none')
       clearTimeout(timer);
+      $('.undo-alert').addClass("d-none")
       e.preventDefault()
     })
   })
