@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   	require 'will_paginate/array'
     current_user.incomplete_tasks if current_user.present?
     @user = current_user.present? ? current_user : User.find(3)
-    @user.tasks.create(task_date: Date.today.in_time_zone(Time.zone.name).to_date, status: false) unless @user.tasks.present?
+    @user.tasks.create(task_date: Date.today.in_time_zone(@user.timezone).to_date, status: false) unless @user.tasks.present?
  
     @grouped_tasks = @user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
     @grouped_tasks = {Date.today => []}.merge!(@grouped_tasks)
