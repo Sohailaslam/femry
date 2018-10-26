@@ -20,23 +20,20 @@ module ApplicationHelper
     end
 	end
 
-	def completed_percentage(f, key, user)
-		if f.present?
-			today_task = f.object.tasks.present? ? f.object.tasks.where(task_date: key) : 0
-		else
-			today_task = user.tasks.present? ? user.tasks.where(task_date: key) : 0
-		end
-		today_task.present? ? ((today_task.where(status: true).count.to_f/today_task.count.to_f) * 100).to_i : "0/0"
+	def completed_percentage(today_task, completed)
+		today_task.present? ? ((completed.count.to_f/today_task.count.to_f) * 100).to_i : "0/0"
 	end
 
-	def completed_status(f, key, user)
-		today_task = f.present? ? f.object.tasks.where(task_date: key) : user.tasks.where(task_date: key)
-		completed = today_task.where(status: true)
+	def completed_status(today_task, completed)
 		today_task.present? ? completed.present? ? "#{completed.count}/#{today_task.count}" : "0/#{today_task.count}" : 0
 	end
 
 	def get_date_keys(grouped_tasks)
 		keys = @grouped_tasks.map{|c| c[0]}
 		keys.include?(Date.today) ? keys : keys.insert(0, Date.today)
+	end
+
+	def today_task(f, key, user)
+		f.present? ? f.object.tasks.present? ? f.object.tasks.current_tasks(key) : 0 : user.tasks.present? ? user.tasks.current_tasks(key) : 0
 	end
 end

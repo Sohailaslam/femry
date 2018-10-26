@@ -1,4 +1,4 @@
-<li class='nested-fields thoughts add-thougt-box' id="thought_<%= f.object.id %>">
+<li class='nested-fields thoughts add-thougt-box' id="thought_<%= f.object.id %>" data-id="<%= f.object.id %>">
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
@@ -10,7 +10,7 @@
     </div>
     <div class="pull-right icon-fa close-thought">
         <%= f.hidden_field :_destroy, value: false %>
-        <%= link_to 'javascript:void(null);', :partial => 'thought_fields', id: 'delete_button', data: { toggle: 'modal', target: "#myModal" } do %>
+        <%= link_to 'javascript:void(null);', :partial => 'thought_fields', id: 'delete_thought_button', data: { toggle: 'modal', target: "#myModal" } do %>
           <i class="fa fa-trash"></i>
         <% end %>
       </div>
