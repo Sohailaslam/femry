@@ -20,13 +20,17 @@ module ApplicationHelper
     end
 	end
 
-	def completed_percentage(f, key)
-		today_task = f.object.tasks.present? ? f.object.tasks.where(task_date: key) : 0
+	def completed_percentage(f, key, user)
+		if f.present?
+			today_task = f.object.tasks.present? ? f.object.tasks.where(task_date: key) : 0
+		else
+			today_task = user.tasks.present? ? user.tasks.where(task_date: key) : 0
+		end
 		today_task.present? ? ((today_task.where(status: true).count.to_f/today_task.count.to_f) * 100).to_i : "0/0"
 	end
 
-	def completed_status(f, key)
-		today_task = f.object.tasks.where(task_date: key)
+	def completed_status(f, key, user)
+		today_task = f.present? ? f.object.tasks.where(task_date: key) : user.tasks.where(task_date: key)
 		completed = today_task.where(status: true)
 		today_task.present? ? completed.present? ? "#{completed.count}/#{today_task.count}" : "0/#{today_task.count}" : 0
 	end

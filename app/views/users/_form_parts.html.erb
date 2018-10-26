@@ -4,20 +4,8 @@
       <% day = key.present? ? display_date(key) : 'Today' %>
       <h4 class="mb-3"><%= key.present? ? display_date(key) : "<b>Today</b>".html_safe %></h4>
     </div>
-    <div class="col-2 mb-2">
-      <div class="progress float-right ml-2" data-percentage="<%= completed_percentage(f, key) %>">
-        <span class="progress-left">
-          <span class="progress-bar"></span>
-        </span>
-        <span class="progress-right">
-          <span class="progress-bar"></span>
-        </span>
-        <div class="progress-value">
-        </div>
-      </div>
-      <div class="float-right ml-2 mt-2">
-        <small class="text-muted"><%= completed_status(f, key) %></small>
-      </div>
+    <div class="col-2 mb-2" id="progress_<%= key %>">
+      <%= render partial: 'progress_container', locals: { f: f, key: key, user: nil } %>
     </div>
   
   </div>  

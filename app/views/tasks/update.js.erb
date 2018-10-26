@@ -1,0 +1,1 @@
+$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "users/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user }))%>');
