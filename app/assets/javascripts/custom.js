@@ -70,8 +70,12 @@ $(document).ready(function(e){
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-        $('.undo-alert').addClass("d-none")
-        $('#'+li_id).remove();
+        $('.undo-alert').fadeTo(3000, 0.01, function(){ 
+          $(this).slideUp(500, function() {
+            $(this).addClass("d-none")
+            $('#'+li_id).remove();
+          }); 
+        });
         $.ajax({
           url: '/thoughts/'+task_id,
           method: "DELETE",
@@ -83,8 +87,13 @@ $(document).ready(function(e){
     else {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-        $('.undo-alert').addClass("d-none")
-        $('#'+li_id).remove();
+
+        $('.undo-alert').fadeTo(3000, 0.01, function(){ 
+          $(this).slideUp(500, function() {
+            $(this).addClass("d-none")
+            $('#'+li_id).remove();
+          }); 
+        });
         $.ajax({
           url: '/tasks/'+task_id,
           method: "DELETE",

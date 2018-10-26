@@ -26,7 +26,6 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    debugger
   end
 
   def sort
