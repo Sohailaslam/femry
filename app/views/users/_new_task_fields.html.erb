@@ -9,7 +9,7 @@
           </label>
         </div>
         <%= f.hidden_field :task_date, value: @key %>
-        <div class="pull-right icon-fa">
+        <div class="pull-right icon-fa close-task">
           <%= link_to_remove_association f, :partial => 'new_task_fields' do %>
             <i class="fa fa-trash"></i>
           <% end %>

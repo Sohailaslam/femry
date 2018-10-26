@@ -30,6 +30,18 @@ $(document).ready(function(e){
       $('#'+textarea_name).val(editorText)
     });
   } );
+  multiline_support();
+  $('body').on('cocoon:after-remove', function(e, insertedItem) {
+    $('body').find('input#submit_tag')[0].click()
+  });
+
+  $('body').on('cocoon:after-insert', function(e, insertedItem) {
+    $('.new-title').focus();
+  });
+
+  $('body').on('cocoon:before-insert', function(e, insertedItem) {
+    $('.add-task ul li.add-task-box:last').css('border-bottom', '1px solid #ddd')
+  })
 
   // $('body').on('cocoon:before-remove', function(event, insertedItem) {
   //   // debugger
@@ -167,4 +179,5 @@ function multiline_support(){
       $(this).height($(this).height()+1);
     };
   });
+  $('.add-task ul li.add-task-box:last').css('border', 'none');
 }

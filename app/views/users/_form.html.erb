@@ -2,7 +2,7 @@
   <% keys = get_date_keys(@grouped_tasks) %>
   <div class="row">
     <div class="col-md-2"></div>  
-    <div class="col-md-8">
+    <div class="col-md-12 col-lg-8">
       <% if user.tasks.present? %>
         <ul class="read-more-wrap list-style-none">
           <% keys.each_with_index do |key, index| %>
@@ -14,7 +14,7 @@
           <% end %>
         </ul>
       <% else %>
-          <%= render partial: 'form_parts', locals: {f: f, key: Date.today, task: nil} %>
+          <%= render partial: 'form_parts', locals: {f: f, key: Date.today.in_time_zone(Time.zone.name).to_date, task: nil} %>
           <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %> 
       <% end %>
       <% if keys.present? && keys.count > 14 %>

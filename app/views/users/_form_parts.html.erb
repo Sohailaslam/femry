@@ -23,7 +23,7 @@
   </div>  
   <div class="row">
     <div class="col-md-12">     
-      <div class="<%= f.object.tasks.present? ? 'add-task' : 'd-none' %> pr-4 pl-4 pt-3 pb-0">           
+      <div class="<%= f.object.tasks.present? ? 'add-task' : 'd-none' %> pr-4 pl-4 pt-1 pb-0">           
         <ul id="sortable<%= key %>" class="sortable ui-sortable ">
           <% if key == Date.today && f.object.tasks.where(task_date: key).blank? %>
             <p id="no_task_text">No task to show</p>

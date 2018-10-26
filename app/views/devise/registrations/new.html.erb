@@ -4,6 +4,7 @@
     <div class="login mt-2">
       <h1>Just a few quick thing to set up your account...</h1>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {"data-parsley-validate" => ''}, validate: true) do |f| %>
+        <%= f.hidden_field :timezone, value: Time.zone.name %>
         <div class="form-group field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: false, autocomplete: "email", placeholder: "Email", required: true, class: 'form-control', value: (params[:email].present? ? params[:email]: "")%>
