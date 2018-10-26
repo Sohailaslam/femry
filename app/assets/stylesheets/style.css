@@ -607,6 +607,25 @@ footer{
 .loader:after {
   left: 3.5em;
 }
+
+.undo-alert{
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  width: 189px;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+.undo-alert a{
+  color: #fff;
+  text-decoration: underline;
+}
 @-webkit-keyframes load7 {
   0%,
   80%,
