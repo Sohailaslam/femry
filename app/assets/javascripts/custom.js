@@ -61,15 +61,35 @@ $(document).ready(function(e){
   //   // }
   // });
 
-  $('body').on('click', '#delete_button', function(e){
+  $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     previous_destroy_field = $(this).prev().attr("id");
     li_id = $(this).closest('li.nested-fields').attr('id')
+    task_id = $(this).closest('li.nested-fields').attr('data-id')
     $(this).closest('li.nested-fields').addClass('d-none')
-    timer = setTimeout( function(){ 
-      $('#'+previous_destroy_field).val(1)
-      $('body').find('input#submit_tag')[0].click()
-      $('#myModal').modal("hide")
-    }  , 2000 );
+    if ($(this).attr('id').includes("thought")) {
+      timer = setTimeout( function(){ 
+        $('#'+previous_destroy_field).val(1)
+        $('#myModal').modal("hide")
+        $.ajax({
+          url: '/thoughts/'+task_id,
+          method: "DELETE",
+          success: (function(result) {
+          })
+        });
+      }  , 2000 );
+    }
+    else {
+      timer = setTimeout( function(){ 
+        $('#'+previous_destroy_field).val(1)
+        $('#myModal').modal("hide")
+        $.ajax({
+          url: '/tasks/'+task_id,
+          method: "DELETE",
+          success: (function(result) {
+          })
+        });
+      }  , 2000 );
+    }
 
     $('#undo').click(function(event){
       $('#'+li_id).removeClass('d-none')

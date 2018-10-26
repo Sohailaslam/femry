@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :sort
 
-  before_action :set_task, only: :update
+  before_action :set_task, only: [:update, :destroy]
   def index
     @tasks = current_user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
   end
@@ -25,6 +25,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task.destroy
   end
 
   def sort

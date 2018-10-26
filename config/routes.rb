@@ -29,6 +29,6 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :thoughts, only: :update
+  resources :thoughts, only: [:update, :destroy]
   
 end

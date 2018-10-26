@@ -1,4 +1,6 @@
-<div class="progress float-right ml-2" data-percentage="<%= completed_percentage(f, key, user) %>">
+<% today_tasks = today_task(f, key, user) %>
+<% completed_tasks = today_tasks.completed_tasks %>
+<div class="progress float-right ml-2" data-percentage="<%= completed_percentage(today_tasks, completed_tasks) %>">
   <span class="progress-left">
     <span class="progress-bar"></span>
   </span>
@@ -9,5 +11,5 @@
   </div>
 </div>
 <div class="float-right ml-2 mt-2">
-  <small class="text-muted"><%= completed_status(f, key, user) %></small>
+  <small class="text-muted"><%= completed_status(today_tasks, completed_tasks) %></small>
 </div>
