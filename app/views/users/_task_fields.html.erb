@@ -5,7 +5,7 @@
       <%= f.text_area :title, class: 'm-0 title', placeholder: 'Enter a task here...' %>
     </label>
   </div>
-  <%= f.hidden_field :task_date, value: f.object.task_date.present? ? f.object.task_date : Date.today.in_time_zone(@user.timezone).to_date %>
+  <%= f.hidden_field :task_date, value: f.object.task_date.present? ? f.object.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
   <div class="pull-right icon-fa close-task">
     <%= f.hidden_field :_destroy, value: false %>
     <% if @user.tasks.count > 1 %>

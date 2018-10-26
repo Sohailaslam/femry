@@ -1,10 +1,12 @@
 module ApplicationHelper
+	def local_date timezone
+		Time.now.in_time_zone(timezone).to_date
+	end
 
-
-	def display_date(key)
-		if key.to_date == Date.today
+	def display_date(key, date)
+		if key.to_date == date
 			"<b>Today,</b> ".html_safe + key.strftime("%B #{key.day}")
-		elsif key.to_date == Date.today - 1
+		elsif key.to_date == date - 1
 			"<b>Yesterday,</b> ".html_safe + key.strftime("%B #{key.day}")
 		else
 			"<b>#{key.strftime('%A')},</b> ".html_safe + key.strftime("%B #{key.day.ordinalize}")
@@ -28,9 +30,9 @@ module ApplicationHelper
 		today_task.present? ? completed.present? ? "#{completed.count}/#{today_task.count}" : "0/#{today_task.count}" : 0
 	end
 
-	def get_date_keys(grouped_tasks)
+	def get_date_keys(grouped_tasks, date)
 		keys = @grouped_tasks.map{|c| c[0]}
-		keys.include?(Date.today) ? keys : keys.insert(0, Date.today)
+		keys.include?(date) ? keys : keys.insert(0, date)
 	end
 
 	def today_task(f, key, user)

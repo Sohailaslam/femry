@@ -1,12 +1,13 @@
 <%= form_for user, url: user_path(id: user.id), method: :put, remote: true, html: {"data-parsley-validate" => true} do |f| %>
-  <% keys = get_date_keys(@grouped_tasks) %>
+  <% keys = get_date_keys(@grouped_tasks, local_date(user.timezone)) %>
   <div class="row">
     <div class="col-md-2"></div>  
     <div class="col-md-12 col-lg-8">
       <% if user.tasks.present? %>
         <ul class="read-more-wrap list-style-none">
           <% keys.each_with_index do |key, index| %>
-            <% tasks_count = @grouped_tasks.select{|c| c[0] == key}.flatten(1).last.count %>
+            <% tasks_count = @grouped_tasks.select{|c| c[0] == key} %>
+            <% tasks_count = tasks_count.present? ? tasks_count.flatten(1).last.count : 0 %>
             <li class="<%=  index > 14 ? 'read-more-target' : '' %>">
               <%= render partial: 'form_parts', locals: {f: f, key: key} %>
             </li>
@@ -14,7 +15,7 @@
           <% end %>
         </ul>
       <% else %>
-          <%= render partial: 'form_parts', locals: {f: f, key: Date.today.in_time_zone(user.timezone).to_date, task: nil} %>
+          <%= render partial: 'form_parts', locals: {f: f, key: Time.now.in_time_zone(user.timezone).to_date, task: nil} %>
           <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %> 
       <% end %>
       <% if keys.present? && keys.count > 14 %>

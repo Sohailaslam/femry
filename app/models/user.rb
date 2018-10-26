@@ -12,8 +12,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :thoughts, reject_if: :all_blank, allow_destroy: true
 
   def incomplete_tasks
-    incomplete_tasks = tasks.where(status: 0).where.not(task_date: Date.today)
-    incomplete_tasks.map{|task| task.update_attributes(task_date: Date.today)} if incomplete_tasks.present?
+    incomplete_tasks = tasks.where(status: 0).where.not(task_date: Time.now.in_time_zone(self.timezone).to_date)
+    incomplete_tasks.map{|task| task.update_attributes(task_date: Time.now.in_time_zone(self.timezone).to_date)} if incomplete_tasks.present?
   end
 
   def add_to_aws_cognito(password)

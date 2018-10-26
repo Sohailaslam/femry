@@ -1,8 +1,8 @@
 <div id='tasks'>
   <div class="row mt-2">
     <div class="col-10">
-      <% day = key.present? ? display_date(key) : 'Today' %>
-      <h4 class="mb-3"><%= key.present? ? display_date(key) : "<b>Today</b>".html_safe %></h4>
+      <% day = key.present? ? display_date(key, local_date(f.object.timezone)) : 'Today' %>
+      <h4 class="mb-3"><%= key.present? ? (display_date(key, local_date(f.object.timezone))) : "<b>Today</b>".html_safe %></h4>
     </div>
     <div class="col-2 mb-2" id="progress_<%= key %>">
       <%= render partial: 'progress_container', locals: { f: f, key: key, user: nil } %>
@@ -13,7 +13,7 @@
     <div class="col-md-12">     
       <div class="<%= f.object.tasks.present? ? 'add-task' : 'd-none' %> pr-4 pl-4 pt-1 pb-0">           
         <ul id="sortable<%= key %>" class="sortable ui-sortable ">
-          <% if key == Date.today && f.object.tasks.where(task_date: key).blank? %>
+          <% if key == display_date(key, local_date(f.object.timezone)) && f.object.tasks.where(task_date: key).blank? %>
             <p id="no_task_text">No task to show</p>
           <% else %>
             <%= f.fields_for :tasks, f.object.tasks.order("task_date DESC").order(:sort) do |task| %>
