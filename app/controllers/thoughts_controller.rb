@@ -8,7 +8,7 @@ class ThoughtsController < ApplicationController
 
 	def destroy
 		@thought = Thought.find(params[:id].to_i)
+		@thought_date = @thought.thought_date
 		@thought.destroy
-		render plain: "OK"
 	end
 end
