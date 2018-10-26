@@ -9,7 +9,7 @@
   <div class="pull-right icon-fa close-task">
     <%= f.hidden_field :_destroy, value: false %>
     <% if @user.tasks.count > 1 %>
-      <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button', data: { toggle: 'modal', target: "#myModal" } do %>
+      <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
         <i class="fa fa-trash"></i>
       <% end %>
     <% end %>

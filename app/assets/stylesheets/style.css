@@ -646,6 +646,11 @@ footer{
     box-shadow: 0 2.5em 0 0;
   }
 }
+
+#thoughts ul li{
+  padding-left: 0px;
+  border-top: 1px solid #ddd;
+}
                       /*********  MObile and Ipad View CSS **********/
 
 @media (max-width: 1024px) { 

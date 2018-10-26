@@ -62,6 +62,7 @@ $(document).ready(function(e){
   // });
 
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
+    $('.undo-alert').removeClass("d-none")
     previous_destroy_field = $(this).prev().attr("id");
     li_id = $(this).closest('li.nested-fields').attr('id')
     task_id = $(this).closest('li.nested-fields').attr('data-id')
@@ -69,29 +70,31 @@ $(document).ready(function(e){
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-        $('#myModal').modal("hide")
+        $('.undo-alert').addClass("d-none")
+        $('#'+li_id).remove();
         $.ajax({
           url: '/thoughts/'+task_id,
           method: "DELETE",
           success: (function(result) {
           })
         });
-      }  , 2000 );
+      }  , 5000 );
     }
     else {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-        $('#myModal').modal("hide")
+        $('.undo-alert').addClass("d-none")
+        $('#'+li_id).remove();
         $.ajax({
           url: '/tasks/'+task_id,
           method: "DELETE",
           success: (function(result) {
           })
         });
-      }  , 2000 );
+      }  , 5000 );
     }
 
-    $('#undo').click(function(event){
+    $('body').on('click', '#undo', function(e){
       $('#'+li_id).removeClass('d-none')
       clearTimeout(timer);
       e.preventDefault()
@@ -171,7 +174,6 @@ $(document).ready(function(e){
     $('.thoughts_'+data_id).find('.cke_top').addClass('d-none')
     $('.thoughts_'+data_id).find('.cke_bottom').addClass('d-none')
     $('.et_'+data_id).removeClass('d-none')
-    
     thought_id = $('.thoughts_'+data_id).find('input#thought_id').val()
     thought_text = $('.thoughts_'+data_id).find('textarea').val()
     
