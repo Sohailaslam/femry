@@ -1,4 +1,4 @@
-<div class="nested-fields">
+<div class="nested-fields new-task-field">
   <div class="add-task add-task-list">
     <ul>
       <li>
@@ -8,7 +8,7 @@
       			<%= f.text_area :title, autofocus: true, class: 'm-0 new-title', placeholder: 'Enter a task here...' %>
           </label>
         </div>
-        <%= f.hidden_field :task_date, value: @key %>
+        <%= f.hidden_field :task_date, value: @key, class: 'new-task-date-hidden' %>
         <div class="pull-right icon-fa">
           <%= link_to_remove_association f, :partial => 'new_task_fields' do %>
             <i class="fa fa-trash"></i>
