@@ -19,8 +19,10 @@ $(document).ready(function(e){
     $('#no_task_text').remove()
   });
 
+  // CKEDITOR.replace('description', {
+     
+  // });
   CKEDITOR.on( 'instanceReady', function( evt ) {
-    
     var editor = evt.editor, 
     body = CKEDITOR.document.getBody();
       $('div#thoughts').find('.cke_top').addClass('d-none')
@@ -70,12 +72,8 @@ $(document).ready(function(e){
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-        $('.undo-alert').fadeTo(3000, 0.01, function(){ 
-          $(this).slideUp(500, function() {
-            $(this).addClass("d-none")
-            $('#'+li_id).remove();
-          }); 
-        });
+        $('.undo-alert').addClass("d-none")
+        $('#'+li_id).remove();
         $.ajax({
           url: '/thoughts/'+task_id,
           method: "DELETE",
@@ -87,13 +85,8 @@ $(document).ready(function(e){
     else {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-
-        $('.undo-alert').fadeTo(3000, 0.01, function(){ 
-          $(this).slideUp(500, function() {
-            $(this).addClass("d-none")
-            $('#'+li_id).remove();
-          }); 
-        });
+        $('.undo-alert').addClass("d-none")
+        $('#'+li_id).remove();
         $.ajax({
           url: '/tasks/'+task_id,
           method: "DELETE",
@@ -184,9 +177,8 @@ $(document).ready(function(e){
     $('.thoughts_'+data_id).find('.cke_top').addClass('d-none')
     $('.thoughts_'+data_id).find('.cke_bottom').addClass('d-none')
     $('.et_'+data_id).removeClass('d-none')
-    thought_id = $('.thoughts_'+data_id).find('input#thought_id').val()
+    thought_id = $('.thoughts_'+data_id).find('input#hidden_thought_'+data_id).val()
     thought_text = $('.thoughts_'+data_id).find('textarea').val()
-    
     if ($('.new-thought-area').length > 0){
       $('body').find('input#submit_tag')[0].click()
     }
