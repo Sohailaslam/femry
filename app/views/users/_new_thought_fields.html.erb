@@ -1,7 +1,7 @@
 <li class='nested-fields add-thougt-box new-thought-box'>
   <div class="mt-3">
     <div class="form-group">
-      <%= f.cktext_area :title, class: 'm-0 thought-area form-control editor new-thought-area' %>
+      <%= f.cktext_area :title, class: 'm-0 thought-area form-control editor new-thought-area', contenteditable: "true" %>
       <%= f.hidden_field :thought_date, value: @key %>
     </div>
     <div class="icon-fa close-thought">

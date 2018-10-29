@@ -3,7 +3,7 @@
     <div class="col-md-12 mt-3">
       <div class="form-group">
         <%= hidden_field_tag :thought_id,  '', value: f.object.id, id: "hidden_thought_#{key}" %>
-        <%= f.cktext_area :title, class: 'm-0 thought-area form-control editor', 'data-id': key %>
+        <%= f.cktext_area :title, class: 'm-0 thought-area form-control editor', 'data-id': key, contenteditable: "true" %>
        
       </div>
       <%= f.hidden_field :thought_date %>
