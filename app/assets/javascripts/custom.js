@@ -31,13 +31,16 @@ $(document).ready(function(e){
     editor.on( 'focus', function(e) {
       data_id = e.editor.element.getAttribute('data-id')
       $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-      $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
+      // $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
       $('.st_'+data_id).removeClass('d-none')
     });
     editor.on( 'change', function(e) {    
       textarea_name = $(this).attr('name')
       editorText = CKEDITOR.instances[textarea_name].getData()
       $('#'+textarea_name).val(editorText)
+    });
+    editor.on( 'blur', function(e) {    
+      $('#save_thoughts').click();
     });
   } );
   multiline_support();
