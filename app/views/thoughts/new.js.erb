@@ -1,0 +1,1 @@
+$('#thoughts<%= @thought.thought_date %>').append('<%= escape_javascript(render(:partial => "todos/thought", :locals => {key: @thought.thought_date, thought: @thought }))%>');

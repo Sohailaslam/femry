@@ -1,0 +1,18 @@
+<li class="nested-fields ui-state-default ui-sortable-handle add-task-box bb-1" id="task_<%= task.id %>" data-id="<%= task.id %>" data-pos="<%= task.sort %>">
+  <div class="checkbox checkbox-success pull-left">
+		<%= check_box_tag 'status', task.status, task.status, id: "check#{task.id}", class: 'styled check-box'   %>
+    <label for="check<%= task.id %>" class="m-0">
+      <%= text_area_tag :title, task.title, class: 'm-0 title', placeholder: 'Enter a task here...' %>
+    </label>
+  </div>
+  <%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
+  <div class="pull-right icon-fa close-task">
+    <%= hidden_field_tag :_destroy, value: false %>
+    <% if current_user.tasks.count > 1 %>
+      <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    <% end %>
+  </div>
+</li>
+
