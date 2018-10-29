@@ -19,33 +19,36 @@ $(document).ready(function(e){
     $('#no_task_text').remove()
   });
 
-  CKEDITOR.instances.myeditor.on('change', function() { 
-      textarea_name = $(this).attr('name')
-      editorText = CKEDITOR.instances[textarea_name].getData()
-      $('#'+textarea_name).val(editorText)
-    });
+  if ($('#myeditor').length > 0) {
 
-    CKEDITOR.instances.myeditor.on('focus', function(e) {
-      data_id = e.editor.element.getAttribute('data-id')
-      $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-      $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
-      $('.st_'+data_id).removeClass('d-none')
-    });
+    CKEDITOR.instances.myeditor.on('change', function() { 
+        textarea_name = $(this).attr('name')
+        editorText = CKEDITOR.instances[textarea_name].getData()
+        $('#'+textarea_name).val(editorText)
+      });
 
-    CKEDITOR.instances.myeditor.on('blur', function(e) {
-      $('div#thoughts').find('.cke_top').addClass('d-none')
-      $('div#thoughts').find('.cke_bottom').addClass('d-none')
-      $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-    });
+      CKEDITOR.instances.myeditor.on('focus', function(e) {
+        data_id = e.editor.element.getAttribute('data-id')
+        $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
+        $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
+        $('.st_'+data_id).removeClass('d-none')
+      });
 
-  CKEDITOR.on( 'instanceReady', function( evt ) {
-    
-    var editor = evt.editor, 
-    body = CKEDITOR.document.getBody();
-      $('div#thoughts').find('.cke_top').addClass('d-none')
-      $('div#thoughts').find('.cke_bottom').addClass('d-none')
-      $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-  } );
+      CKEDITOR.instances.myeditor.on('blur', function(e) {
+        $('div#thoughts').find('.cke_top').addClass('d-none')
+        $('div#thoughts').find('.cke_bottom').addClass('d-none')
+        $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+      });
+
+    CKEDITOR.on( 'instanceReady', function( evt ) {
+      
+      var editor = evt.editor, 
+      body = CKEDITOR.document.getBody();
+        $('div#thoughts').find('.cke_top').addClass('d-none')
+        $('div#thoughts').find('.cke_bottom').addClass('d-none')
+        $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+    } );
+  }
   
   multiline_support();
   $('body').on('cocoon:after-remove', function(e, insertedItem) {
@@ -87,6 +90,7 @@ $(document).ready(function(e){
         $('.undo-alert').fadeTo(3000, 0.01, function(){ 
           $(this).slideUp(500, function() {
             $(this).addClass("d-none")
+            $(this).removeAttr('style');
             $('#'+li_id).remove();
           }); 
         });
@@ -105,6 +109,8 @@ $(document).ready(function(e){
         $('.undo-alert').fadeTo(3000, 0.01, function(){ 
           $(this).slideUp(500, function() {
             $(this).addClass("d-none")
+
+            $(this).removeAttr('style');
             $('#'+li_id).remove();
           }); 
         });
