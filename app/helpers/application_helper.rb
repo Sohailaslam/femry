@@ -36,6 +36,6 @@ module ApplicationHelper
 	end
 
 	def today_task(f, key, user)
-		f.present? ? f.object.tasks.present? ? f.object.tasks.current_tasks(key) : 0 : user.tasks.present? ? user.tasks.current_tasks(key) : 0
+		f.present? ? f.tasks.present? ? f.tasks.current_tasks(key) : 0 : user.tasks.present? ? user.tasks.current_tasks(key) : 0
 	end
 end

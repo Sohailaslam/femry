@@ -1,0 +1,1 @@
+$('#sortable<%= @task.task_date %>').append('<%= escape_javascript(render(:partial => "todos/task", :locals => {key: @task.task_date, task: @task }))%>');

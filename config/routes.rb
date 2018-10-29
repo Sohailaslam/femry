@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
 	devise_for :users, :controllers => {passwords: 'users/passwords', :registrations => "users/registrations", sessions: 'users/sessions'}
   authenticated :user do
-    root 'users#new', as: :authenticated_root
+    root 'todos#index', as: :authenticated_root
   end
   get 'home/index'
+  get 'todos/index'
+
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -29,6 +31,6 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :thoughts, only: [:update, :destroy]
+  resources :thoughts, only: [:new, :update, :destroy]
   
 end

@@ -1,0 +1,29 @@
+<% keys = get_date_keys(@grouped_tasks, local_date(current_user.timezone)) %>
+<div class="row">
+  <div class="col-md-2"></div>  
+  <div class="col-md-12 col-lg-8">
+    <% if current_user.tasks.present? %>
+      <ul class="read-more-wrap list-style-none">
+        <% keys.each_with_index do |key, index| %>
+          <% tasks_count = @grouped_tasks.select{|c| c[0] == key} %>
+          <% tasks_count = tasks_count.present? ? tasks_count.flatten(1).last.count : 0 %>
+          <li class="<%=  index > 14 ? 'read-more-target' : '' %>">
+            <%= render partial: 'day_todos', locals: {key: key} %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+        <%= render partial: 'day_todos', locals: {key: Time.now.in_time_zone(current_user.timezone).to_date, task: nil} %>
+    <% end %>
+    <% if keys.present? && keys.count > 14 %>
+      <div class="loader d-none" id="infinite-scrolling" data-page="<%= params[:page].present? ? params[:page].to_i + 1 : 2 %>">Loading...
+      </div>
+    <% end %>
+
+  </div>  
+</div>
+
+
+<div class="alert alert-success undo-alert d-none">
+  <i class="fa fa-check text-success"></i> The <span id='to_type'>to-do</span> is in tarsh <a href="javascript:void(0);" id="undo">Undo</a>
+</div>
