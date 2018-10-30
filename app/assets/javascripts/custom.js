@@ -20,9 +20,11 @@ $(document).ready(function(e){
       });
 
       CKEDITOR.instances[instanceName].on('blur', function(e) {
+        data_id = e.editor.element.getAttribute('data-id')
         $('div#thoughts').find('.cke_top').addClass('d-none')
         $('div#thoughts').find('.cke_bottom').addClass('d-none')
         $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+        $('.st_'+data_id).click();
       });
     }
 
