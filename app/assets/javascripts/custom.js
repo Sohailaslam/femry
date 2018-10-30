@@ -3,42 +3,28 @@ var a_href;
 $(document).ready(function(e){
 
   multiline_support();
-  $('body').on('cocoon:after-remove', function(e, insertedItem) {
-    $('body').find('input#submit_tag')[0].click()
-  });
-  
-  $('body').on('cocoon:after-insert', function(e, insertedItem) {
-    // lis = $('ul#sortable'+task_date).find('li.nested-fields')
-    // total_lis = lis.length
-    // last_li = lis[total_lis - 1]
-    // $('#'+last_li.id).find('textarea').focus()
 
-    // ss[ss.length - 1].focus()
-    // debugger
-    $('.new-title').focus();
-    $('#no_task_text').remove()
-  });
-
-  if ($('#myeditor').length > 0) {
-
-    CKEDITOR.instances.myeditor.on('change', function() { 
+  if ($('.editor').length > 0) {
+    for(var instanceName in CKEDITOR.instances) {
+      CKEDITOR.instances[instanceName].on('change', function() { 
         textarea_name = $(this).attr('name')
         editorText = CKEDITOR.instances[textarea_name].getData()
         $('#'+textarea_name).val(editorText)
       });
 
-      CKEDITOR.instances.myeditor.on('focus', function(e) {
+      CKEDITOR.instances[instanceName].on('focus', function(e) {
         data_id = e.editor.element.getAttribute('data-id')
         $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
         $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
         $('.st_'+data_id).removeClass('d-none')
       });
 
-      CKEDITOR.instances.myeditor.on('blur', function(e) {
+      CKEDITOR.instances[instanceName].on('blur', function(e) {
         $('div#thoughts').find('.cke_top').addClass('d-none')
         $('div#thoughts').find('.cke_bottom').addClass('d-none')
         $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
       });
+    }
 
     CKEDITOR.on( 'instanceReady', function( evt ) {
       
@@ -51,27 +37,6 @@ $(document).ready(function(e){
   }
   
   multiline_support();
-  $('body').on('cocoon:after-remove', function(e, insertedItem) {
-    $('body').find('input#submit_tag')[0].click()
-  });
-
-  $('body').on('cocoon:after-insert', function(e, insertedItem) {
-    $('.new-title').focus();
-  });
-
-  $('body').on('cocoon:before-insert', function(e, insertedItem) {
-    $('.add-task ul li.add-task-box:last').css('border-bottom', '1px solid #ddd')
-  })
-
-  // $('body').on('cocoon:before-remove', function(event, insertedItem) {
-  //   // debugger
-  //   // $('#myModal').modal("show");
-  //    // event.preventDefault();
-  //   // var confirmation = confirm("Are you sure?");
-  //   // if( confirmation === false ){
-  //   //   event.preventDefault();
-  //   // }
-  // });
 
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     if ($(this).attr('id') == "delete_thought_button") {
@@ -138,24 +103,6 @@ $(document).ready(function(e){
   })
 
   
-  
-
-  // $('body').on('click', '#delete_thought_button', function(e) {
-  //   thought_id = $(this).attr('data-id')
-
-  //   $.ajax({
-  //     url: '/thoughts/'+thought_id,
-  //     method: "DELETE",
-  //     success: (function(_this) {
-  //     })(this)
-  //   });
-  // });
-
-  // $('body').on('click', '#delete_button', function(e) {
-  //   $(this).prev().val(1)
-  //   $('body').find('input#submit_tag')[0].click()
-    
-  // });
   $('body').on('change', '.check-box', function(e) {
     task_id = $(this).closest('li.nested-fields').attr('data-id')
     status = $(this).is(":checked") ?  1 : 0
@@ -190,14 +137,6 @@ $(document).ready(function(e){
     $('.st_'+data_id).removeClass('d-none')
   });
 
-  // $('body').on('click', '#edit_thoughts', function(e) {
-  //   data_id = $(this).attr('data-id')
-  //   $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-  //   $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
-  //   $(this).addClass('d-none')
-  //   $('.st_'+data_id).removeClass('d-none')
-  // });
-
   $('body').on('click', '#save_thoughts', function(e) {
     data_id = $(this).attr('data-id')
     $(this).addClass('d-none')
@@ -222,19 +161,8 @@ $(document).ready(function(e){
 
   });
 
-  // $('body').on('focusin', '.cke_contents', function(e) {
-  //   debugger
-  //   $('div#thoughts').find('.cke_top').removeClass('d-none')
-  //   $('div#thoughts').find('.cke_bottom').removeClass('d-none')
-  //   $(this).addClass('d-none')
-  //   $('#edit_thoughts').addClass('d-none')
-  //   $('#save_thoughts').removeClass('d-none')
-  // }); 
-
   if ($('#infinite-scrolling').size() > 0) {
     return $(window).on('scroll', function() {
-      // var more_posts_url;
-      // more_posts_url = $('.pagination .next_page a').attr('href');
     setTimeout( function(){ 
       if ($(window).scrollTop() > ($(document).height() - $(window).height()) * 0.95 )  {
         $('.loader').removeClass('d-none');
@@ -259,5 +187,4 @@ function multiline_support(){
       $(this).height($(this).height()+1);
     };
   });
-  // $('.add-task ul li.add-task-box:first').removeClass('bt-1');
 }
