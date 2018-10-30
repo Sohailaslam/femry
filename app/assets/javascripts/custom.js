@@ -4,41 +4,7 @@ $(document).ready(function(e){
 
   multiline_support();
 
-  if ($('.editor').length > 0) {
-    for(var instanceName in CKEDITOR.instances) {
-      CKEDITOR.instances[instanceName].on('change', function() { 
-        textarea_name = $(this).attr('name')
-        editorText = CKEDITOR.instances[textarea_name].getData()
-        $('#'+textarea_name).val(editorText)
-      });
-
-      CKEDITOR.instances[instanceName].on('focus', function(e) {
-        data_id = e.editor.element.getAttribute('data-id')
-        $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-        $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
-        $('.st_'+data_id).removeClass('d-none')
-      });
-
-      CKEDITOR.instances[instanceName].on('blur', function(e) {
-        data_id = e.editor.element.getAttribute('data-id')
-        $('div#thoughts').find('.cke_top').addClass('d-none')
-        $('div#thoughts').find('.cke_bottom').addClass('d-none')
-        $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-        $('.st_'+data_id).click();
-      });
-    }
-
-    CKEDITOR.on( 'instanceReady', function( evt ) {
-      
-      var editor = evt.editor, 
-      body = CKEDITOR.document.getBody();
-        $('div#thoughts').find('.cke_top').addClass('d-none')
-        $('div#thoughts').find('.cke_bottom').addClass('d-none')
-        $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-    } );
-  }
-  
-  multiline_support();
+  initialize_ckeditor();
 
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     if ($(this).attr('id') == "delete_thought_button") {
@@ -189,4 +155,42 @@ function multiline_support(){
       $(this).height($(this).height()+1);
     };
   });
+}
+
+function initialize_ckeditor(){
+
+  if ($('.editor').length > 0) {
+    for(var instanceName in CKEDITOR.instances) {
+      CKEDITOR.instances[instanceName].on('change', function() { 
+        textarea_name = $(this).attr('name')
+        editorText = CKEDITOR.instances[textarea_name].getData()
+        $('#'+textarea_name).val(editorText)
+      });
+
+      CKEDITOR.instances[instanceName].on('focus', function(e) {
+        data_id = e.editor.element.getAttribute('data-id')
+        $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
+        $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
+        $('.st_'+data_id).removeClass('d-none')
+      });
+
+      CKEDITOR.instances[instanceName].on('blur', function(e) {
+        data_id = e.editor.element.getAttribute('data-id')
+        $('div#thoughts').find('.cke_top').addClass('d-none')
+        $('div#thoughts').find('.cke_bottom').addClass('d-none')
+        $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+        $('.st_'+data_id).click();
+      });
+    }
+
+    CKEDITOR.on( 'instanceReady', function( evt ) {
+      
+      var editor = evt.editor, 
+      body = CKEDITOR.document.getBody();
+        $('div#thoughts').find('.cke_top').addClass('d-none')
+        $('div#thoughts').find('.cke_bottom').addClass('d-none')
+        $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
+    } );
+  }
+
 }

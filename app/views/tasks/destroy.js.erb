@@ -1,2 +1,3 @@
 $('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "users/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user }))%>');
-$('input[value=<%= @task.id %>]').remove()
+$('input[value=<%= @task.id %>]').remove();
+initialize_ckeditor();

@@ -58,7 +58,10 @@
   ready = function(){
     
     set_positions();
-    $('.sortable').sortable();
+    $( ".sortable" ).sortable({
+      axis: "y"
+    });
+    
     $('.sortable').sortable().bind('sortupdate', function(e, ui) {
       updated_order = []
       set_positions();
