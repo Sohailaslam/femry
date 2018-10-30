@@ -259,5 +259,5 @@ function multiline_support(){
       $(this).height($(this).height()+1);
     };
   });
-  $('.add-task ul li.add-task-box:last').css('border', 'none');
+  // $('.add-task ul li.add-task-box:first').removeClass('bt-1');
 }

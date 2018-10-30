@@ -1,4 +1,4 @@
-<li class="nested-fields ui-state-default ui-sortable-handle add-task-box bb-1" id="task_<%= task.id %>" data-id="<%= task.id %>" data-pos="<%= task.sort %>">
+<li class="nested-fields ui-state-default ui-sortable-handle add-task-box bt-1" id="task_<%= task.id %>" data-id="<%= task.id %>" data-pos="<%= task.sort %>">
   <div class="checkbox checkbox-success pull-left">
 		<%= check_box_tag 'status', task.status, task.status, id: "check#{task.id}", class: 'styled check-box'   %>
     <label for="check<%= task.id %>" class="m-0">

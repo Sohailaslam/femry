@@ -337,8 +337,11 @@ input[type="radio"] .styled:checked + label::after {
 	width: 100%;
   padding-left: 10px;
 }
-.bb-1 {
-  border-bottom: 1px solid #ddd;
+.bt-1 {
+  border-top: 1px solid #ddd;
+}
+.add-task ul li:first-child {
+  border-top: none;
 }
 
 .add-task ul li:hover label{
@@ -614,17 +617,26 @@ footer{
   left: 0;
   margin: auto;
   right: 0;
-  width: 189px;
+  width: 199px;
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 50px;
   background-color: #000;
   color: #fff;
   border: none;
+  text-align: center;
 }
 .undo-alert a{
   color: #fff;
   text-decoration: underline;
+}
+
+.ui-sortable-helper {
+  border-top: none;
+}
+
+.ui-sortable-helper .close-task {
+  display: none;
 }
 @-webkit-keyframes load7 {
   0%,
@@ -694,6 +706,7 @@ footer{
 	}
 	.where-work p{
 		max-width: 100%;
+    text-align: left;
 	}
 	.where-work h1{
 		font-size: 45px;
