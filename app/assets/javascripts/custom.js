@@ -11,7 +11,17 @@ $(document).ready(function(e){
     $('.undo-alert').addClass("d-none")
     $('.undo-alert').removeAttr("style")
     $('.undo-alert').stop().fadeTo("fast", 1);
+    task_id = $(this).closest('li.nested-fields').attr('data-id')
+    button_type = (($(this).attr('id') == "delete_thought_button") ? 'thought' : 'task' )
     
+    $.ajax({
+      url: '/todos/update_deleted_column',
+      method: "POST",
+      data: {id: task_id, button_type: button_type, button_action: 'make_inactive'},
+      success: (function(result) {
+      })
+    });
+
     if ($(this).attr('id') == "delete_thought_button") {
       $('.undo-alert').find('span').text('thought')
       } else {
@@ -62,10 +72,17 @@ $(document).ready(function(e){
     }
 
     $('body').on('click', '#undo', function(e){
-      $('#'+li_id).removeClass('d-none')
-      clearTimeout(timer);
-      $('.undo-alert').addClass("d-none")
-      e.preventDefault()
+      $.ajax({
+        url: '/todos/update_deleted_column',
+        method: "POST",
+        data: {id: task_id, button_type: button_type, button_action: 'make_active'},
+        success: (function(result) {
+          $('#'+li_id).removeClass('d-none')
+          clearTimeout(timer);
+          $('.undo-alert').addClass("d-none")
+          e.preventDefault()
+        })
+      });
     })
   })
 

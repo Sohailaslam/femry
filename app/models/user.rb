@@ -75,5 +75,10 @@ class User < ApplicationRecord
     rescue
     end
   end
+
+  def delete_inactive_todos
+    tasks.deleted_tasks.destroy_all
+    thoughts.deleted_thoughts.destroy_all
+  end
   
 end

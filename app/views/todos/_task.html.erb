@@ -8,7 +8,7 @@
   <%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
   <div class="pull-right icon-fa close-task">
     <%= hidden_field_tag :_destroy, value: false %>
-    <% if current_user.tasks.count > 1 %>
+    <% if current_user.tasks.active_tasks.count > 1 %>
       <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
         <i class="fa fa-trash"></i>
       <% end %>
