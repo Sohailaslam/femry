@@ -344,12 +344,21 @@ input[type="radio"] .styled:checked + label::after {
 	float: left;
 	width: 100%;
   padding-left: 10px;
+  padding-top: 15px;
 }
 .bt-1 {
   border-top: 1px solid #ddd;
 }
 .add-task ul li:first-child {
   border-top: none;
+}
+
+.add-task-box ul li:first-child {
+  border-top: none;
+}
+
+.add-task-box ul li:last-child {
+  padding-bottom: 0px;
 }
 
 .add-task ul li:hover label{
@@ -359,6 +368,12 @@ input[type="radio"] .styled:checked + label::after {
   width: 100%;
   line-height: 10px;
 }
+
+.add-task ul li .checkbox .check-box {
+  height: 5px;
+  display: none;
+}
+
 .add-task ul li label{
   width: 100%;
 }
@@ -370,7 +385,6 @@ input[type="radio"] .styled:checked + label::after {
   line-height: 22px;
   font-size: 14px;
   overflow: hidden;
-  margin-top: -3px !important;
   background: #fbfbfb;
   height: 37px;
 }

@@ -1,6 +1,6 @@
 <li class='nested-fields thoughts add-thougt-box' id="thought_<%= thought.id %>" data-id="<%= thought.id %>">
   <div class="row">
-    <div class="col-md-12 mt-3">
+    <div class="col-md-12">
       <div class="form-group">
         <%= hidden_field_tag :thought_id, thought.id, id: "hidden_thought_#{key}" %>
         <%= cktext_area_tag "thought_title", thought.title, class: 'm-0 thought-area form-control editor', id: "myeditor_#{key}", 'data-id': key, contenteditable: "true" %>
