@@ -22,7 +22,8 @@
             <%= f.label :timezone do %>
               Timezone <span class="text-muted text-optional">(optional)</span>
             <% end %>
-            <%= f.select(:timezone, all_country_zone_identifiers , {:selected => resource.timezone.present? ? resource.timezone : Time.zone.name }, { :class => 'form-control' }) %>
+            <!-- Time.now.in_time_zone('Asia/Karachi').gmt_offset/3600 -->
+            <%= f.select(:timezone, ActiveSupport::TimeZone::MAPPING , {:selected => resource.timezone.present? ? resource.timezone : Time.zone.name }, { :class => 'form-control' }) %>
           </div>
           <div class="form-group mt-4">
             <div class="text-right">
