@@ -95,7 +95,7 @@ $(document).ready(function(e){
         method: "POST",
         data: {id: task_id, button_type: button_type, button_action: 'make_active'},
         success: (function(result) {
-          $('#'+li_id).removeClass('d-none').addClass('add-task-box')
+          $('#'+li_id).removeClass('d-none').addClass('add-task-box');
           clearTimeout(timer);
           $('.undo-alert').addClass("d-none")
           e.preventDefault()
@@ -104,11 +104,12 @@ $(document).ready(function(e){
     })
   })
 
-  $('body').on('keyup', 'textarea', function(e){
-    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-      $(this).height($(this).height()+1);
-    };
-  })
+  // $('body').on('keyup', 'textarea', function(e){
+  //   debugger
+  //   while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+  //     $(this).height($(this).height()+1);
+  //   };
+  // })
 
   
   $('body').on('change', '.check-box', function(e) {
