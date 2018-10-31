@@ -38,17 +38,16 @@ $(document).ready(function(e){
     task_id = $(this).closest('li.nested-fields').attr('data-id')
     $(this).closest('li.nested-fields').addClass('d-none')
 
-    // if ($(this).attr('id') == "delete_thought_button"){
-    //   if ($(this).parents('li.add-thougt-box:visible').length < 1){
-    //     $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
-    //   }
+    if ($(this).attr('id') == "delete_thought_button"){
+      if ($(this).parents('li.add-thougt-box:visible').length < 1){
+        $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
+      }
 
-    // } else {
-
-    //   if ($(this).parents('li.add-task-box:visible').length < 1){
-    //     $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
-    //   }
-    // }
+    } else {
+      if ($(this).parents('ul.sortable').find('li.add-task-box:visible').length < 1){
+        $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
+      }
+    }
 
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
