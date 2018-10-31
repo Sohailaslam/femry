@@ -24,14 +24,32 @@ $(document).ready(function(e){
 
     if ($(this).attr('id') == "delete_thought_button") {
       $('.undo-alert').find('span').text('thought')
-      } else {
+    } else {
       $('.undo-alert').find('span').text('to-do')
-      }
+    }
+
     $('.undo-alert').removeClass("d-none")
+
+
+    
     previous_destroy_field = $(this).prev().attr("id");
+
     li_id = $(this).closest('li.nested-fields').attr('id')
     task_id = $(this).closest('li.nested-fields').attr('data-id')
     $(this).closest('li.nested-fields').addClass('d-none')
+
+    // if ($(this).attr('id') == "delete_thought_button"){
+    //   if ($(this).parents('li.add-thougt-box:visible').length < 1){
+    //     $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
+    //   }
+
+    // } else {
+
+    //   if ($(this).parents('li.add-task-box:visible').length < 1){
+    //     $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
+    //   }
+    // }
+
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)

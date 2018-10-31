@@ -127,7 +127,7 @@ body {
 display: inline-block;
 vertical-align: middle;
 position: relative;
-padding-left: 8px; }
+padding-left: 30px; }
 .checkbox label::before {
   content: "";
   display: inline-block;
@@ -135,7 +135,7 @@ padding-left: 8px; }
   width: 20px;
   height: 20px;
   left: 0;
-  margin-left: -20px;
+  margin-left: 0;
   border: 1px solid #cccccc;
   border-radius: 3px;
   background-color: #fff;
@@ -343,9 +343,24 @@ input[type="radio"] .styled:checked + label::after {
 .add-task ul li{
 	float: left;
 	width: 100%;
-  padding-left: 10px;
   padding-top: 15px;
+  position: relative;
 }
+
+.add-task ul li .handle-sort{
+  position: absolute;
+  top: 15px;
+  right: 5px;
+}
+
+.add-task ul li .handle-sort i{
+  color: #ddd;
+}
+
+.bt-0 {
+  border-top: none !important;
+}
+
 .bt-1 {
   border-top: 1px solid #ddd;
 }
