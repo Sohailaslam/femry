@@ -333,6 +333,7 @@ input[type="radio"] .styled:checked + label::after {
 	border: 1px solid #ccc;
 	float: left;
 	width: 100%;
+  min-height: 51px;
 }
 .add-task ul{
 	list-style: none;
@@ -366,6 +367,10 @@ input[type="radio"] .styled:checked + label::after {
 }
 .add-task ul li.add-task-box:first-child {
   border-top: none;
+}
+
+ul.sortable li.add-task-box:first-child {
+  border-top: none; 
 }
 
 /*.add-task-box ul li:first-child {

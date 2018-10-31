@@ -3,6 +3,7 @@ $('#sortable<%= @task.task_date %>').children().last().find('textarea').focus();
 
 if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date %>').children('li:visible').length == 1) {
   $('#thoughts<%= @task.task_date %>').children('li:visible').last().removeClass('bt-0')
+  $('#thoughts<%= @task.task_date %>').children('li:visible').last().css('border-top', '1px solid #ddd')
   $('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
 }
 

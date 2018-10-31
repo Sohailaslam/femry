@@ -1,2 +1,8 @@
 $('#thoughts<%= @thought.thought_date %>').append('<%= escape_javascript(render(:partial => "todos/thought", :locals => {key: @thought.thought_date, thought: @thought }))%>');
+
+if ($('#sortable<%= @thought.thought_date %>').children('li:visible').length == 0 && $('#thoughts<%= @thought.thought_date %>').children('li:visible').length == 1) {
+  $('#thoughts<%= @thought.thought_date %>').children('li:visible').last().css('border-top', 'none')
+}
+
+
 initialize_ckeditor();
