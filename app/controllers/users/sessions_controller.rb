@@ -23,11 +23,11 @@ class Users::SessionsController < Devise::SessionsController
       redirect_to root_path, notice: e.message
     end
     session[:user_id] = resource.id
-    #if (aws_sign_in_resp.authentication_result.access_token.present? && resource.update(access_token: aws_sign_in_resp.authentication_result.access_token))
+    if (aws_sign_in_resp.authentication_result.access_token.present? && resource.update(access_token: aws_sign_in_resp.authentication_result.access_token))
       sign_in(resource_name, resource)
       yield resource if block_given?
-      # respond_with resource, location: after_sign_in_path_for(resource)
-    #end
+      respond_with resource, location: after_sign_in_path_for(resource)
+    end
   end
 
   # DELETE /resource/sign_out
