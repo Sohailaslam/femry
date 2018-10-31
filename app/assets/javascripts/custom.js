@@ -36,7 +36,7 @@ $(document).ready(function(e){
 
     li_id = $(this).closest('li.nested-fields').attr('id')
     task_id = $(this).closest('li.nested-fields').attr('data-id')
-    $(this).closest('li.nested-fields').addClass('d-none')
+    $(this).closest('li.nested-fields').addClass('d-none').removeClass('add-task-box')
 
     if ($(this).attr('id') == "delete_thought_button"){
       if ($(this).parents('li.add-thougt-box:visible').length < 1){
@@ -45,8 +45,9 @@ $(document).ready(function(e){
 
     } else {
       if ($(this).parents('ul.sortable').find('li.add-task-box:visible').length < 1){
-        $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
+        $(this).parents('.todos-list').find('div#thoughts li:visible').addClass('bt-0')
       }
+      $(this).parents('.todos-list').find('ul.sortable li:visible').first().removeClass('bt-1')
     }
 
     if ($(this).attr('id').includes("thought")) {
@@ -94,7 +95,7 @@ $(document).ready(function(e){
         method: "POST",
         data: {id: task_id, button_type: button_type, button_action: 'make_active'},
         success: (function(result) {
-          $('#'+li_id).removeClass('d-none')
+          $('#'+li_id).removeClass('d-none').addClass('add-task-box')
           clearTimeout(timer);
           $('.undo-alert').addClass("d-none")
           e.preventDefault()

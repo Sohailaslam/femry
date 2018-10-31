@@ -6,3 +6,7 @@ if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $
   $('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
 }
 
+if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date %>').children('li:visible').length == 0) {
+	$('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
+}
+

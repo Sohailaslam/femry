@@ -364,13 +364,13 @@ input[type="radio"] .styled:checked + label::after {
 .bt-1 {
   border-top: 1px solid #ddd;
 }
-.add-task ul li:first-child {
+.add-task ul li.add-task-box:first-child {
   border-top: none;
 }
 
-.add-task-box ul li:first-child {
+/*.add-task-box ul li:first-child {
   border-top: none;
-}
+}*/
 
 .add-task-box ul li:last-child {
   padding-bottom: 0px;
