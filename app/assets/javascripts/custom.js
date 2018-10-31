@@ -7,6 +7,11 @@ $(document).ready(function(e){
   initialize_ckeditor();
 
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
+    e.preventDefault();
+    $('.undo-alert').addClass("d-none")
+    $('.undo-alert').removeAttr("style")
+    $('.undo-alert').stop().fadeTo("fast", 1);
+    
     if ($(this).attr('id') == "delete_thought_button") {
       $('.undo-alert').find('span').text('thought')
       } else {
