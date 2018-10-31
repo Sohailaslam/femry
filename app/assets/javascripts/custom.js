@@ -39,6 +39,8 @@ $(document).ready(function(e){
     $(this).closest('li.nested-fields').addClass('d-none').removeClass('add-task-box')
 
     if ($(this).attr('id') == "delete_thought_button"){
+      // data_id = $(this).parents('div#thoughts').attr('class').split('_')[1]
+      // $('.ant_'+data_id).removeClass('d-none')
       if ($(this).parents('li.add-thougt-box:visible').length < 1){
         $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
       }
@@ -49,7 +51,6 @@ $(document).ready(function(e){
       }
       $(this).parents('.todos-list').find('ul.sortable li:visible').first().removeClass('bt-1')
     }
-
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)

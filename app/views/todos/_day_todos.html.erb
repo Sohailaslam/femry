@@ -22,7 +22,7 @@
           <% end %>
         </ul>
         <div id='thoughts' class="thoughts_<%= key %>">  
-          <ul id="thoughts<%=key%>">
+          <ul id="thoughts<%=key%>" 'data-id'=<%= key %>>
 
             <% current_user.thoughts.active_thoughts.order("thought_date DESC").each do |thought| %>
               <%= render 'thought', :thought => thought, :key => key  if key == thought.thought_date.to_date %>
