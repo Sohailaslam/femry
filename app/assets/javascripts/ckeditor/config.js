@@ -2,7 +2,7 @@
 CKEDITOR.editorConfig = function (config) {
   // ... other configuration ...
   config.removePlugins = 'elementspath',
-  config.resize_enabled = false,
+  config.resize_enabled = true,
   config.toolbar_mini = [
     ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
   ];
