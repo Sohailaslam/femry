@@ -402,7 +402,7 @@ ul.sortable li.add-task-box:first-child {
   border: none;
   width: 96%;
   resize: none;
-  line-height: 15px;
+  line-height: 17px;
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
