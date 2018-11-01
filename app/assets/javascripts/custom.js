@@ -217,7 +217,7 @@ function loadEditor(id){
 function initialize_ckeditor(){
   $('body').on('blur', '.editor', function(e){
     data_id = $(this).attr("id").split('_')[1]
-    $('#thought_title_'+data_id).val($(this).text())
+    $('#thought_title_'+data_id).val(CKEDITOR.instances[$(this).attr('id')].getData())
     $('.st_'+data_id).click();
   })
 
