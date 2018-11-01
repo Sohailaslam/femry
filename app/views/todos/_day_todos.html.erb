@@ -64,6 +64,8 @@
     });
     
     $('.sortable').sortable().bind('sortupdate', function(e, ui) {
+      $('.add-task').find('ul.sortable').find('li.add-task-box:first').removeClass('bt-1');
+      $('.add-task').find('ul.sortable').find('li.add-task-box:not(:first)').addClass('bt-1');
       updated_order = []
       set_positions();
       $('.ui-state-default').each(function(i){
