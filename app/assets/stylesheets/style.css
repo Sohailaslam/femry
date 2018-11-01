@@ -347,11 +347,20 @@ input[type="radio"] .styled:checked + label::after {
   position: relative;
 }
 
+.add-task ul li:hover .handle-sort{
+  opacity: 1;
+  cursor: -webkit-grab;
+  transition-duration: 1s;
+}
+
 .add-task ul li .handle-sort{
   position: absolute;
   top: 15px;
   right: 5px;
   cursor: -webkit-grab;
+  opacity: 0;
+  transition-duration: 1s;
+
 }
 
 .add-task ul li .handle-sort i{
