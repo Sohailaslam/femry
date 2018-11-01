@@ -4,5 +4,5 @@ if ($('#sortable<%= @thought.thought_date %>').children('li:visible').length == 
   $('#thoughts<%= @thought.thought_date %>').children('li:visible').last().css('border-top', 'none')
 }
 
-
+$('#myeditor_<%=@thought.thought_date%>').focus()
 initialize_ckeditor();
