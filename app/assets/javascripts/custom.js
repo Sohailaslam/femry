@@ -11,7 +11,9 @@ $(document).ready(function(e){
     $('.undo-alert').addClass("d-none")
     $('.undo-alert').removeAttr("style")
     $('.undo-alert').stop().fadeTo("fast", 1);
+
     task_id = $(this).closest('li.nested-fields').attr('data-id')
+    
     button_type = (($(this).attr('id') == "delete_thought_button") ? 'thought' : 'task' )
     
     $.ajax({
@@ -24,6 +26,9 @@ $(document).ready(function(e){
 
     if ($(this).attr('id') == "delete_thought_button") {
       $('.undo-alert').find('span').text('thought')
+      data_id = $(this).parents('div#thoughts').attr('class').split('_')[1]
+      // $('.ant_'+data_id).removeClass('d-none')
+      $("st_"+data_id).addClass('d-none');
     } else {
       $('.undo-alert').find('span').text('to-do')
     }
@@ -41,6 +46,7 @@ $(document).ready(function(e){
     if ($(this).attr('id') == "delete_thought_button"){
       // data_id = $(this).parents('div#thoughts').attr('class').split('_')[1]
       // $('.ant_'+data_id).removeClass('d-none')
+      // $("st_"+data_id).addClass('d-none');
       if ($(this).parents('li.add-thougt-box:visible').length < 1){
         $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
       }
