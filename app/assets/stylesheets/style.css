@@ -422,6 +422,7 @@ ul.sortable li.add-task-box:first-child {
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
+  height: 35px;
 }
 .thought-area{
   min-height: 80px;
