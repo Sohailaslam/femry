@@ -60,12 +60,16 @@
     set_positions();
     $( ".sortable" ).sortable({
       axis: "y",
-      handle: ".handle-sort"
+      cursor: 'move',
+      tolerance: "pointer",
+      handle: ".handle-sort",
+      containment: "parent"
     });
     
     $('.sortable').sortable().bind('sortupdate', function(e, ui) {
       $('.add-task').find('ul.sortable').find('li.add-task-box:first').removeClass('bt-1');
       $('.add-task').find('ul.sortable').find('li.add-task-box:not(:first)').addClass('bt-1');
+      $(this).find('.add-task-box').removeAttr('style');
       updated_order = []
       set_positions();
       $('.ui-state-default').each(function(i){
