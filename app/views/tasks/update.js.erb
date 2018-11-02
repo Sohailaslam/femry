@@ -10,3 +10,5 @@ $("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-per
     noPercentageSign: true,
     fontColor: '#fff'
 });
+
+$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
