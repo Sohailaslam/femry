@@ -4,6 +4,7 @@ $(document).ready(function(e){
 
   multiline_support();
   initialize_ckeditor();
+  initialize_progress_loader();
 
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     e.preventDefault();
@@ -212,6 +213,18 @@ function loadEditor(id){
   }
   CKEDITOR.disableAutoInline = true;
   CKEDITOR.inline( id);
+}
+
+function initialize_progress_loader(){
+  $('.progress-loader').circliful({
+    animationStep: 5,
+    foregroundBorderWidth: 70,
+    backgroundBorderWidth: 70,
+    foregroundColor: '#5fb760',
+    backgroundColor: '#ededed',
+    noPercentageSign: true,
+    fontColor: '#fff'
+  });
 }
 
 function initialize_ckeditor(){

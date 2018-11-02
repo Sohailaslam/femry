@@ -1,1 +1,12 @@
-$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "users/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user }))%>');
+$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user }))%>');
+<% today_tasks = today_task(nil, @task.task_date, current_user) %>
+<% completed_tasks = today_tasks.completed_tasks %>
+$("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
+    animationStep: 5,
+    foregroundBorderWidth: 70,
+    backgroundBorderWidth: 70,
+    foregroundColor: '#5fb760',
+    backgroundColor: '#ededed',
+    noPercentageSign: true,
+    fontColor: '#fff'
+});

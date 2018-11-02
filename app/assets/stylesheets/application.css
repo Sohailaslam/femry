@@ -15,5 +15,6 @@
  *= require font-awesome
  *= require bootstrap-pincode-input
  *=	require style
- *= require progress
+ * require progress
+ *= require circliful
 */
