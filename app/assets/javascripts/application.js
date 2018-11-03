@@ -25,3 +25,4 @@
 //= require jstz
 //= require browser_timezone_rails/set_time_zone
 //= require circliful.min
+//= require trix

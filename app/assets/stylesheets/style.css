@@ -352,6 +352,7 @@ input[type="radio"] .styled:checked + label::after {
 	width: 100%;
   padding-top: 15px;
   position: relative;
+  padding-bottom: 15px;
 }
 
 .add-task ul li:hover .handle-sort{
@@ -362,7 +363,7 @@ input[type="radio"] .styled:checked + label::after {
 
 .add-task ul li .handle-sort{
   position: absolute;
-  top: 15px;
+  top: 40%;
   right: 5px;
   cursor: -webkit-grab;
   opacity: 0;
@@ -422,11 +423,17 @@ ul.sortable li.add-task-box:first-child {
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
-  height: 35px;
+  height: 23px;
 }
 .thought-area{
   min-height: 80px;
   height: auto;
+}
+
+trix-toolbar { display: none; }
+
+.thought-area:focus{
+  box-shadow: none;
 }
 
 .add-task ul li label textarea:focus{
@@ -513,7 +520,7 @@ cursor: pointer;
 .add-thougt-box .close-thought, .add-task .close-task{
   position: absolute;
   right: -15px;
-  top: 15px;
+  top: 40%;
 }
 .mce-menubar, .mce-statusbar{
   display: none !important;

@@ -228,19 +228,50 @@ function initialize_progress_loader(){
 }
 
 function initialize_ckeditor(){
-  $('body').on('blur', '.editor', function(e){
-    data_id = $(this).attr("id").split('_')[1]
-    $('#thought_title_'+data_id).val(CKEDITOR.instances[$(this).attr('id')].getData())
-    $('.st_'+data_id).click();
-  })
 
-  $('body').on('focus', '.editor', function(e){
-    data_id = $(this).attr("id").split('_')[1]
+  $(document).on("trix-initialize", function(event) {
+    $('trix-editor').blur()
+  });
+  document.addEventListener("trix-focus", function(event) {
+    var toolbar, toolbar_id;
+    toolbar_id = event.target.getAttribute('toolbar');
+    toolbar = document.getElementById(toolbar_id);
+    toolbar.style.display = 'block';
+    data_id = event.target.getAttribute('id').split('_')[1]
     $('.st_'+data_id).removeClass('d-none')
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline($(this).attr('id'));
-    // loadEditor( $(this).attr('id') );
-  })
+  });
+
+  document.addEventListener("trix-blur", function(event) {
+
+    var toolbar, toolbar_id;
+    toolbar_id = event.target.getAttribute('toolbar');
+    toolbar = document.getElementById(toolbar_id);
+    toolbar.style.display = 'none';
+    data_id = event.target.getAttribute('id').split('_')[1]
+    editor_text = document.querySelector("trix-editor#"+event.target.getAttribute('id')).value
+    $('#thought_title_'+data_id).val(editor_text)
+    $('.st_'+data_id).click();
+  });
+
+
+
+
+
+
+  // $('body').on('blur', '.editor', function(e){
+  //   data_id = $(this).attr("id").split('_')[1]
+  //   editor_text = document.querySelector("trix-editor#"+$(this).attr('id')).editor.getDocument().toString()
+  //   $('#thought_title_'+data_id).val(editor_text)
+  //   $('.st_'+data_id).click();
+  // })
+
+  // $('body').on('focus', '.editor', function(e){
+  //   data_id = $(this).attr("id").split('_')[1]
+  //   $('.st_'+data_id).removeClass('d-none')
+  //   CKEDITOR.disableAutoInline = true;
+  //   CKEDITOR.inline($(this).attr('id'));
+  //   // loadEditor( $(this).attr('id') );
+  // })
 
   // if ($('.editor').length > 0) {
   //   for(var instanceName in CKEDITOR.instances) {
