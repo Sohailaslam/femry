@@ -5,7 +5,7 @@ $(document).ready(function(e){
   multiline_support();
   initialize_ckeditor();
   initialize_progress_loader();
-
+  
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     e.preventDefault();
     $('.undo-alert').addClass("d-none")
@@ -109,6 +109,7 @@ $(document).ready(function(e){
         })
       });
     })
+
   })
 
   // $('body').on('keyup', 'textarea', function(e){
@@ -195,6 +196,7 @@ $(document).ready(function(e){
       return;
     });
   }
+
 });
 
 function multiline_support(){
@@ -228,7 +230,7 @@ function initialize_progress_loader(){
 }
 
 function initialize_ckeditor(){
-
+ $('.thought-area').blur()
   $(document).on("trix-initialize", function(event) {
     // $('trix-editor').blur()
   });
@@ -242,14 +244,18 @@ function initialize_ckeditor(){
   });
 
   document.addEventListener("trix-blur", function(event) {
-    var toolbar, toolbar_id;
-    toolbar_id = event.target.getAttribute('toolbar');
-    toolbar = document.getElementById(toolbar_id);
-    toolbar.style.display = 'none';
-    data_id = event.target.getAttribute('id').split('_')[1]
-    editor_text = document.querySelector("trix-editor#"+event.target.getAttribute('id')).value
-    $('#thought_title_'+data_id).val(editor_text)
-    $('.st_'+data_id).click();
+    if (event.currentTarget.activeElement.className  == "trix-input trix-input--dialog") {
+      event.preventDefault();
+    } else {
+      var toolbar, toolbar_id;
+      toolbar_id = event.target.getAttribute('toolbar');
+      toolbar = document.getElementById(toolbar_id);
+      toolbar.style.display = 'none';
+      data_id = event.target.getAttribute('id').split('_')[1]
+      editor_text = document.querySelector("trix-editor#"+event.target.getAttribute('id')).value
+      $('#thought_title_'+data_id).val(editor_text)
+      $('.st_'+data_id).click();
+    }
   });
 
 
