@@ -65,6 +65,10 @@
       handle: ".handle-sort",
       containment: "parent"
     });
+
+    if ($('#sortable<%= key %>').find('li.add-task-box:visible').length < 1) {
+      $('.thoughts_<%= key %>').find('li:visible').addClass('bt-0')
+    }
     
     $('.sortable').sortable().bind('sortupdate', function(e, ui) {
       $('.add-task').find('ul.sortable').find('li.add-task-box:first').removeClass('bt-1');

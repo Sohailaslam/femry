@@ -230,7 +230,7 @@ function initialize_progress_loader(){
 function initialize_ckeditor(){
 
   $(document).on("trix-initialize", function(event) {
-    $('trix-editor').blur()
+    // $('trix-editor').blur()
   });
   document.addEventListener("trix-focus", function(event) {
     var toolbar, toolbar_id;
