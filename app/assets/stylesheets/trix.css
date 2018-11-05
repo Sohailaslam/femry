@@ -302,6 +302,8 @@ trix-editor .attachment__metadata {
     font-size: 1.2em;
     line-height: 1.2;
     margin: 0; }
+  .trix-content a {
+    cursor: pointer; }
   .trix-content blockquote {
     margin: 0 0 0 0.3em;
     padding: 0 0 0 0.6em;
@@ -320,8 +322,12 @@ trix-editor .attachment__metadata {
   .trix-content ul, .trix-content ol, .trix-content li {
     margin: 0;
     padding: 0; }
+  .trix-content ul li {
+    cursor: auto !important;
+  } 
     .trix-content ul li, .trix-content ol li, .trix-content li li {
       margin-left: 1em; }
+  
   .trix-content img {
     max-width: 100%;
     height: auto; }
