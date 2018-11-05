@@ -295,7 +295,8 @@ trix-editor .attachment__metadata {
     white-space: nowrap; }
 @charset "UTF-8";
 .trix-content {
-  line-height: 1.5; }
+  line-height: 17px;
+  font-size: 14px; }
   .trix-content * {
     box-sizing: border-box; }
   .trix-content h1 {
