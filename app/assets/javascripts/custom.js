@@ -5,7 +5,7 @@ $(document).ready(function(e){
   multiline_support();
   initialize_ckeditor();
   initialize_progress_loader();
-
+  
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     e.preventDefault();
     $('.undo-alert').addClass("d-none")
@@ -109,6 +109,7 @@ $(document).ready(function(e){
         })
       });
     })
+
   })
 
   // $('body').on('keyup', 'textarea', function(e){
@@ -195,6 +196,7 @@ $(document).ready(function(e){
       return;
     });
   }
+
 });
 
 function multiline_support(){
@@ -228,7 +230,7 @@ function initialize_progress_loader(){
 }
 
 function initialize_ckeditor(){
-
+ $('.thought-area').blur()
   $(document).on("trix-initialize", function(event) {
     $('trix-editor').blur()
   });

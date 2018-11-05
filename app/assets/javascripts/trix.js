@@ -4548,12 +4548,12 @@ http://trix-editor.org/
                         }, d.prototype.canIncreaseNestingLevel = function() {
                             var e, n, i;
                             if (e = this.getBlock()) return (null != (i = o(e.getLastNestableAttribute())) ? i.listAttribute : 0) ? (n = this.getPreviousBlock()) ? t(n.getListItemAttributes(), e.getListItemAttributes()) : void 0 : e.getNestingLevel() > 0
-                        // }, d.prototype.decreaseNestingLevel = function() {
-                        //     var t;
-                        //     if (t = this.getBlock()) return this.setDocument(this.document.replaceBlock(t, t.decreaseNestingLevel()))
-                        // }, d.prototype.increaseNestingLevel = function() {
-                        //     var t;
-                        //     if (t = this.getBlock()) return this.setDocument(this.document.replaceBlock(t, t.increaseNestingLevel()))
+                        }, d.prototype.decreaseNestingLevel = function() {
+                            var t;
+                            if (t = this.getBlock()) return this.setDocument(this.document.replaceBlock(t, t.decreaseNestingLevel()))
+                        }, d.prototype.increaseNestingLevel = function() {
+                            var t;
+                            if (t = this.getBlock()) return this.setDocument(this.document.replaceBlock(t, t.increaseNestingLevel()))
                         }, d.prototype.canDecreaseBlockAttributeLevel = function() {
                             var t;
                             return (null != (t = this.getBlock()) ? t.getAttributeLevel() : void 0) > 0
@@ -4830,14 +4830,14 @@ http://trix-editor.org/
                             return this.composition.canSetCurrentAttribute(t)
                         }, t.prototype.deactivateAttribute = function(t) {
                             return this.composition.removeCurrentAttribute(t)
-                        // }, t.prototype.canDecreaseNestingLevel = function() {
-                        //     return this.composition.canDecreaseNestingLevel()
-                        // }, t.prototype.canIncreaseNestingLevel = function() {
-                        //     return this.composition.canIncreaseNestingLevel()
-                        // }, t.prototype.decreaseNestingLevel = function() {
-                        //     return this.canDecreaseNestingLevel() ? this.composition.decreaseNestingLevel() : void 0
-                        // }, t.prototype.increaseNestingLevel = function() {
-                        //     return this.canIncreaseNestingLevel() ? this.composition.increaseNestingLevel() : void 0
+                        }, t.prototype.canDecreaseNestingLevel = function() {
+                            return this.composition.canDecreaseNestingLevel()
+                        }, t.prototype.canIncreaseNestingLevel = function() {
+                            return this.composition.canIncreaseNestingLevel()
+                        }, t.prototype.decreaseNestingLevel = function() {
+                            return this.canDecreaseNestingLevel() ? this.composition.decreaseNestingLevel() : void 0
+                        }, t.prototype.increaseNestingLevel = function() {
+                            return this.canIncreaseNestingLevel() ? this.composition.increaseNestingLevel() : void 0
                         }, t.prototype.canRedo = function() {
                             return this.undoManager.canRedo()
                         }, t.prototype.canUndo = function() {
@@ -5326,22 +5326,22 @@ http://trix-editor.org/
                                     return this.editor.canActivateAttribute("href")
                                 }
                             },
-                            // increaseNestingLevel: {
-                            //     test: function() {
-                            //         return this.editor.canIncreaseNestingLevel()
-                            //     },
-                            //     perform: function() {
-                            //         return this.editor.increaseNestingLevel() && this.render()
-                            //     }
-                            // },
-                            // decreaseNestingLevel: {
-                            //     test: function() {
-                            //         return this.editor.canDecreaseNestingLevel()
-                            //     },
-                            //     perform: function() {
-                            //         return this.editor.decreaseNestingLevel() && this.render()
-                            //     }
-                            // }
+                            increaseNestingLevel: {
+                                test: function() {
+                                    return this.editor.canIncreaseNestingLevel()
+                                },
+                                perform: function() {
+                                    return this.editor.increaseNestingLevel() && this.render()
+                                }
+                            },
+                            decreaseNestingLevel: {
+                                test: function() {
+                                    return this.editor.canDecreaseNestingLevel()
+                                },
+                                perform: function() {
+                                    return this.editor.decreaseNestingLevel() && this.render()
+                                }
+                            }
                         }, a.prototype.canInvokeAction = function(t) {
                             var e, n;
                             return this.actionIsExternal(t) ? !0 : !!(null != (e = this.actions[t]) && null != (n = e.test) ? n.call(this) : void 0)
