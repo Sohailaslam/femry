@@ -322,7 +322,7 @@ trix-editor .attachment__metadata {
   .trix-content ul, .trix-content ol, .trix-content li {
     margin: 0;
     padding: 0; }
-  .trix-content ul li {
+  .trix-content ul li, .trix-content ol li {
     cursor: auto !important;
   } 
     .trix-content ul li, .trix-content ol li, .trix-content li li {
