@@ -242,14 +242,18 @@ function initialize_ckeditor(){
   });
 
   document.addEventListener("trix-blur", function(event) {
-    var toolbar, toolbar_id;
-    toolbar_id = event.target.getAttribute('toolbar');
-    toolbar = document.getElementById(toolbar_id);
-    toolbar.style.display = 'none';
-    data_id = event.target.getAttribute('id').split('_')[1]
-    editor_text = document.querySelector("trix-editor#"+event.target.getAttribute('id')).value
-    $('#thought_title_'+data_id).val(editor_text)
-    $('.st_'+data_id).click();
+    if (event.currentTarget.activeElement.className  == "trix-input trix-input--dialog") {
+      event.preventDefault();
+    } else {
+      var toolbar, toolbar_id;
+      toolbar_id = event.target.getAttribute('toolbar');
+      toolbar = document.getElementById(toolbar_id);
+      toolbar.style.display = 'none';
+      data_id = event.target.getAttribute('id').split('_')[1]
+      editor_text = document.querySelector("trix-editor#"+event.target.getAttribute('id')).value
+      $('#thought_title_'+data_id).val(editor_text)
+      $('.st_'+data_id).click();
+    }
   });
 
 
