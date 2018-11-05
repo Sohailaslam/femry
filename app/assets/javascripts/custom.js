@@ -242,7 +242,6 @@ function initialize_ckeditor(){
   });
 
   document.addEventListener("trix-blur", function(event) {
-
     var toolbar, toolbar_id;
     toolbar_id = event.target.getAttribute('toolbar');
     toolbar = document.getElementById(toolbar_id);

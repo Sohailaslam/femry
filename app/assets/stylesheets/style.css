@@ -729,9 +729,37 @@ footer{
   }
 }
 
-#thoughts ul li{
+#thoughts ul li.thoughts{
   padding-left: 0px;
   border-top: 1px solid #ddd;
+}
+
+.add-thougt-box .editor {
+  float: left;
+  width: 100%;
+  margin-bottom: 20px !important;
+}
+.add-thougt-box .editor ul{
+  margin-left: 25px;
+  list-style: initial;
+  float: left;
+  width: 100%;
+}
+
+.add-thougt-box .editor ol {
+  margin-left: 25px;
+  float: left;
+  width: 100%;
+  padding-left: 0; 
+} 
+.add-thougt-box .editor ol li{
+    padding-bottom: 0;
+  padding-top: 0;
+}
+
+.add-thougt-box .editor ul li{
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 /*#cke_myeditor_2018-11-02{

@@ -9,6 +9,7 @@ trix-editor {
   margin: 0;
   padding: 0.4em 0.6em;
   min-height: 5em;
+  cursor: auto;
   outline: none; }
 trix-toolbar * {
   box-sizing: border-box; }

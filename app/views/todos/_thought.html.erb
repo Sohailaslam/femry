@@ -4,7 +4,7 @@
       <div class="form-group">
         <%= hidden_field_tag :thought_id, thought.id, id: "hidden_thought_#{key}" %>
         <div class="pos-rel">
-          <trix-editor class="m-0 thought-area form-control editor" id="myeditor_<%=key%>" 'data-id'= <%=key%> contenteditable="true">
+          <trix-editor class="m-0 thought-area form-control trix-content editor" id="myeditor_<%=key%>" 'data-id'= <%=key%> contenteditable="true">
             <%= thought.title.present? ? thought.title.html_safe : '' %>
           </trix-editor>
           <!-- <div id="myeditor_<%#=key%>" contenteditable="true" class="m-0 thought-area form-control editor" 'data-id'= <%#=key%>>
