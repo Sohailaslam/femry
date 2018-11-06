@@ -1,4 +1,5 @@
 $('.ant_<%= @thought_date%>').removeClass('d-none')
+$('.st_<%= @thought_date%>').addClass('d-none')
 $('.thoughts_<%=@thought_date %>').find('input#thought_id').val('')
 $('.thoughts_<%=@thought_date %>').find('textarea').val('')
 $('ul#thoughts<%= @thought_date %>').html('')

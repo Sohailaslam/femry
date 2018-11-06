@@ -230,9 +230,9 @@ function initialize_progress_loader(){
 }
 
 function initialize_ckeditor(){
- $('.thought-area').blur()
+  $('.thought-area').blur()
   $(document).on("trix-initialize", function(event) {
-    // $('trix-editor').blur()
+    $('trix-editor').focus()
   });
   document.addEventListener("trix-focus", function(event) {
     var toolbar, toolbar_id;
@@ -244,7 +244,7 @@ function initialize_ckeditor(){
   });
 
   document.addEventListener("trix-blur", function(event) {
-    if (event.currentTarget.activeElement.className  == "trix-input trix-input--dialog") {
+    if (event.currentTarget.activeElement.id == "delete_thought_button" || event.currentTarget.activeElement.className  == "trix-input trix-input--dialog") {
       event.preventDefault();
     } else {
       var toolbar, toolbar_id;
