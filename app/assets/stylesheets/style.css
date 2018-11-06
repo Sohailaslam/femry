@@ -439,7 +439,7 @@ trix-toolbar { display: none; }
   box-shadow: none;
 }
 
-.add-task ul li label textarea:focus{
+.add-task ul li textarea:focus{
   outline: none;
 }
 .add-task ul li:hover{
