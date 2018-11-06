@@ -841,6 +841,7 @@ footer{
     padding-left: 0 !important;
     padding-right: 0 !important;
     z-index: 1500;
+    position: relative;
   }
   .login h1{
     margin-bottom: 20px;
