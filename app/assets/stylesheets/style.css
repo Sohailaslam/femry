@@ -836,7 +836,8 @@ footer{
   }
   .header-bg{
     padding-left: 0 !important;
-    padding-right: 0 !important;;
+    padding-right: 0 !important;
+    z-index: 1020;
   }
   .login h1{
     margin-bottom: 20px;
