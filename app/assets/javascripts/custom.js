@@ -244,7 +244,10 @@ function initialize_ckeditor(){
   });
 
   document.addEventListener("trix-blur", function(event) {
-    if (event.currentTarget.activeElement.id == "delete_thought_button" || event.currentTarget.activeElement.className  == "trix-input trix-input--dialog") {
+    if (event.currentTarget.activeElement.id == "delete_thought_button"){
+      $('.st_'+data_id).addClass('d-none')
+      event.preventDefault();
+    } else if (event.currentTarget.activeElement.className  == "trix-input trix-input--dialog") {
       event.preventDefault();
     } else {
       var toolbar, toolbar_id;
