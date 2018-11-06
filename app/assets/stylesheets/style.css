@@ -602,6 +602,7 @@ footer{
   max-width: 650px;
   right: 0;
   margin: auto;
+  height: 0;
   transition: all 1s ease;
 }
 
@@ -840,8 +841,8 @@ footer{
   .header-bg{
     padding-left: 0 !important;
     padding-right: 0 !important;
-    z-index: 1500;
-    position: relative;
+    /*z-index: 1500;*/
+    /*position: relative;*/
   }
   .login h1{
     margin-bottom: 20px;
