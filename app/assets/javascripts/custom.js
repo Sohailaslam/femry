@@ -1,6 +1,7 @@
 var a_href; 
 
 $(document).ready(function(e){
+  $('.thought-area').blur()
 
   multiline_support();
   initialize_ckeditor();
@@ -230,9 +231,8 @@ function initialize_progress_loader(){
 }
 
 function initialize_ckeditor(){
-  $('.thought-area').blur()
   $(document).on("trix-initialize", function(event) {
-    $('trix-editor').focus()
+    // $('trix-editor').focus()
   });
   document.addEventListener("trix-focus", function(event) {
     var toolbar, toolbar_id;

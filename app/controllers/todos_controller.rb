@@ -18,11 +18,11 @@ class TodosController < ApplicationController
 
   def update_deleted_column
     if params["button_type"] == 'task'
-      task = Task.find(params[:id])
-      task.update(is_deleted: (params["button_action"] == 'make_inactive') ? true : false)
+      @task = Task.find(params[:id])
+      @task.update(is_deleted: (params["button_action"] == 'make_inactive') ? true : false)
     else
-      thought = Thought.find(params[:id])
-      thought.update(is_deleted: (params["button_action"] == 'make_inactive') ? true : false)
+      @thought = Thought.find(params[:id])
+      @thought.update(is_deleted: (params["button_action"] == 'make_inactive') ? true : false)
     end
   end
 

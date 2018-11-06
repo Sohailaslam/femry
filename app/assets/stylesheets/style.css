@@ -350,9 +350,9 @@ input[type="radio"] .styled:checked + label::after {
 .add-task ul li{
 	float: left;
 	width: 100%;
-  padding-top: 15px;
+  padding-top: 10px;
   position: relative;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 .add-task ul li:hover .handle-sort{
@@ -415,7 +415,7 @@ ul.sortable li.add-task-box:first-child {
   width: 100%;
 }
 
-.add-task ul li label textarea{
+.add-task ul li textarea{
   border: none;
   width: 96%;
   resize: none;
@@ -424,6 +424,9 @@ ul.sortable li.add-task-box:first-child {
   overflow: hidden;
   background: #fbfbfb;
   height: 23px;
+  margin-left: 30px !important;
+  position: relative;
+  top: -4px;
 }
 .thought-area{
   min-height: 80px;
@@ -590,7 +593,7 @@ footer{
 }
 #profile_alert_box{
   position: fixed;
-  top: 60;
+  top: 0;
   left: 0;
   width: 101%;
   z-index: 1000;
@@ -837,7 +840,7 @@ footer{
   .header-bg{
     padding-left: 0 !important;
     padding-right: 0 !important;
-    z-index: 1020;
+    z-index: 1500;
   }
   .login h1{
     margin-bottom: 20px;
