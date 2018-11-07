@@ -28,8 +28,8 @@ $(document).ready(function(e){
     if ($(this).attr('id') == "delete_thought_button") {
       $('.undo-alert').find('span').text('thought')
       data_id = $(this).parents('div#thoughts').attr('class').split('_')[1]
-      // $('.ant_'+data_id).removeClass('d-none')
-      $("st_"+data_id).addClass('d-none');
+      $('.ant_'+data_id).removeClass('d-none')
+      $(".st_"+data_id).addClass('d-none');
     } else {
       $('.undo-alert').find('span').text('to-do')
     }
@@ -61,13 +61,13 @@ $(document).ready(function(e){
     if ($(this).attr('id').includes("thought")) {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-        $('.undo-alert').fadeTo(3000, 0.01, function(){ 
-          $(this).slideUp(500, function() {
+        // $('.undo-alert').fadeTo(3000, 0.01, function(){ 
+          $('.undo-alert').slideUp(500, function() {
             $(this).addClass("d-none")
             $(this).removeAttr('style');
             $('#'+li_id).remove();
           }); 
-        });
+        // });
         $.ajax({
           url: '/thoughts/'+task_id,
           method: "DELETE",
@@ -80,14 +80,14 @@ $(document).ready(function(e){
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
 
-        $('.undo-alert').fadeTo(3000, 0.01, function(){ 
-          $(this).slideUp(500, function() {
+        // $('.undo-alert').fadeTo(3000, 0.01, function(){ 
+          $('.undo-alert').slideUp(500, function() {
             $(this).addClass("d-none")
 
             $(this).removeAttr('style');
             $('#'+li_id).remove();
           }); 
-        });
+        // });
         $.ajax({
           url: '/tasks/'+task_id,
           method: "DELETE",
@@ -106,6 +106,7 @@ $(document).ready(function(e){
           $('#'+li_id).removeClass('d-none').addClass('add-task-box');
           clearTimeout(timer);
           $('.undo-alert').addClass("d-none")
+          $('.ant_'+data_id).addClass('d-none')
           e.preventDefault()
         })
       });
@@ -150,6 +151,9 @@ $(document).ready(function(e){
 
 
   $('body').on('click', '#add_new_thoughts', function(e) {
+    $('.undo-alert').addClass("d-none")
+    $('.undo-alert').removeAttr("style")
+    $('.undo-alert').stop().fadeTo("fast", 1);
     data_id = $(this).attr('data-id')
     $(this).addClass('d-none')
     $('.st_'+data_id).removeClass('d-none')
@@ -241,6 +245,7 @@ function initialize_ckeditor(){
     toolbar.style.display = 'block';
     data_id = event.target.getAttribute('id').split('_')[1]
     $('.st_'+data_id).removeClass('d-none')
+    $('.ant_'+data_id).addClass('d-none')
   });
 
   document.addEventListener("trix-blur", function(event) {

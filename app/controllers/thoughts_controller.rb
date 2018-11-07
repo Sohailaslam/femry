@@ -11,8 +11,10 @@ class ThoughtsController < ApplicationController
 	end
 
 	def destroy
-		@thought = Thought.find(params[:id].to_i)
-		@thought_date = @thought.thought_date
-		@thought.destroy
+		@thought = Thought.find_by(id: params[:id].to_i)
+		if @thought.present?
+			@thought_date = @thought.thought_date
+			@thought.destroy
+		end
 	end
 end

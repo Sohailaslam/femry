@@ -1,6 +1,7 @@
-$('.ant_<%= @thought_date%>').removeClass('d-none')
-$('.st_<%= @thought_date%>').addClass('d-none')
+// $('.ant_<%= @thought_date%>').removeClass('d-none')
+// $('.st_<%= @thought_date%>').addClass('d-none')
 $('.thoughts_<%=@thought_date %>').find('input#thought_id').val('')
-$('.thoughts_<%=@thought_date %>').find('textarea').val('')
-$('ul#thoughts<%= @thought_date %>').html('')
+// $('.thoughts_<%=@thought_date %>').find('textarea').val('')
+$('ul#thoughts<%= @thought_date %>').children('li.d-none').remove()
+// $('ul#thoughts<%= @thought_date %>').html('')
 initialize_ckeditor();

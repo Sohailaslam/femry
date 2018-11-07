@@ -1,6 +1,5 @@
 <% if @task.present? %>
 	$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user }))%>');
-
 	<% today_tasks = today_task(nil, @task.task_date, current_user) %>
 	<% completed_tasks = today_tasks.completed_tasks %>
 
@@ -15,4 +14,6 @@
 	});
 
 	$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
+<% else %>
+	$(".ant_<%= @thought.thought_date %>").removeClass('d-none')
 <% end %>

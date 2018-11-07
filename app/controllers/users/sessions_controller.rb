@@ -17,17 +17,17 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
-    begin
-      aws_sign_in_resp = resource.authenticate_with_aws(params[:user][:password])
-    rescue => e
-      redirect_to root_path, notice: e.message
-    end
+    # begin
+    #   aws_sign_in_resp = resource.authenticate_with_aws(params[:user][:password])
+    # rescue => e
+    #   redirect_to root_path, notice: e.message
+    # end
     session[:user_id] = resource.id
-    if (aws_sign_in_resp.authentication_result.access_token.present? && resource.update(access_token: aws_sign_in_resp.authentication_result.access_token))
+    # if (aws_sign_in_resp.authentication_result.access_token.present? && resource.update(access_token: aws_sign_in_resp.authentication_result.access_token))
       sign_in(resource_name, resource)
       yield resource if block_given?
       respond_with resource, location: after_sign_in_path_for(resource)
-    end
+    # end
   end
 
   # DELETE /resource/sign_out
