@@ -38,7 +38,7 @@
   <div class="col-md-12">
     <% @key = key %>
     
-    <%= link_to 'Add Task', new_task_path(date: key), remote: true, class: 'btn btn-success mt-3' %>
+    <%= link_to 'Add Task', new_task_path(date: key), remote: true, class: 'btn btn-success mt-3', data: { disable_with: "Please wait..." } %>
     
     <%= link_to 'Add Thought', new_thought_path(date: key), remote: true, class: "add-thoughts btn btn-outline-dark mt-3 ant_#{key} #{current_user.thoughts.active_thoughts.find_by_thought_date(key).present? ? 'd-none': ''}", id: 'add_new_thoughts', 'data-id' => key %>
     <%= link_to 'Save Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 d-none st_#{key}", id: 'save_thoughts', 'data-id' => key %>

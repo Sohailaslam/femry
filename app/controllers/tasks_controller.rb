@@ -7,7 +7,8 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = current_user.tasks.create(task_date: params[:date])
+    @task = current_user.tasks.create!(task_date: params[:date])
+    puts "CUREENTTTTTTTTTT", current_user.tasks.active_tasks.current_tasks(@task.task_date).count
   end
 
   def create
@@ -21,11 +22,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update(task_params)
+    @task.update(task_params) if @task.present?
   end
 
   def destroy
-    @task.destroy
+    @task.destroy if @task.present?
   end
 
   def sort
@@ -40,6 +41,6 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 end

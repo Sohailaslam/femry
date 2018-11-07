@@ -41,6 +41,7 @@ $(document).ready(function(e){
     previous_destroy_field = $(this).prev().attr("id");
 
     li_id = $(this).closest('li.nested-fields').attr('id')
+    
     task_id = $(this).closest('li.nested-fields').attr('data-id')
     $(this).closest('li.nested-fields').addClass('d-none').removeClass('add-task-box')
 
@@ -65,6 +66,7 @@ $(document).ready(function(e){
           $('.undo-alert').slideUp(500, function() {
             $(this).addClass("d-none")
             $(this).removeAttr('style');
+            
             $('#'+li_id).remove();
           }); 
         // });
@@ -79,21 +81,21 @@ $(document).ready(function(e){
     else {
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
-
+        
         // $('.undo-alert').fadeTo(3000, 0.01, function(){ 
           $('.undo-alert').slideUp(500, function() {
             $(this).addClass("d-none")
 
             $(this).removeAttr('style');
-            $('#'+li_id).remove();
           }); 
+          $('#'+li_id).closest('ul').find('li.d-none').remove()
         // });
-        $.ajax({
-          url: '/tasks/'+task_id,
-          method: "DELETE",
-          success: (function(result) {
-          })
-        });
+        // $.ajax({
+        //   url: '/tasks/'+task_id,
+        //   method: "DELETE",
+        //   success: (function(result) {
+        //   })
+        // });
       }  , 5000 );
     }
 
