@@ -147,6 +147,14 @@ $(document).ready(function(e){
     });
   });
 
+  $('body').on('keydown', '.title', function(e) {
+    if(e.keyCode == 13) {
+      e.preventDefault();
+      date_key = $(this).parents('li.nested-fields').find('#task_date').val()
+      $('.task_'+ date_key).click();
+    }
+  })
+
   $('body').on('focusout', '.new-title', function(e) {
     $('body').find('input#submit_tag')[0].click()
   });
