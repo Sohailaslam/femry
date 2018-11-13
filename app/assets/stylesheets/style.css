@@ -145,6 +145,10 @@ padding-left: 30px; }
   -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
   transition: border 0.15s ease-in-out, color 0.15s ease-in-out; 
 }
+
+.checkbox label:hover::before {
+  background-color: #efeeef;
+}
 .checkbox label::after {
   display: inline-block;
   position: absolute;
