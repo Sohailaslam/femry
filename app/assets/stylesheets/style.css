@@ -775,6 +775,15 @@ footer{
   width:686px !important;
 
 }*/
+
+.image-upload > input
+{
+    display: none;
+}
+.image-upload > label{
+  cursor:pointer;
+}
+
                       /*********  MObile and Ipad View CSS **********/
 
 @media (max-width: 1024px) { 

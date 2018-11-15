@@ -38,4 +38,14 @@ module ApplicationHelper
 	def today_task(f, key, user)
 		user.tasks.present? ? user.tasks.current_tasks(key).active_tasks : 0
 	end
+
+	def avatar_url(user)
+	  if user.avatar.attached?
+	    user.avatar.variant(resize: "40x40")
+	  else
+	    # default_url = "#{root_url}images/logo.jpg"
+	    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+	    "https://gravatar.com/avatar/#{gravatar_id}.png?s=20"
+	  end
+	end
 end
