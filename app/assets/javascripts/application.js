@@ -23,7 +23,6 @@
 //= require select2-autocompleter
 //= require mentions-kinder.rangy
 //= require custom
-//= require ckeditor/init
 //= require js.cookie
 //= require jstz
 //= require browser_timezone_rails/set_time_zone
@@ -32,18 +31,18 @@
 
 
 $(document).ready(function(){
-    var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
-        select2Options: {
-            tags: ["red", "green", "blue"]
-        }
-    });
-    debugger
-   $('.tags').mentionsKinder({
-      trigger: {
-          '#': {
-              triggerName: 'tag',
-              autocompleter: tagAutocompleter
-          }
+  var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+    select2Options: {
+      tags: ["red", "green", "blue"]
+    }
+  });
+  debugger
+ $('.tags').mentionsKinder({
+    trigger: {
+      '#': {
+        triggerName: 'tag',
+        autocompleter: tagAutocompleter
       }
-    })
+    }
+  })
 });

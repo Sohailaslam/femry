@@ -3,8 +3,8 @@
 		<%= check_box_tag 'status', task.status, task.status, id: "check#{task.id}", class: 'styled check-box'   %>
     <label for="check<%= task.id %>" class="m-0">
     </label>
-    <%= text_area_tag :title, task.title, class: 'm-0 title tags debug-area form-control', placeholder: 'Enter a task here...', onkeyup: "auto_grow(this)" %>
   </div>
+  <%= text_area_tag :title, task.title, class: 'm-0 title tags debug-area', placeholder: 'Enter a task here...', onkeyup: "auto_grow(this)" %>
   <%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
   
   
@@ -25,4 +25,63 @@
     element.style.height = (element.scrollHeight)+"px";
   }
 </script>
-
+<!-- <script type="text/javascript">
+$(function(){
+    // configure autocompleter
+    var simpsonAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+        select2Options: {
+            data: [
+                {id:'homer',text:'Homer Jay Simpson'},
+                {id:'marge',text:'Marjorie Simpson'},
+                {id:'bart',text:'Bartholomew JoJo Simpson'},
+                {id:'lisa',text:'Lisa Marie Simpson'},
+                {id:'maggie',text:'Margaret Simpson'}
+            ]
+        }
+    });
+    var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+        select2Options: {
+            tags: ["red", "green", "blue"]
+        }
+    });
+    // if no options are provided, use @ with simpsonsAutocompleter only
+    // $.MentionsKinder.defaultOptions.trigger['@'].autocompleter = simpsonAutocompleter;
+//    $.MentionsKinder.triggerDefaultOptions.autocompleter = $.MentionsKinder.Autocompleter.DummyAutocompleter;
+    // simple = $('.simple').mentionsKinder().enableMyDebug().data('mentionsKinder');
+    $('.tags').mentionsKinder({
+        trigger: {
+            '#': {
+                triggerName: 'tag',
+                autocompleter: tagAutocompleter
+            }
+        }
+    })
+    $('.multiple').mentionsKinder({
+        trigger: {
+            '#': {
+                triggerName: 'tag',
+                autocompleter: tagAutocompleter
+            },
+            '@': {
+                triggerName: 'member',
+                autocompleter: simpsonAutocompleter
+            }
+        }
+    })
+    // bind "change" event
+    $('#event_test').on('change', function(event) { $('#event_timestamp').text(new Date) });
+    $(document.body).on('click', '[data-action=set-flag]', function(e){
+        var $button = $(e.currentTarget),
+            $target = $($button.data('target')),
+            flag = $button.text(),
+            regex = /(?:^|\s+)!(\w+)/i,
+            val = $target.val();
+        if(val.match(regex))
+            val = val.replace(regex, ' ' + flag);
+        else
+            val = val + ' ' + flag;
+        $target.val(val).change()
+    });
+});
+</script>
+ -->

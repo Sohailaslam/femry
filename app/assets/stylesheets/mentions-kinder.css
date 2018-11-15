@@ -2,12 +2,13 @@
   font-size: 90%;
   font-weight: normal;
   padding: .125em .35em;
-  background-color: #3c510c;
+  background-color: #dee2e6;
+
 }
 
 .mention .delete-mention {
   font-family: monospace;
-  color: #A1A1A1;
+  color: #ffffff;
   margin-left: 5px;
   cursor: pointer;
 }
@@ -19,7 +20,8 @@
 }
 
 .temp-mention {
-  background-color: #000080;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .mentions-kinder-multiline {
