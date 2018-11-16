@@ -841,6 +841,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 3)
+  aws-sdk-s3
   bootsnap (>= 1.1.0)
   browser-timezone-rails
   byebug
