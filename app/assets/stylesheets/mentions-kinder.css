@@ -1,7 +1,6 @@
 .mention {
   font-size: 90%;
   font-weight: normal;
-  padding: .125em .35em;
   background-color: #dee2e6;
 
 }
@@ -52,7 +51,6 @@
 }
 
 .mentions-kinder-hidden, .mentions-kinder-hidden:focus {
-    clip: rect(0 0 0 0) !important;
     width: 1px !important;
     height: 1px !important;
     border: 0 !important;
