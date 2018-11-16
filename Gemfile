@@ -37,6 +37,8 @@ gem 'browser-timezone-rails'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'remotipart', '~> 1.2'
 gem 'image_processing', '~> 1.2'
+gem "chartkick"
+gem 'groupdate'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'

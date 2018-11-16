@@ -27,3 +27,5 @@
 //= require circliful.min
 //= require trix
 //= require jquery.remotipart
+//= require Chart.bundle
+//= require chartkick

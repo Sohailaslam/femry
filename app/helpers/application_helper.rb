@@ -41,7 +41,7 @@ module ApplicationHelper
 
 	def avatar_url(user)
 	  if user.avatar.attached?
-	    user.avatar.variant(resize: "40x40")
+	    user.avatar.variant(resize: "45x45")
 	  else
 	    # default_url = "#{root_url}images/logo.jpg"
 	    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)

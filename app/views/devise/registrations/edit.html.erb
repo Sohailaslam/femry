@@ -15,14 +15,14 @@
           <%# end %>
 
           
-          <div class="form-group mt-4 image-upload">
+          <div class="form-group mt-4 image-upload pt-2 pb-2 pl-3 pr-3">
             <span id="avatar_section">
               <%= render partial: "users/avatar_section" %>
             </span>
-            If you'd like to customize your avatar image, you can do it
+            <small>If you'd like to customize your avatar image, you can do it</small>
             <label for="file-input">
               <span>
-                here.                
+                <small class="text-primary">here.</small>                
               </span>
             </label>
             <%= f.file_field :avatar, class: 'form-control', id: "file-input" %>

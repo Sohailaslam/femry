@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   		put :sort
   	end
   end
-  resources :users
+  resources :users do
+    get :stats
+  end
 
   namespace :admin do
     root :to => "dashboard#index"

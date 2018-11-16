@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :update
   before_action :set_user, only: :update
 
+
   def new
   	require 'will_paginate/array'
     current_user.incomplete_tasks if current_user.present?
@@ -72,6 +73,10 @@ class UsersController < ApplicationController
 			redirect_to password_auth_path(@user.id), notice: e.message
 		end
 	end
+
+  def stats
+    @user = User.find(params[:user_id])
+  end
 
   private
 
