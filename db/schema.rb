@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_055103) do
+ActiveRecord::Schema.define(version: 2018_11_16_205023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tags", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "title"
@@ -24,6 +32,7 @@ ActiveRecord::Schema.define(version: 2018_10_16_055103) do
     t.date "task_date"
     t.integer "sort"
     t.boolean "status", default: false
+    t.boolean "is_deleted", default: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -33,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_10_16_055103) do
     t.date "thought_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_deleted", default: false
     t.index ["user_id"], name: "index_thoughts_on_user_id"
   end
 
@@ -48,10 +58,12 @@ ActiveRecord::Schema.define(version: 2018_10_16_055103) do
     t.string "last_name"
     t.string "timezone"
     t.string "access_token"
+    t.boolean "is_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tags", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "thoughts", "users"
 end

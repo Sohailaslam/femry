@@ -6,7 +6,6 @@ MentionsKinder.Autocompleter.Select2Autocompleter = MentionsKinder.Autocompleter
     data: []
   },
   initialize: function() {
-    debugger
     this._setupInput();
     this.$input.on('select2-selecting', (function(_this) {
       return function(e) {

@@ -36,7 +36,7 @@ $(document).ready(function(){
       tags: ["red", "green", "blue"]
     }
   });
-  debugger
+  
  $('.tags').mentionsKinder({
     trigger: {
       '#': {

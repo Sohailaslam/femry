@@ -22,7 +22,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update(task_params) if @task.present?
+    if params[:task].present?
+      tags = identify_tags(params[:task][:title].split(" ")) if params[:task][:title].include?("tag:")
+      if tags.present?
+        tags.each do |tag|
+          current_user.tags.find_or_create_by!(user_id: current_user.id, title: tag)
+        end
+      end
+      @task.update(task_params) if @task.present?
+    end
   end
 
   def destroy
@@ -42,5 +50,10 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find_by(id: params[:id])
+  end
+
+  def identify_tags(title_array)
+    title_tags = title_array.select{|title| title.include?("#")}
+    tags = title_tags.map{|c| c.split("tag:").last.gsub(")", "")}
   end
 end

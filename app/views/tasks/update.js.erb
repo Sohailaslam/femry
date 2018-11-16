@@ -14,3 +14,19 @@
 
 	$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 2000");
 <% end %>
+
+  var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+    select2Options: {
+      tags: ["red", "green", "blue"]
+    }
+  });
+
+ $('.tags').mentionsKinder({
+    trigger: {
+      '#': {
+        triggerName: 'tag',
+        autocompleter: tagAutocompleter
+      }
+    }
+  })
+});

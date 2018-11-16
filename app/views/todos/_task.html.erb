@@ -4,7 +4,7 @@
     <label for="check<%= task.id %>" class="m-0">
     </label>
   </div>
-  <%= text_area_tag :title, task.title, class: 'm-0 title tags debug-area', placeholder: 'Enter a task here...', onkeyup: "auto_grow(this)" %>
+  <%= text_area_tag :title, task.title, class: 'm-0 title tags', placeholder: 'Enter a task here...', readonly: true %>
   <%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
   
   

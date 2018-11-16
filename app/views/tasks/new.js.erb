@@ -28,4 +28,17 @@ if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $
 }
 
 console.log('clicked')
+var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+  select2Options: {
+    tags: ["red", "green", "blue"]
+  }
+});
 
+$('li#task_<%= @task.id%>').find('.tags').mentionsKinder({
+  trigger: {
+    '#': {
+      triggerName: 'tag',
+      autocompleter: tagAutocompleter
+    }
+  }
+})

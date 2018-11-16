@@ -405,10 +405,10 @@ ul.sortable li.add-task-box:first-child {
 .add-task ul li:hover label{
 	cursor: pointer;
 }
-.add-task ul li .checkbox{
+/*.add-task ul li .checkbox{
   width: 100%;
   line-height: 10px;
-}
+}*/
 
 .add-task ul li .checkbox .check-box {
   height: 5px;

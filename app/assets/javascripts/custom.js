@@ -141,7 +141,7 @@ $(document).ready(function(e){
     $.ajax({
       type:'PUT', 
       url: '/tasks/'+task_id,
-      data: {task: {title: $(this).val()}},
+      data: {task: {title: $(this).prev('textarea').val()}},
       success: function(result) {
       }
     });
@@ -280,57 +280,5 @@ function initialize_ckeditor(){
 
 
 
-
-  // $('body').on('blur', '.editor', function(e){
-  //   data_id = $(this).attr("id").split('_')[1]
-  //   editor_text = document.querySelector("trix-editor#"+$(this).attr('id')).editor.getDocument().toString()
-  //   $('#thought_title_'+data_id).val(editor_text)
-  //   $('.st_'+data_id).click();
-  // })
-
-  // $('body').on('focus', '.editor', function(e){
-  //   data_id = $(this).attr("id").split('_')[1]
-  //   $('.st_'+data_id).removeClass('d-none')
-  //   CKEDITOR.disableAutoInline = true;
-  //   CKEDITOR.inline($(this).attr('id'));
-  //   // loadEditor( $(this).attr('id') );
-  // })
-
-  // if ($('.editor').length > 0) {
-  //   for(var instanceName in CKEDITOR.instances) {
-  //     CKEDITOR.instances[instanceName].on('change', function() { 
-  //       textarea_name = $(this).attr('name')
-  //       editorText = CKEDITOR.instances[textarea_name].getData()
-  //       $('#'+textarea_name).val(editorText)
-  //     });
-
-  //     CKEDITOR.instances[instanceName].on('focus', function(e) {
-  //       data_id = e.editor.element.getAttribute('data-id')
-  //       $('.thoughts_'+data_id).find('.cke_top').removeClass('d-none')
-  //       $('.thoughts_'+data_id).find('.cke_bottom').removeClass('d-none')
-  //       $('.st_'+data_id).removeClass('d-none')
-  //     });
-
-  //     CKEDITOR.instances[instanceName].on('blur', function(e) {
-  //       data_id = e.editor.element.getAttribute('data-id')
-  //       $('div#thoughts').find('.cke_top').addClass('d-none')
-  //       $('div#thoughts').find('.cke_bottom').addClass('d-none')
-  //       $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-  //       $('.st_'+data_id).click();
-  //     });
-  //   }
-
-  //   // CKEDITOR.on( 'instanceReady', function( evt ) {
-      
-  //   //   var editor = evt.editor, 
-  //   //   body = CKEDITOR.document.getBody();
-  //   //     // $('div#thoughts').find('.cke_top').addClass('d-none')
-  //   //     // $('div#thoughts').find('.cke_bottom').addClass('d-none')
-  //   //     $('div#thoughts').find('.cke_bottom').addClass('bt-0 bg-white')
-
-  //   //     $('div#thoughts').find('.new-thought-box').find('.cke_top').removeClass('d-none')
-  //   //     editor.focus();
-  //   // } );
-  // }
 
 }
