@@ -33,6 +33,10 @@
   margin: 0;
 }
 
+.mentions-kinder-wrap {
+  padding-left: 30px;
+}
+
 .mentions-kinder-wrap .placeholder {
   color: #A39999;
 }
