@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :sort
 
-  before_action :set_task, only: [:update, :destroy]
+  before_action :set_task, only: [:update, :destroy, :edit]
   def index
     @tasks = current_user.tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
   end
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
   def update
     if params[:task].present?
-      tags = identify_tags(params[:task][:title].split(" ")) if params[:task][:title].include?("tag:")
+      tags = identify_tags(params[:task][:title].split(" ")) if params[:task][:title].present? && params[:task][:title].include?("tag:")
       if tags.present?
         tags.each do |tag|
           Tag.find_or_create_by(user_id: current_user.id, title: tag)

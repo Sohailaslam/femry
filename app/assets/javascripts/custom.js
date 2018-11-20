@@ -148,6 +148,16 @@ $(document).ready(function(e){
     }
   });
 
+  $('body').on('click', 'div.title', function(e) {
+    task_id = $(this).closest('li.nested-fields').attr('data-id')
+    $.ajax({
+      type:'GET', 
+      url: '/tasks/'+task_id+'/edit',
+      success: function(result) {
+      }
+    });
+  });
+
   $('body').on('keydown', '.title', function(e) {
     if(e.keyCode == 13) {
       e.preventDefault();
