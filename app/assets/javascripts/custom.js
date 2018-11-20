@@ -7,6 +7,7 @@ $(document).ready(function(e){
   initialize_ckeditor();
   initialize_progress_loader();
   
+  
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     e.preventDefault();
     $('.undo-alert').addClass("d-none")
@@ -278,9 +279,16 @@ function initialize_ckeditor(){
     }
   });
 
+}
 
-
-
-
-
+function initializeAutocompleter(task_id, tagAutocompleter) {
+  $('li#task_'+task_id).find('.tags').mentionsKinder({
+    trigger: {
+      '#': {
+        triggerName: 'tag',
+        autocompleter: tagAutocompleter
+      }
+    }
+  })
+  
 }

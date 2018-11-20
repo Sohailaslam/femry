@@ -1,0 +1,17 @@
+<div class="checkbox checkbox-success pull-left">
+	<%= check_box_tag 'status', task.status, task.status, id: "check#{task.id}", class: 'styled check-box'   %>
+  <label for="check<%= task.id %>" class="m-0">
+  </label>
+</div>
+<%= text_area_tag :title, task.title, class: 'm-0 title tags', placeholder: 'Enter a task here...', readonly: true %>
+<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
+
+
+<span class="handle-sort pull-right"><i class="fa fa-sort"></i></span>
+
+<div class="pull-right icon-fa close-task">
+  <%= hidden_field_tag :_destroy, value: false %>
+  <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
+    <i class="fa fa-trash"></i>
+  <% end %>
+</div>
