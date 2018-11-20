@@ -20,7 +20,7 @@
 //= require bootstrap-pincode-input
 //= require parsley
 //= require custom
-//= require ckeditor/init
+// require ckeditor/init
 //= require js.cookie
 //= require jstz
 //= require browser_timezone_rails/set_time_zone
