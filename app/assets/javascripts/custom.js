@@ -2,11 +2,9 @@ var a_href;
 
 $(document).ready(function(e){
   $('.thought-area').blur()
-
   multiline_support();
   initialize_ckeditor();
-  initialize_progress_loader();
-  
+  initialize_progress_loader();  
   
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     e.preventDefault();
@@ -290,5 +288,4 @@ function initializeAutocompleter(task_id, tagAutocompleter) {
       }
     }
   })
-  
 }
