@@ -1,0 +1,1 @@
+<%= column_chart @user.tasks.active_tasks.completed_tasks.group_by_day(:task_date, range: @date_from..@date_to, format: '"%b %d"').count %>

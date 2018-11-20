@@ -29,3 +29,5 @@
 //= require jquery.remotipart
 //= require Chart.bundle
 //= require chartkick
+//= require moment
+//= require daterangepicker

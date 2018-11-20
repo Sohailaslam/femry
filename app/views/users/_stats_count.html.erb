@@ -1,0 +1,31 @@
+<% unless range_filter.present? %>
+	<div class="task-count">
+		<%= @completed_tasks_today %> 
+		<span class="count-label">TODAY</span>
+	</div>
+
+	<div class="task-count">
+		<%= @completed_tasks_week %>  
+		<span class="count-label">7 DAYS</span>
+	</div>
+
+	<div class="task-count">
+		<%= @completed_tasks_month %> 
+		<span class="count-label">30 DAYS</span>
+	</div>
+
+	<div class="task-count">
+		<%= @completed_tasks_total %> 
+		<span class="count-label">TOTAL</span>
+	</div>
+<% else %>
+	<div class="task-count">
+		<%= @completed_range_tasks %> 
+		<span class="count-label">TOTAL FOR RANGE</span>
+	</div>
+
+	<div class="task-count">
+		<%= @completed_tasks_total %> 
+		<span class="count-label">TOTAL</span>
+	</div>
+<% end %>

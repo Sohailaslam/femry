@@ -76,6 +76,21 @@ class UsersController < ApplicationController
 
   def stats
     @user = User.find(params[:user_id])
+    @completed_tasks_today = @user.tasks.active_tasks.current_tasks(Time.now.in_time_zone(@user.timezone).to_date).completed_tasks.count
+    @completed_tasks_week = @user.tasks.active_tasks.weekly_tasks(@user.timezone).completed_tasks.count
+    @completed_tasks_month = @user.tasks.active_tasks.monthly_tasks(@user.timezone).completed_tasks.count
+    @completed_tasks_total = @user.tasks.active_tasks.completed_tasks.count
+    if params["daterange"].present?
+      from_date = params["daterange"].split(' - ').first.to_date
+      to_date = params["daterange"].split(' - ').last.to_date
+      @date_from = from_date
+      @date_to = to_date
+      @completed_range_tasks = @user.tasks.active_tasks.date_range_tasks(@date_from, @date_to).completed_tasks.count
+    else
+      @date_from = Time.now.in_time_zone(@user.timezone)-29.days
+      @date_to = Time.now.in_time_zone(@user.timezone)
+    end
+
   end
 
   private

@@ -40,6 +40,8 @@ gem 'image_processing', '~> 1.2'
 gem "chartkick"
 gem 'groupdate'
 gem "aws-sdk-s3", require: false
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'

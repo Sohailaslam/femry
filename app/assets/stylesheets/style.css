@@ -796,6 +796,19 @@ footer{
   font-size: 13px;
 }
 
+.task-count {
+  display: inline-block;
+  font-size: 18px;
+  text-align: left;
+}
+
+.task-count span.count-label{
+  display: inline-block;
+  width: 100%;
+  color: #b9b2b2;
+  font-size: 12px;
+}
+
                       /*********  MObile and Ipad View CSS **********/
 
 @media (max-width: 1024px) { 

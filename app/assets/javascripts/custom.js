@@ -6,6 +6,20 @@ $(document).ready(function(e){
   multiline_support();
   initialize_ckeditor();
   initialize_progress_loader();
+
+  $('input[name="daterange"]').daterangepicker({
+    autoApply: true,
+    startDate: moment().subtract(29, 'days').format("MMMM DD, YYYY"),
+    endDate: moment().format("MMMM DD, YYYY"),
+    "locale": {
+      "format": "MMMM DD, YYYY"
+    },
+  });
+
+  $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('MMMM DD, YYYY') + ' - ' + picker.endDate.format('MMMM DD, YYYY'));
+    $('#date_range_form').submit();
+  });
   
   $('body').on('click', '#delete_button, #delete_thought_button', function(e){
     e.preventDefault();
