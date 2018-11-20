@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       tags = identify_tags(params[:task][:title].split(" ")) if params[:task][:title].include?("tag:")
       if tags.present?
         tags.each do |tag|
-          current_user.tags.find_or_create_by!(user_id: current_user.id, title: tag)
+          Tag.find_or_create_by(user_id: current_user.id, title: tag)
         end
       end
       @task.update(task_params) if @task.present?

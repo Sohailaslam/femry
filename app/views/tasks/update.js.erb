@@ -11,22 +11,56 @@
 	    noPercentageSign: true,
 	    fontColor: '#fff'
 	});
-
+	tags = '<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>';
+	console.log(tags);
+	tags = tags.replace(/&quot;/g, '"')
+	debugger
+	$('#rails_tags').attr('data-tags', tags);
+	// tags = tags.replace('[', '').replace(']','').replace('"', '').split(',')
+	// console.log(tags);
 	$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 2000");
-<% end %>
-
-  var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+	// var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+	// select2Options: {
+	// 	  tags: JSON.parse(tags)
+	// 	}
+	// });
+	MentionsKinder.Autocompleter.Select2Autocompleter = MentionsKinder.Autocompleter.extend({
     select2Options: {
-      tags: ["red", "green", "blue"]
+      data: []
+    },
+    initialize: function() {
+    	debugger
+      var _this = this;
+      this._setupInput();
+      this.$input.on('select2-selecting', function(e) {
+        var data;
+        data = $.extend({}, {
+          name: e.object.text,
+          value: e.object.id
+        }, e.object);
+        _this.complete.call(_this, data);
+        return _this.$input.select2('destroy').remove();
+      });
+      return this.$input.on('select2-close', function(e) {
+        _this.abort.call(_this);
+        return _this.$input.select2('destroy').remove();
+      });
+    },
+    search: $.noop,
+    _setupInput: function() {
+      this.$input = $('<input type="hidden" />').css('width', this.mentionsKind.$editable.width()).appendTo(this.mentionsKind.$wrap);
+      this.$input.select2(JSON.parse(tags));
+      return this.$input.select2('open');
     }
   });
 
- $('.tags').mentionsKinder({
-    trigger: {
-      '#': {
-        triggerName: 'tag',
-        autocompleter: tagAutocompleter
-      }
-    }
-  })
-});
+	$('textarea.tags').mentionsKinder({
+		trigger: {
+		  '#': {
+		    triggerName: 'tag',
+		    autocompleter: tagAutocompleter
+		  }
+		}
+	})
+<% end %>
+

@@ -33,7 +33,7 @@
 $(document).ready(function(){
   var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
     select2Options: {
-      tags: ["red", "green", "blue"]
+      tags: JSON.parse($('#rails_tags').attr('data-tags'))
     }
   });
   

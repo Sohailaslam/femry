@@ -609,6 +609,7 @@ MentionsKinder.extend = MentionsKinder.Autocompleter.extend = extend;
     initialize: function() {
       var _this = this;
       this._setupInput();
+      debugger;
       this.$input.on('select2-selecting', function(e) {
         var data;
         data = $.extend({}, {
@@ -3852,6 +3853,7 @@ rangy.createModule("DomUtil", function(api, module) {
 });
 
 (function() {
+  debugger
   $.fn.mentionsKinder = function(options) {
     return this.each(function() {
       var instance;

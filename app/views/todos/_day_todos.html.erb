@@ -44,6 +44,7 @@
     <%= link_to 'Save Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 d-none st_#{key}", id: 'save_thoughts', 'data-id' => key %>
   </div>
 </div>
+<div id="rails_tags" data-tags="<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>"></div>
 
 <script type="text/javascript">
 

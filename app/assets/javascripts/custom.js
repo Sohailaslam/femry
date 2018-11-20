@@ -136,15 +136,17 @@ $(document).ready(function(e){
     });
   });
 
-  $('body').on('focusout', '.title', function(e) {
-    task_id = $(this).closest('li.nested-fields').attr('data-id')
-    $.ajax({
-      type:'PUT', 
-      url: '/tasks/'+task_id,
-      data: {task: {title: $(this).prev('textarea').val()}},
-      success: function(result) {
-      }
-    });
+  $('body').on('focusout', 'div.title', function(e) {
+    if ($('#select2-drop').length == 0) {
+      task_id = $(this).closest('li.nested-fields').attr('data-id')
+      $.ajax({
+        type:'PUT', 
+        url: '/tasks/'+task_id,
+        data: {task: {title: $(this).prev('textarea').val()}},
+        success: function(result) {
+        }
+      });
+    }
   });
 
   $('body').on('keydown', '.title', function(e) {

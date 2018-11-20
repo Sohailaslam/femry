@@ -13,9 +13,8 @@ $("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-per
 });
 $('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
 
-
 $('#sortable<%= @task.task_date %>').append('<%= escape_javascript(render(:partial => "todos/task", :locals => {key: @task.task_date, task: @task }))%>');
-$('#sortable<%= @task.task_date %>').children('li:visible').last().find('textarea').focus();
+$('#sortable<%= @task.task_date %>').children('li:visible').last().find('div').focus();
 
 if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date %>').children('li:visible').length == 1) {
   $('#thoughts<%= @task.task_date %>').children('li:visible').last().removeClass('bt-0')
@@ -24,13 +23,12 @@ if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $
 }
 
 if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date %>').children('li:visible').length == 0) {
-	$('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
+  $('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
 }
-
-console.log('clicked')
+debugger
 var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
   select2Options: {
-    tags: ["red", "green", "blue"]
+    tags: JSON.parse($('#rails_tags').attr('data-tags'))
   }
 });
 
@@ -42,3 +40,5 @@ $('li#task_<%= @task.id%>').find('.tags').mentionsKinder({
     }
   }
 })
+console.log('clicked')
+
