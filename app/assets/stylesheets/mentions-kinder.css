@@ -36,6 +36,13 @@
   padding-left: 30px;
 }
 
+.mentions-kinder:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: #FBFBFB !important;
+}
+
 .mentions-kinder-wrap .placeholder {
   color: #A39999;
 }

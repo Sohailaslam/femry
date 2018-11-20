@@ -410,6 +410,11 @@ ul.sortable li.add-task-box:first-child {
   line-height: 10px;
 }*/
 
+.task-form-control {
+  background-color: #FBFBFB;
+  border: none;
+}
+
 .add-task ul li .checkbox .check-box {
   height: 5px;
   display: none;
