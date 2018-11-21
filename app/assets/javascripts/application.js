@@ -23,11 +23,17 @@
 //= require select2-autocompleter
 //= require mentions-kinder.rangy
 //= require custom
+// require ckeditor/init
 //= require js.cookie
 //= require jstz
 //= require browser_timezone_rails/set_time_zone
 //= require circliful.min
 //= require trix
+//= require jquery.remotipart
+//= require Chart.bundle
+//= require chartkick
+//= require moment
+//= require daterangepicker
 
 
 $(document).ready(function(){

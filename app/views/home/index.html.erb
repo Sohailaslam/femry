@@ -12,7 +12,6 @@
       <%= text_field_tag 'email',nil, class: "form-control mb-2 mr-sm-2", placeholder: "Email address" %>
       <button type="submit" class="btn btn-success mb-2 pl-4  pr-4">Get Started</button>
     <% end %>
-  </form>
-  <p class="account mt-2">Already using Slack? <%= link_to 'Sign in ', new_user_session_path unless current_user.present? %></p>
+    <p class="account mt-2">Already using Slack? <%= link_to 'Sign in ', new_user_session_path unless current_user.present? %></p>
   </div>  
 </div>

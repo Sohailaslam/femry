@@ -644,6 +644,8 @@ GEM
     bindex (0.5.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
+    bootstrap-daterangepicker-rails (3.0.3)
+      railties (>= 4.0, < 5.3)
     browser-timezone-rails (1.0.2)
       js_cookie_rails
       jstz-rails3-plus
@@ -657,6 +659,7 @@ GEM
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       xpath (~> 3.1)
+    chartkick (3.0.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (2.1.0)
@@ -693,8 +696,13 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (4.1.0)
+      activesupport (>= 4.2)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
+    image_processing (1.7.1)
+      mini_magick (~> 4.0)
+      ruby-vips (>= 2.0.13, < 3)
     io-like (0.3.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -723,9 +731,12 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
     mimemagic (0.3.2)
+    mini_magick (4.9.2)
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    momentjs-rails (2.20.1)
+      railties (>= 3.1)
     msgpack (1.2.4)
     multi_json (1.13.1)
     nio4r (2.3.1)
@@ -769,9 +780,12 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    remotipart (1.4.2)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    ruby-vips (2.0.13)
+      ffi (~> 1.9)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sass (3.6.0)
@@ -831,10 +845,13 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 3)
+  aws-sdk-s3
   bootsnap (>= 1.1.0)
+  bootstrap-daterangepicker-rails
   browser-timezone-rails
   byebug
   capybara (>= 2.15)
+  chartkick
   chromedriver-helper
   ckeditor
   cocoon
@@ -842,15 +859,20 @@ DEPENDENCIES
   devise
   figaro
   font-awesome-rails
+  groupdate
+  image_processing (~> 1.2)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3.1)
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick (~> 4.8)
+  momentjs-rails
   parsley-rails
   pg (~> 0.18.4)
   puma (~> 3.11)
   rails (~> 5.2.1)
   rails_sortable
+  remotipart (~> 1.2)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

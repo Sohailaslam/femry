@@ -37,7 +37,7 @@ body {
 }
 .login{
 	max-width: 640px;width: 100%;margin: auto;
-  padding: 50px 13%;
+  padding: 50px 7%;
   border-radius: .25rem;
   background-color: #fff;
   border: 1px solid #e8e8e8;
@@ -780,6 +780,40 @@ footer{
   width:686px !important;
 
 }*/
+
+.image-upload {
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+}
+.image-upload > input
+{
+    display: none;
+}
+.image-upload > label{
+  cursor:pointer;
+}
+
+.image-upload img {
+  margin-right: 10px;
+}
+
+.image-upload small{
+  font-size: 13px;
+}
+
+.task-count {
+  display: inline-block;
+  font-size: 18px;
+  text-align: left;
+}
+
+.task-count span.count-label{
+  display: inline-block;
+  width: 100%;
+  color: #b9b2b2;
+  font-size: 12px;
+}
+
                       /*********  MObile and Ipad View CSS **********/
 
 @media (max-width: 1024px) { 

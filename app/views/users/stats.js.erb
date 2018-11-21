@@ -1,0 +1,3 @@
+$('#stats_chart').html("<%= escape_javascript(render partial: 'users/stats_chart_section')%>")
+
+$('#stats_count').html("<%= escape_javascript(render partial: 'users/stats_count', locals: {range_filter: true})%>")

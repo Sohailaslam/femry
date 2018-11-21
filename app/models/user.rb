@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   has_many :tags, dependent: :destroy
 
+  has_one_attached :avatar
+  
   def incomplete_tasks
     incomplete_tasks = tasks.where(status: 0).where.not(task_date: Time.now.in_time_zone(self.timezone).to_date)
     incomplete_tasks.map{|task| task.update_attributes(task_date: Time.now.in_time_zone(self.timezone).to_date)} if incomplete_tasks.present?

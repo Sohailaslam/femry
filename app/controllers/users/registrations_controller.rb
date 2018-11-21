@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
+  skip_before_action :verify_authenticity_token, only: :update
 
   # GET /resource/sign_up
   def new
@@ -146,7 +147,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :timezone, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :timezone, :password, :password_confirmation, :avatar)
   end
 
   def translation_scope
