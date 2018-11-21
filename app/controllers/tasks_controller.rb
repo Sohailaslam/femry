@@ -30,6 +30,7 @@ class TasksController < ApplicationController
         end
       end
       @task.update(task_params) if @task.present?
+      @day_tasks = current_user.tasks.where(task_date: @task.task_date)
     end
   end
 

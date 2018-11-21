@@ -136,7 +136,7 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', 'div.title', function(e) {
-    if ($('#select2-drop').length == 0) {
+    if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#") {
       task_id = $(this).closest('li.nested-fields').attr('data-id')
       $.ajax({
         type:'PUT', 
@@ -148,15 +148,6 @@ $(document).ready(function(e){
     }
   });
 
-  $('body').on('click', 'div.title', function(e) {
-    task_id = $(this).closest('li.nested-fields').attr('data-id')
-    $.ajax({
-      type:'GET', 
-      url: '/tasks/'+task_id+'/edit',
-      success: function(result) {
-      }
-    });
-  });
 
   $('body').on('keydown', '.title', function(e) {
     if(e.keyCode == 13) {
