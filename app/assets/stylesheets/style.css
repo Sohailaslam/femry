@@ -645,9 +645,7 @@ footer{
 .drop-setting .profile-image img{
   border-radius: 100%;
 }
-.drop-setting .dropdown-toggle::after{
-  display: none;
-}
+
 .drop-setting .width-100{
   width: 100%;
   float: left;
