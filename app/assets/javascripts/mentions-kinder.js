@@ -278,7 +278,7 @@
     MentionsKinder.prototype._setupElements = function() {
       var autofocus, placeholder;
       this.$wrap = $('<div class="mentions-kinder-wrap"></div>');
-      this.$editable = $('<div class="form-control mentions-kinder" contenteditable="true"></div>');
+      this.$editable = $('<div class=" mentions-kinder" contenteditable="true"></div>');
       this.$editable.addClass("mentions-kinder-" + (this.multiline ? 'multiline' : 'singleline'));
       this.$editable.addClass(this.$originalInput.attr("class"));
       if (autofocus = this.$originalInput.attr('autofocus')) {

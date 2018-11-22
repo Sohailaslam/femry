@@ -354,15 +354,15 @@ input[type="radio"] .styled:checked + label::after {
 .add-task ul li{
 	float: left;
 	width: 100%;
-  padding-top: 5px;
+  padding-top: 2px;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 .add-task ul li .tag-container {
   position: absolute;
   right: 20px;
-  top: 16px;
+  top: 29%;
   width: 100px;
   overflow: hidden;
   white-space: nowrap;
@@ -379,7 +379,7 @@ input[type="radio"] .styled:checked + label::after {
 
 .add-task ul li .handle-sort{
   position: absolute;
-  top: 33%;
+  top: 29%;
   right: 5px;
   cursor: -webkit-grab;
   opacity: 0;
@@ -425,6 +425,9 @@ ul.sortable li.add-task-box:first-child {
 .task-form-control {
   background-color: #FBFBFB;
   border: none;
+  position: relative ;
+  top: 3px;
+  width: 79%;
 }
 
 .add-task ul li .checkbox .check-box {
@@ -544,7 +547,7 @@ cursor: pointer;
 .add-thougt-box .close-thought, .add-task .close-task{
   position: absolute;
   right: -15px;
-  top: 33%;
+  top: 29%;
 }
 .mce-menubar, .mce-statusbar{
   display: none !important;
