@@ -6,7 +6,7 @@
 }
 
 .mention .delete-mention {
-  font-family: monospace;
+  font-family: 'Open Sans', sans-serif;
   color: #ffffff;
   margin-left: 5px;
   cursor: pointer;

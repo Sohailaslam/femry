@@ -359,6 +359,18 @@ input[type="radio"] .styled:checked + label::after {
   padding-bottom: 10px;
 }
 
+.add-task ul li .tag-container {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  /* word-spacing: normal; */
+  text-overflow: ellipsis;
+  text-align: right;
+}
+
 .add-task ul li:hover .handle-sort{
   opacity: 1;
   cursor: -webkit-grab;
