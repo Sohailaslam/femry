@@ -1,7 +1,9 @@
 <% if @task.present? %>
 	<% today_tasks = today_task(nil, @task.task_date, current_user) %>
 	<% completed_tasks = today_tasks.completed_tasks %>
-	$('li#task_<%= @task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: @task.task_date, task: @task }))%>');
+	<% if params[:task][:title].present? %>
+		$('li#task_<%= @task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: @task.task_date, task: @task }))%>');
+	<% end %>
 	$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
 	$("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
 	    animationStep: 5,

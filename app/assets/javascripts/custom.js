@@ -150,7 +150,7 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', 'div.title', function(e) {
-    if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#") {
+    if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#" && $(this).prev('textarea').val() != "") {
       task_id = $(this).closest('li.nested-fields').attr('data-id')
       $.ajax({
         type:'PUT', 

@@ -22,16 +22,18 @@ class TasksController < ApplicationController
   end
 
   def update
-    if params[:task].present?
-      tags = identify_tags(params[:task][:title].split(" ")) if params[:task][:title].present? && params[:task][:title].include?("tag:")
-      if tags.present?
-        tags.each do |tag|
-          Tag.find_or_create_by(user_id: current_user.id, title: tag)
+    if params[:task].present? && params[:task][:title].present?
+      if params[:task][:title].include?("tag:")
+        tags = identify_tags(params[:task][:title].split(" ")) 
+        if tags.present?
+          tags.each do |tag|
+            Tag.find_or_create_by(user_id: current_user.id, title: tag)
+          end
+          @day_tasks = current_user.tasks.where(task_date: @task.task_date)
         end
       end
-      @task.update(task_params) if @task.present?
-      @day_tasks = current_user.tasks.where(task_date: @task.task_date)
     end
+    @task.update(task_params) if @task.present?
   end
 
   def destroy
