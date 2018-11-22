@@ -8,7 +8,6 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.create!(task_date: params[:date])
-    puts "CUREENTTTTTTTTTT", current_user.tasks.active_tasks.current_tasks(@task.task_date).count
   end
 
   def create
@@ -24,12 +23,14 @@ class TasksController < ApplicationController
   def update
     if params[:task].present? && params[:task][:title].present?
       if params[:task][:title].include?("tag:")
+        current_tags = current_user.tags.present? ? current_user.tags.map(&:title) : []
         tags = identify_tags(params[:task][:title].split(" ")) 
-        if tags.present?
+        new_tags = tags - current_tags if tags.present?
+        if new_tags.present? 
           tags.each do |tag|
             Tag.find_or_create_by(user_id: current_user.id, title: tag)
           end
-          @day_tasks = current_user.tasks.where(task_date: @task.task_date)
+          @day_tasks = current_user.tasks.where(task_date: @task.task_date) - [@task]
         end
       end
     end

@@ -34,7 +34,11 @@
 			  tags: JSON.parse(tags)
 			}
 		});
-		initializeAutocompleter('<%= task.id %>', tagAutocompleter)
+		initializeAutocompleter('<%= task.id %>', tagAutocompleter);
 	<% end %>
+	<% if params[:next_task].present? %>
+		document.getElementById('<%= params[:next_task] %>').focus();
+	<% end %>
+
 <% end %>
 

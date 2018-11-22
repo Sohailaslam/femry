@@ -149,19 +149,32 @@ $(document).ready(function(e){
     });
   });
 
-  $('body').on('focusout', 'div.title', function(e) {
+  $('body').on('focusout', '.title', function(e) {
+    next_task = e.originalEvent.relatedTarget.offsetParent.id;
     if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#" && $(this).prev('textarea').val() != "") {
       task_id = $(this).closest('li.nested-fields').attr('data-id')
       $.ajax({
         type:'PUT', 
         url: '/tasks/'+task_id,
-        data: {task: {title: $(this).prev('textarea').val()}},
+        data: {task: {title: $(this).prev('textarea').val()}, next_task: next_task},
         success: function(result) {
         }
       });
     }
   });
 
+   // $('body').on('focusin', '.title', function(e) {
+    // if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#" && $(this).prev('textarea').val() != "") {
+    //   task_id = $(this).closest('li.nested-fields').attr('data-id')
+    //   $.ajax({
+    //     type:'PUT', 
+    //     url: '/tasks/'+task_id,
+    //     data: {task: {title: $(this).prev('textarea').val()}},
+    //     success: function(result) {
+    //     }
+    //   });
+    // }
+  // });
 
   $('body').on('keydown', '.title', function(e) {
     if(e.keyCode == 13) {
