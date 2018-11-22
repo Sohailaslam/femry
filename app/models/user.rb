@@ -86,5 +86,12 @@ class User < ApplicationRecord
   def get_initials
     "#{first_name} #{last_name}".split.map(&:first).join.upcase
   end
-  
+
+  def streak
+    if self.streak_end && self.streak_start
+      self.streak_end > 24.hours.ago ? (self.streak_end - self.streak_start).to_i : 0
+    else
+      0
+    end
+  end
 end
