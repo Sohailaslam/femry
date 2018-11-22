@@ -1,9 +1,9 @@
 <% if @task.present? %>
 	<% today_tasks = today_task(nil, @task.task_date, current_user) %>
 	<% completed_tasks = today_tasks.completed_tasks %>
-	<% if params[:task][:title].present? %>
-		$('li#task_<%= @task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: @task.task_date, task: @task }))%>');
-	<% end %>
+	<%# if params[:task][:title].present? %>
+		// $('li#task_<%= @task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: @task.task_date, task: @task }))%>');
+	<%# end %>
 	$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
 	$("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
 	    animationStep: 5,
@@ -15,18 +15,16 @@
 	    fontColor: '#fff'
 	});
 	tags = '<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>';
+	
 	tags = tags.replace(/&quot;/g, '"')	
 	$('#rails_tags').attr('data-tags', tags);
 	$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 2000");
-	var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
-		select2Options: {
-		  tags: JSON.parse(tags)
-		}
-	});
-	initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
-	tags = '<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>';
-	tags = tags.replace(/&quot;/g, '"')	
-	$('#rails_tags').attr('data-tags', tags);
+	// var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+	// 	select2Options: {
+	// 	  tags: JSON.parse(tags)
+	// 	}
+	// });
+	// initializeAutocompleter('<%#= @task.id %>', tagAutocompleter);
 	<% @day_tasks.present? && @day_tasks.each do |task| %>
 		$('li#task_<%= task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: task.task_date, task: task }))%>');
 		var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
@@ -37,7 +35,7 @@
 		initializeAutocompleter('<%= task.id %>', tagAutocompleter);
 	<% end %>
 	<% if params[:next_task].present? %>
-		document.getElementById('<%= params[:next_task] %>').focus();
+		document.getElementById('<%= params[:next_task] %>').getElementsByClassName('title')[1].focus();
 	<% end %>
 
 <% end %>

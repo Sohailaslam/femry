@@ -26,11 +26,12 @@ class TasksController < ApplicationController
         current_tags = current_user.tags.present? ? current_user.tags.map(&:title) : []
         tags = identify_tags(params[:task][:title].split(" ")) 
         new_tags = tags - current_tags if tags.present?
+
         if new_tags.present? 
-          tags.each do |tag|
-            Tag.find_or_create_by(user_id: current_user.id, title: tag)
+          new_tags.each do |tag|
+            current_user.tags.find_or_create_by(user_id: current_user.id, title: tag)
           end
-          @day_tasks = current_user.tasks.where(task_date: @task.task_date) - [@task]
+          @day_tasks = current_user.tasks.where(task_date: @task.task_date)
         end
       end
     end
