@@ -402,6 +402,10 @@ ul.sortable li.add-task-box:first-child {
   padding-bottom: 0px;
 }
 
+.public-feed-task ul li:last-child {
+  padding-bottom: 10px !important;
+}
+
 .add-task ul li:hover label{
 	cursor: pointer;
 }
@@ -938,6 +942,102 @@ footer{
   color: #b9b2b2;
   font-size: 12px;
 }
+
+.public-feed{
+  float: left;
+  width: 100%;
+
+}
+
+.public-feed .profile-img{
+  float: left;
+  width: 38px;
+  height: 38px;
+  border-radius: 50px;
+  background-color: #ddd;
+  margin-left: -10px;
+}
+
+.public-feed .profile-img img{
+  width: 38px;
+  height: 38px;
+  border-radius: 50px;
+  background-color: #ddd;
+}
+
+.public-feed .profile-name{
+  float: left;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.public-feed .profile-tags{
+  float: left;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+.public-feed .profile-tags span{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  color: #333;
+  padding: 4px 15px 6px 15px;
+  display: inline-block;
+  font-weight: 600;
+
+}
+
+.explore-list li {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+ul.public-task-list li .completed-task-lists{
+  float: left;
+  width: 100%;
+}
+
+.explore-list li i{
+  font-size: 20px;
+  color: #5cb85c;
+  margin-right: 8px;
+}
+
+.explore-list li:hover{
+  cursor: inherit !important;
+}
+
+.explore-list li span.explore-time{
+  background-color: #fff;
+  color: #333;
+  padding: 4px 8px;
+  font-weight: 600;
+  color: #e1e1e1;
+  margin-left: 5px;
+}
+
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background-color: #333;
+  display: inline-block;
+}
+
+.initials {
+  position: relative;
+  font-size: 16px; /* 50% of parent */
+  line-height: 42px; /* 50% of parent */
+  color: #fff;
+  font-weight: bold;
+}
+
 
                       /*********  MObile and Ipad View CSS **********/
 
