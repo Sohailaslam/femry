@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-12 col-lg-8">
+      <ul class="read-more-wrap list-style-none public-task-list">
+        <li>
+          <div id="public_tasks">
+            <% @grouped_tasks.each_with_index do |key, index| %>
+              <div class="completed-task-lists" id="completed_task">
+                <div class="row mt-2">
+                  <div class="col-10">
+                    <h4 class="mb-3">
+                      <b>Explore</b>
+                      <%= display_date(key[0], local_date(Time.zone.name)) %>
+                    </h4>
+                  </div>
+                </div>
+
+                <% key[1].group_by(&:user_id).each do |data| %>
+                  <% task_user = User.find_by(id: data[0]) %>
+                  <div class="add-task public-feed-task pr-4 pl-3 pt-0 pb-0 mb-3">
+                    <div class="row mt-2">
+                      <div class="col-md-12">
+                        <div class="public-feed">
+                          <div class="profile-img">
+                            <%= image_tag avatar_url(task_user) %>
+                          </div>
+
+                          <div class="profile-name">
+                            <%= "#{task_user.first_name} #{task_user.last_name}" %>
+                          </div>
+
+                          <div class="profile-tags">
+                            <span>
+                              <%= task_user.tasks.active_tasks.completed_tasks.count %>
+                              Tasks completed
+                            </span>
+                            <span>5 day strek</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ul class="explore-list">
+                      <% data[1].each do |task| %>
+                        <li class="add-task-box bt-1">
+                          <i class="fa fa-check-square"></i>
+                          <%= task.title %>
+                          <span class="explore-time">
+                            <%= "#{time_ago_in_words(task.updated_at)} ago" %>
+                          </span>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+              </div>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
