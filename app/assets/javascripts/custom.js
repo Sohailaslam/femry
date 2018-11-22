@@ -236,15 +236,15 @@ function multiline_support(){
   });
 }
 
-function loadEditor(id){
-  var instance = CKEDITOR.instances[id];
-  if(instance)
-  {
-      CKEDITOR.remove(instance);
-  }
-  CKEDITOR.disableAutoInline = true;
-  CKEDITOR.inline( id);
-}
+// function loadEditor(id){
+//   var instance = CKEDITOR.instances[id];
+//   if(instance)
+//   {
+//       CKEDITOR.remove(instance);
+//   }
+//   CKEDITOR.disableAutoInline = true;
+//   CKEDITOR.inline( id);
+// }
 
 function initialize_progress_loader(){
   $('.progress-loader').circliful({

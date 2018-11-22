@@ -28,7 +28,7 @@ gem "figaro"
 gem "cocoon"
 gem 'jquery-ui-rails'
 gem 'rails_sortable'
-gem 'ckeditor'
+# gem 'ckeditor'
 gem 'will_paginate', '~> 3.1.0'
 gem 'browser-timezone-rails'
 # Use Redis adapter to run Action Cable in production
