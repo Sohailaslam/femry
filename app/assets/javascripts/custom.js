@@ -346,5 +346,5 @@ function initialize_ckeditor(){
   //   //     editor.focus();
   //   // } );
   // }
-
+$('[data-toggle="tooltip"]').tooltip()
 }
