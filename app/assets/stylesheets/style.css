@@ -888,6 +888,27 @@ ul.public-task-list li .completed-task-lists{
   color: #e1e1e1;
   margin-left: 5px;
 }
+
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background-color: #333;
+  display: inline-block;
+}
+
+.initials {
+  position: relative;
+  font-size: 16px; /* 50% of parent */
+  line-height: 42px; /* 50% of parent */
+  color: #fff;
+  font-weight: bold;
+}
+
+
                       /*********  MObile and Ipad View CSS **********/
 
 @media (max-width: 1024px) { 
