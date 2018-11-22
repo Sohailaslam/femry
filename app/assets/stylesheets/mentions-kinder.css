@@ -26,6 +26,9 @@
 .mentions-kinder-multiline {
   height: auto;
   word-wrap: break-word;
+  padding-left: 0;
+  padding-top: 8px;
+  padding-bottom: 2px;
 }
 
 .mentions-kinder-multiline p {
