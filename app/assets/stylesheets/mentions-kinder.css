@@ -1,7 +1,10 @@
 .mention {
   font-size: 90%;
   font-weight: normal;
-  background-color: #dee2e6;
+  background-color: #5fb760;
+  color: #fff;
+      padding: 1px 3px;
+    border-radius: 2px;
 
 }
 
@@ -13,9 +16,11 @@
 }
 
 .icon-remove:before {
-  content: 'x';
+  font: normal normal normal 14px/1 FontAwesome;
+  content: "\f00d";
   display: inline-block;
   speak: none;
+  font-size: 13px;
 }
 
 .temp-mention {
@@ -26,9 +31,6 @@
 .mentions-kinder-multiline {
   height: auto;
   word-wrap: break-word;
-  padding-left: 0;
-  padding-top: 8px;
-  padding-bottom: 6px;
 }
 
 .mentions-kinder-multiline p {

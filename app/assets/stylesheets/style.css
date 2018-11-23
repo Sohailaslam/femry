@@ -354,9 +354,9 @@ input[type="radio"] .styled:checked + label::after {
 .add-task ul li{
 	float: left;
 	width: 100%;
-  padding-top: 2px;
+  padding-top: 5px;
   position: relative;
-  padding-bottom: 12px;
+  padding-bottom: 5px;
 }
 
 .add-task ul li .tag-container {
@@ -430,7 +430,7 @@ ul.sortable li.add-task-box:first-child {
   background-color: #FBFBFB;
   border: none;
   position: relative ;
-  top: 3px;
+  top: 12px;
   width: 79%;
 }
 
@@ -442,9 +442,24 @@ ul.sortable li.add-task-box:first-child {
 .add-task ul li label{
   width: 100%;
 }
-
+.textarea-style{
+  border: none;
+  width: 96%;
+  resize: none;
+  line-height: 17px;
+  font-size: 14px;
+  overflow: hidden;
+  background: #fbfbfb;
+}
 .add-task ul li textarea{
   border: none;
+  height: 1px;
+  width: 1px;
+  resize: none;
+  background: #fbfbfb;
+}
+.add-task ul li textarea{
+/*  border: none;
   width: 96%;
   resize: none;
   line-height: 17px;
@@ -454,7 +469,14 @@ ul.sortable li.add-task-box:first-child {
   height: 23px;
   margin-left: 30px !important;
   position: relative;
-  top: -4px;
+  top: -4px;*/
+}
+.task_detail{
+  padding-top: 5px;
+}
+.add-task ul li{
+  padding-bottom: 28px !important;
+  padding-top: 0px !important;
 }
 .thought-area{
   min-height: 80px;
@@ -892,6 +914,7 @@ footer{
 
 #thoughts ul li.thoughts{
   padding-left: 0px;
+  padding-top: 15px;
   border-top: 1px solid #ddd;
 }
 
