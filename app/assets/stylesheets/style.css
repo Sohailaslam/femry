@@ -673,6 +673,7 @@ footer{
     padding: 0px 20px;
     box-shadow: none;
     border: none;
+        background-color: #fbfbfb;
 }
 .profile-links{
   border: 1px solid #dadfe2;
@@ -984,6 +985,7 @@ footer{
   color: #333;
   padding: 4px 15px 6px 15px;
   display: inline-block;
+  margin-bottom: 2px;
   font-weight: 600;
 
 }
