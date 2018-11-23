@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   get 'home/index'
   get 'todos/index'
+  get 'home/public_feed'
   post 'todos/update_deleted_column', to: 'todos#update_deleted_column', as: 'update_deleted_column'
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

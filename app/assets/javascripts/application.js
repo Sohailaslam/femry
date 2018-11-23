@@ -16,6 +16,7 @@
 // require turbolinks
 //= require jquery-ui
 //= require jquery.ui.touch-punch.min
+//= require popper.min
 //= require bootstrap.min
 //= require bootstrap-pincode-input
 //= require parsley

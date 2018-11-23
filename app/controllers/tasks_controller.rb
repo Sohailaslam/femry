@@ -48,6 +48,7 @@ class TasksController < ApplicationController
       end
     end
     @task.update(task_params) if @task.present?
+    @task.update_streak if @task.status
   end
 
   def destroy

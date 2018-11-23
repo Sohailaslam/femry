@@ -245,15 +245,15 @@ function multiline_support(){
   });
 }
 
-function loadEditor(id){
-  var instance = CKEDITOR.instances[id];
-  if(instance)
-  {
-      CKEDITOR.remove(instance);
-  }
-  CKEDITOR.disableAutoInline = true;
-  CKEDITOR.inline( id);
-}
+// function loadEditor(id){
+//   var instance = CKEDITOR.instances[id];
+//   if(instance)
+//   {
+//       CKEDITOR.remove(instance);
+//   }
+//   CKEDITOR.disableAutoInline = true;
+//   CKEDITOR.inline( id);
+// }
 
 function initialize_progress_loader(){
   $('.progress-loader').circliful({
@@ -312,27 +312,29 @@ function initializeAutocompleter(task_id, tagAutocompleter) {
   })
 }
 
-function getCaretPosition(editableDiv) {
-  var caretPos = 0,
-    sel, range;
-  if (window.getSelection) {
-    sel = window.getSelection();
-    if (sel.rangeCount) {
-      range = sel.getRangeAt(0);
-      if (range.commonAncestorContainer.parentNode == editableDiv) {
-        caretPos = range.endOffset;
-      }
-    }
-  } else if (document.selection && document.selection.createRange) {
-    range = document.selection.createRange();
-    if (range.parentElement() == editableDiv) {
-      var tempEl = document.createElement("span");
-      editableDiv.insertBefore(tempEl, editableDiv.firstChild);
-      var tempRange = range.duplicate();
-      tempRange.moveToElementText(tempEl);
-      tempRange.setEndPoint("EndToEnd", range);
-      caretPos = tempRange.text.length;
-    }
-  }
-  return caretPos;
-}
+// function getCaretPosition(editableDiv) {
+//   var caretPos = 0,
+//     sel, range;
+//   if (window.getSelection) {
+//     sel = window.getSelection();
+//     if (sel.rangeCount) {
+//       range = sel.getRangeAt(0);
+//       if (range.commonAncestorContainer.parentNode == editableDiv) {
+//         caretPos = range.endOffset;
+//       }
+//     }
+//   } else if (document.selection && document.selection.createRange) {
+//     range = document.selection.createRange();
+//     if (range.parentElement() == editableDiv) {
+//       var tempEl = document.createElement("span");
+//       editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+//       var tempRange = range.duplicate();
+//       tempRange.moveToElementText(tempEl);
+//       tempRange.setEndPoint("EndToEnd", range);
+//       caretPos = tempRange.text.length;
+//     }
+//   }
+//   return caretPos;
+// }
+
+$('[data-toggle="tooltip"]').tooltip()
