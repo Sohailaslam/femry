@@ -453,8 +453,9 @@ ul.sortable li.add-task-box:first-child {
 }
 .add-task ul li textarea{
   border: none;
-  height: 1px;
-  width: 1px;
+  height: 0px;
+  width: 0px;
+  opacity: 0;
   resize: none;
   background: #fbfbfb;
 }
@@ -471,12 +472,25 @@ ul.sortable li.add-task-box:first-child {
   position: relative;
   top: -4px;*/
 }
+.navbar-expand-lg .navbar-nav .nav-link{
+  padding-right: .8rem;
+    padding-left: .8rem;
+}
 .task_detail{
   padding-top: 5px;
 }
+.select2-container{
+  position: absolute !important;
+      z-index: 10;
+    margin-top: 15px !important;
+    width: 84% !important;
+}
 .add-task ul li{
-  padding-bottom: 28px !important;
-  padding-top: 0px !important;
+  padding-bottom: 28px;
+  padding-top: 0px;
+}
+.select2-search-field{
+  padding-bottom: 5px !important;
 }
 .thought-area{
   min-height: 80px;
