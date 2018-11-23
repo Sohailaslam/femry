@@ -2,7 +2,7 @@ var a_href;
 
 $(document).ready(function(e){
   $('.thought-area').blur()
-  multiline_support();
+  // multiline_support();
   initialize_ckeditor();
   initialize_progress_loader();
 
