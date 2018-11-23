@@ -76,25 +76,6 @@ class TasksController < ApplicationController
     params[:task][:title].split(" ").select{|c| c.include?("tag:")}.last
   end
 
-  # def sanitize_title(title_array, tags)
-  #   tag_count = 1
-  #   title_string = []
-  #   title_array.each_with_index do |title, index|
-  #     if title.include?("tag:")
-  #       if tag_count < tags.count
-  #         debugger
-  #         title_string << "#"+ tags.select{|c| title.include?(c)}.first
-  #       elsif tag_count == tags.count  
-  #         debugger
-  #       end
-  #       tag_count+=1
-  #     else
-  #       title_string << title
-  #     end
-  #   end
-  #   params[:task][:title] = title_string.join(" ")
-  # end
-
   def sanitize_title(title_array, tags)
     tag_count = 1
     title_string = []

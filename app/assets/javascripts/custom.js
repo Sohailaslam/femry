@@ -150,7 +150,6 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', '.title', function(e) {
-    debugger
     var update = function() {
       $('#caretposition').html(getCaretPosition(this));
     };
