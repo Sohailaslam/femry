@@ -362,9 +362,10 @@ input[type="radio"] .styled:checked + label::after {
 .add-task ul li .tag-container {
   position: absolute;
   right: 20px;
-  top: 29%;
+  top: 32%;
   width: 100px;
   overflow: hidden;
+  font-size: 12px;
   white-space: nowrap;
   /* word-spacing: normal; */
   text-overflow: ellipsis;
@@ -444,7 +445,7 @@ ul.sortable li.add-task-box:first-child {
 }
 .textarea-style{
   border: none;
-  width: 96%;
+  width: 88%;
   resize: none;
   line-height: 17px;
   font-size: 14px;
