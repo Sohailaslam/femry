@@ -150,9 +150,6 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', '.title', function(e) {
-    var update = function() {
-      $('#caretposition').html(getCaretPosition(this));
-    };
     next_task = ((e.originalEvent.relatedTarget === null) ? null : e.originalEvent.relatedTarget.offsetParent.id)
     if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#" && $(this).prev('textarea').val() != "" && $(this).prev('textarea').val() !== undefined) {
       task_id = $(this).closest('li.nested-fields').attr('data-id')
