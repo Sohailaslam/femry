@@ -1,5 +1,6 @@
 var a_href; 
 
+
 $(document).ready(function(e){
   $('.thought-area').blur()
   // multiline_support();
@@ -13,6 +14,34 @@ $(document).ready(function(e){
     "locale": {
       "format": "MMMM DD, YYYY"
     },
+  });
+
+  $(document).on('lcs-statuschange', '.lcs_check', function(e) {
+    if ($(this).is(':checked')) {
+      $('#user_public_task').val(true)
+      $(this).prop("checked", "checked");
+    } else {
+      $('#user_public_task').val(false)
+      $(this).prop("checked", "unchecked");
+    }
+  });
+
+  $(document).on('click', '#profile_link, #email_link, #password_link', function(e){
+    $(this).closest('ul').find('li').removeClass('active');
+    $(this).closest('li').addClass('active')
+    if ($(this).attr('id') == "profile_link") {
+      $('#profile').removeClass('d-none')
+      $('#email').addClass('d-none')
+      $('#password').addClass('d-none')
+    } else if ($(this).attr('id') == "email_link") {
+      $('#email').removeClass('d-none')
+      $('#profile').addClass('d-none')
+      $('#password').addClass('d-none')
+    } else if ($(this).attr('id') == "password_link") {
+      $('#password').removeClass('d-none')
+      $('#profile').addClass('d-none')
+      $('#email').addClass('d-none')
+    }
   });
 
   $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
