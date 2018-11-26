@@ -89,7 +89,7 @@ class User < ApplicationRecord
 
   def streak
     if self.streak_end && self.streak_start
-      self.streak_end > 24.hours.ago ? (self.streak_end - self.streak_start).to_i : 0
+      self.streak_end > 24.hours.ago ? (self.streak_start.to_date .. self.streak_end.to_date).count : 0
     else
       0
     end
