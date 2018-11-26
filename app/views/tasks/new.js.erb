@@ -1,6 +1,7 @@
 <% today_tasks = today_task(nil, @task.task_date, current_user) %>
 <% completed_tasks = today_tasks.completed_tasks %>
 $('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
+$('#navbar_menu').html('<%= escape_javascript(render(:partial => "shared/navbar_menu" ))%>');
 $("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
     animationStep: 5,
     foregroundBorderWidth: 70,
@@ -32,3 +33,9 @@ var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.exten
 initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
 document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].focus();
 
+<% if current_user.tasks.active_tasks.count >= current_user.plan.total_tasks %>
+  $('a#add_task').each(function(data, index){
+    $(this).prop('disabled', 'disabled');
+    $(this).addClass('disabled');
+  });
+<% end %>

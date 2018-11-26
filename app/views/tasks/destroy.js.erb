@@ -1,18 +1,21 @@
 <% if @task.present? %>
 	<% today_tasks = today_task(nil, @task.task_date, current_user) %>
 	<% completed_tasks = today_tasks.completed_tasks %>
+	$('#navbar_menu').html('<%= escape_javascript(render(:partial => "shared/navbar_menu" ))%>');
 	$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks }))%>');
 	$('input[value=<%= @task.id %>]').remove();
 	$("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
-	    animationStep: 5,
-	    foregroundBorderWidth: 70,
-	    backgroundBorderWidth: 70,
-	    foregroundColor: '#5fb760',
-	    backgroundColor: '#ededed',
-	    noPercentageSign: true,
-	    fontColor: '#fff'
+    animationStep: 5,
+    foregroundBorderWidth: 70,
+    backgroundBorderWidth: 70,
+    foregroundColor: '#5fb760',
+    backgroundColor: '#ededed',
+    noPercentageSign: true,
+    fontColor: '#fff'
 	});
 
 	$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
 	initialize_ckeditor();
 <% end %>
+
+

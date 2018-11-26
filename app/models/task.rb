@@ -19,4 +19,5 @@ class Task < ApplicationRecord
     self.user.touch(:streak_start) unless self.user.streak_end.present? && self.user.streak_end > 24.hours.ago
     self.user.touch(:streak_end)
   end
+
 end
