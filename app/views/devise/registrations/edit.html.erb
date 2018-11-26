@@ -6,13 +6,13 @@
       <h6>SETTINGS</h6>
       <ul>
         <li class="active">
-          <a href="#">Profile</a>
+          <a href="javascript:void(0);" id="profile_link">Profile</a>
         </li>
         <li>
-          <a href="#">Email</a>
+          <a href="javascript:void(0);" id="email_link">Email</a>
         </li>
         <li>
-          <a href="#">Password</a>
+          <a href="javascript:void(0);" id="password_link">Password</a>
         </li>
         <li>
           <a href="#">Email Notifications</a>
@@ -25,171 +25,125 @@
   </div>
 
   <div class="col-md-8 col-lg-7 login profile-container">
-    
-    <div class="row form-setting">
-      <div class="col-md-12">
+    <div class="row mt-3 mb-4" id="profile">
+      <div class="col-md-12 login profile-container">
         <h5><b>Profile</b></h5>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true, :multipart => true }, remote: true) do |f| %>
-          
-          <%# if !resource.avatar.attached? %>
-            <%#= image_tag resource.avatar.variant(resize: "100x100") %>
-          <%# else %>
-            <!-- <script src="https://www.avatarapi.com/js.aspx?email=<%= resource.email %>&size=128"></script> -->
-            <%#= image_tag gravatar_url("#{resource.email}", 10), alt: "" %>
-          <%# end %>
+        <div class="row form-setting">
+          <div class="col-md-12">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true, :multipart => true }, remote: true) do |f| %>
+              <div class="form-group mt-4 image-upload pt-2 pb-2 pl-3 pr-3">
+                <span id="avatar_section">
+                  <%= render partial: "users/avatar_section" %>
+                </span>
+                <small>If you'd like to customize your avatar image, you can do it</small>
+                <label for="file-input">
+                  <span>
+                    <small class="text-primary">here.</small>                
+                  </span>
+                </label>
+                <%= f.file_field :avatar, class: 'form-control', id: "file-input" %>
+              </div>
+              
 
-          
-          <div class="form-group mt-4 image-upload pt-2 pb-2 pl-3 pr-3">
-            <span id="avatar_section">
-              <%= render partial: "users/avatar_section" %>
-            </span>
-            <small>If you'd like to customize your avatar image, you can do it</small>
-            <label for="file-input">
-              <span>
-                <small class="text-primary">here.</small>                
-              </span>
-            </label>
-            <%= f.file_field :avatar, class: 'form-control', id: "file-input" %>
+              <!-- <div class="form-group mt-4">
+                <%#= f.label :avatar %>
+                <%#= f.file_field :avatar, class: 'form-control' %>
+              </div> -->
+              <div class="form-group mt-4">
+                <%= f.label :first_name do %>
+                  First Name <span class="text-danger">(required)</span>
+                <% end %>
+                <%= f.text_field :first_name, autofocus: true, required: true, class: 'form-control' %>
+              </div>
+              <div class="form-group mt-4">
+                <%= f.label :last_name do %>
+                  Last Name <span class="text-muted text-optional">(optional)</span>
+                <% end %>
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: 'form-control' %>
+              </div>
+              <div class="form-group mt-4">
+                <%= f.label :timezone do %>
+                  Timezone <span class="text-muted text-optional">(optional)</span>
+                <% end %>
+                <%= f.select(:timezone, all_country_zone_identifiers , {:selected => resource.timezone.present? ? resource.timezone : Time.zone.name }, { :class => 'form-control' }) %>
+              
+              </div>
+              <div class="form-group mt-4">
+                <%= f.label :last_name do %>
+                  Make Tasks Public
+                <% end %>
+                <%= f.check_box :public_task, { class: 'lcs_check lcs_tt1', autocomplete: true }, true, false %>
+              </div>  
+              <div class="form-group mt-4">
+                <div class="text-right">
+                  <button class="btn btn-success btn-custom">Save Changes</button>
+                </div>
+              </div>
+            <% end %>  
           </div>
-          
-
-          <!-- <div class="form-group mt-4">
-            <%#= f.label :avatar %>
-            <%#= f.file_field :avatar, class: 'form-control' %>
-          </div> -->
-          <div class="form-group mt-4">
-            <%= f.label :first_name do %>
-              First Name <span class="text-danger">(required)</span>
-            <% end %>
-            <%= f.text_field :first_name, autofocus: true, required: true, class: 'form-control' %>
+        </div>
+      </div>  
+    </div>
+    <div class="row mt-3 mb-4 d-none" id="email">
+      <div class="col-md-12 login profile-container">
+        <h5><b>Email</b></h5>
+        <div class="row form-setting">
+          <div class="col-md-12">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true }, remote: true) do |f| %>
+              <div class="form-group mt-4">
+                <%= f.label :email do %>
+                  Email <span class="text-danger">(required)</span>
+                <% end %>
+                <%= f.email_field :email, autofocus: true, required: true, class: 'form-control' %>
+              </div>
+              <div class="form-group mt-4">
+                <div class="text-right">
+                  <button class="btn btn-success btn-custom">Save Changes</button>
+                </div>
+              </div>
+            <% end %>  
           </div>
-          <div class="form-group mt-4">
-            <%= f.label :last_name do %>
-              Last Name <span class="text-muted text-optional">(optional)</span>
-            <% end %>
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: 'form-control' %>
-          </div>
-          <div class="form-group mt-4">
-            <%= f.label :timezone do %>
-              Timezone <span class="text-muted text-optional">(optional)</span>
-            <% end %>
-            <%= f.select(:timezone, all_country_zone_identifiers , {:selected => resource.timezone.present? ? resource.timezone : Time.zone.name }, { :class => 'form-control' }) %>
-          </div>
-          <div class="form-group mt-4">
-            <div class="text-right">
-              <button class="btn btn-success btn-custom">Save Changes</button>
-            </div>
-          </div>
-        <% end %>  
+        </div>
       </div>
     </div>
-    <div class="row mt-3 mb-4">
-    <div class="col-md-12 login profile-container">
-      <h5><b>Email</b></h5>
-      <div class="row form-setting">
-        <div class="col-md-12">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true }, remote: true) do |f| %>
-            <div class="form-group mt-4">
-              <%= f.label :email do %>
-                Email <span class="text-danger">(required)</span>
-              <% end %>
-              <%= f.email_field :email, autofocus: true, required: true, class: 'form-control' %>
-            </div>
-            <div class="form-group mt-4">
-              <div class="text-right">
-                <button class="btn btn-success btn-custom">Save Changes</button>
+    <div class="row mt-3 mb-4 d-none" id="password">
+      <div class="col-md-12 login profile-container">
+        <h5><b>Password</b></h5>
+        <div class="row form-setting">
+          <div class="col-md-12">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true }, remote: true) do |f| %>
+              
+              <div class="form-group mt-4">
+                <%= f.label :current_password %>
+                <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control' %>
               </div>
-            </div>
-          <% end %>  
+
+              <div class="form-group mt-4">
+                <%= f.label :password do %>
+                  Password <span class="text-danger">(required)</span>
+                <% end %>
+                <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control' %>
+              </div>
+              <div class="form-group mt-4">
+                <%= f.label :password_confirmation do %>
+                  Password Confirmation <span class="text-danger">(required)</span>
+                <% end %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control' %>
+              </div>
+              <div class="form-group mt-4">
+                <div class="text-right">
+                  <button class="btn btn-success btn-custom">Save Changes</button>
+                </div>
+              </div>
+            <% end %>  
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mt-3 mb-4">
-  <div class="col-md-12 login profile-container">
-    <h5><b>Password</b></h5>
-    <div class="row form-setting">
-      <div class="col-md-12">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true }, remote: true) do |f| %>
-          
-          <div class="form-group mt-4">
-            <%= f.label :current_password %>
-            <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control' %>
-          </div>
-
-          <div class="form-group mt-4">
-            <%= f.label :password do %>
-              Password <span class="text-danger">(required)</span>
-            <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control' %>
-          </div>
-          <div class="form-group mt-4">
-            <%= f.label :password_confirmation do %>
-              Password Confirmation <span class="text-danger">(required)</span>
-            <% end %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control' %>
-          </div>
-          <div class="form-group mt-4">
-            <div class="text-right">
-              <button class="btn btn-success btn-custom">Save Changes</button>
-            </div>
-          </div>
-        <% end %>  
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
   <div class="col-md-2">
   </div>
 </div>
-
-
-
-
-
-
-<!-- <h2>Edit <%#= resource_name.to_s.humanize %></h2>
-
-<%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%#= devise_error_messages! %>
-
-  <div class="field">
-    <%#= f.label :email %><br />
-    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></div>
-  <%# end %>
-
-  <div class="field">
-    <%#= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%#= f.password_field :password, autocomplete: "new-password" %>
-    <%# if @minimum_password_length %>
-      <br />
-      <em><%#= @minimum_password_length %> characters minimum</em>
-    <%# end %>
-  </div>
-
-  <div class="field">
-    <%#= f.label :password_confirmation %><br />
-    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%#= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%#= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%#= f.submit "Update" %>
-  </div>
-<%# end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%#= link_to "Back", :back %>
- -->
+<script type="text/javascript">
+  $('input').lc_switch();
+</script>

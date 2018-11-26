@@ -19,6 +19,7 @@
 //= require popper.min
 //= require bootstrap.min
 //= require bootstrap-pincode-input
+//= require lc_switch
 //= require parsley
 //= require mentions-kinder
 //= require select2-autocompleter
@@ -35,7 +36,6 @@
 //= require chartkick
 //= require moment
 //= require daterangepicker
-
 
 $(document).ready(function(){
   var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
