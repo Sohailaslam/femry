@@ -1,5 +1,5 @@
 class RemoveStatusFromUser < ActiveRecord::Migration[5.2]
   def change
-  	# remove_column :users, :status, :integer
+  	remove_column :users, :status, :integer
   end
 end
