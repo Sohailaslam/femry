@@ -33,20 +33,3 @@
 //= require chartkick
 //= require moment
 //= require daterangepicker
-
-$(document).ready(function(){
-  var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
-    select2Options: {
-      tags: JSON.parse($('#rails_tags').attr('data-tags'))
-    }
-  });
-  
- $('.tags').mentionsKinder({
-    trigger: {
-      '#': {
-        triggerName: 'tag',
-        autocompleter: tagAutocompleter
-      }
-    }
-  })
-});
