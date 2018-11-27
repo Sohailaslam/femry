@@ -37,7 +37,8 @@
                           </span>
                           <span>
                             <%= task_user.streak %> 
-                            day streak
+                            <%= task_user.streak.to_i > 1 ? 'days' : 'day' %>
+                            streak
                           </span>
                         </div>
                       </div>
@@ -48,9 +49,7 @@
                   <ul class="explore-list">
                     <% data[1].each do |task| %>
                       <li class="add-task-box bt-1">
-                        <i class="fa fa-check-square" style="    width: 25px;
-    float: left;
-    margin-right: 0;"></i>
+                        <i class="fa fa-check-square" style="width: 25px; float: left; margin-right: 0;"></i>
                         <div class="public-title">
                           <%= task.title %>
                           <span class="explore-time">
