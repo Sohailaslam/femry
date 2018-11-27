@@ -20,12 +20,12 @@
         <a class="nav-link" href="<%= home_public_feed_path %>">Explore</a>
       </li>      
     </ul>
-    <div class="form-inline my-2 my-lg-0">
-    	<% unless current_user.present? %>
+    <% unless current_user.present? %>
+      <div class="form-inline my-2 my-lg-0">
     		<%= link_to 'Sign in', new_user_session_path, class: 'btn btn-success btn-sm mr-1' %>
-				<%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-sm' %>
-			<% end %>
-    </div>
+  			<%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+		<% end %>
   </div>
   <% if current_user.present? %>
   	<ul class="navbar-nav mr-auto drop-setting" id="navbar_menu">
