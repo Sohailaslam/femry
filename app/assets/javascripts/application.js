@@ -45,7 +45,7 @@ $(document).ready(function(){
     }
   });
   
- $('.tags').mentionsKinder({
+  $('.tags').mentionsKinder({
     trigger: {
       '#': {
         triggerName: 'tag',

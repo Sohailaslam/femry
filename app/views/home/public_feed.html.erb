@@ -25,31 +25,38 @@
                         <%= show_avatar(task_user) %>
                       </div>
 
-                      <div class="profile-name">
-                        <%= "#{task_user.first_name} #{task_user.last_name}" %>
+                      <div class="profile-info">
+                        <div class="profile-name">
+                          <%= "#{task_user.first_name} #{task_user.last_name}" %>
+                        </div>
+
+                        <div class="profile-tags">
+                          <span>
+                            <%= task_user.tasks.active_tasks.completed_tasks.count %>
+                            Tasks completed
+                          </span>
+                          <span>
+                            <%= task_user.streak %> 
+                            day streak
+                          </span>
+                        </div>
                       </div>
 
-                      <div class="profile-tags">
-                        <span>
-                          <%= task_user.tasks.active_tasks.completed_tasks.count %>
-                          Tasks completed
-                        </span>
-                        <span>
-                          <%= task_user.streak %> 
-                          day streak
-                        </span>
-                      </div>
                     </div>
                   </div>
 
                   <ul class="explore-list">
                     <% data[1].each do |task| %>
                       <li class="add-task-box bt-1">
-                        <i class="fa fa-check-square"></i>
-                        <%= task.title %>
-                        <span class="explore-time">
-                          <%= "#{time_ago_in_words(task.updated_at)} ago" %>
-                        </span>
+                        <i class="fa fa-check-square" style="    width: 25px;
+    float: left;
+    margin-right: 0;"></i>
+                        <div class="public-title">
+                          <%= task.title %>
+                          <span class="explore-time">
+                            <%= "#{time_ago_in_words(task.updated_at)} ago" %>
+                          </span>
+                        </div>
                       </li>
                     <% end %>
                   </ul>

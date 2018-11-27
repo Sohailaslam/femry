@@ -3,6 +3,7 @@ var a_href;
 
 $(document).ready(function(e){
   $('.thought-area').blur()
+  $('[data-toggle="tooltip"]').tooltip()
   // multiline_support();
   initialize_ckeditor();
   initialize_progress_loader();
@@ -361,5 +362,3 @@ function initializeAutocompleter(task_id, tagAutocompleter) {
 //   }
 //   return caretPos;
 // }
-
-$('[data-toggle="tooltip"]').tooltip()
