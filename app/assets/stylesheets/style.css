@@ -1230,7 +1230,7 @@ ul.public-task-list li .completed-task-lists{
     margin-top: 0px !important;
   }
   .stats-height{
-    padding-top: 10px !important;
+    padding: 10px !important;
   }
   .stats-height .task-count{
     width: 23%;
