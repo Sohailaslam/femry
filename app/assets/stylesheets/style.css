@@ -1043,7 +1043,7 @@ footer{
   color: #333;
   padding: 4px 15px 6px 15px;
   display: inline-block;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   font-weight: 600;
 
 }
@@ -1065,9 +1065,10 @@ ul.public-task-list li .completed-task-lists{
   float: left;
 }
 .explore-list li .public-title{
-  margin-left: -24px;
-  padding-left: 48px;
-    width: 100%;
+  margin-left: -4px;
+  padding-left: 31px;
+  width: 100%;
+  word-break: break-all;
 }
 
 .explore-list li:hover{
