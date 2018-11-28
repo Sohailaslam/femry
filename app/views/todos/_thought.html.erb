@@ -1,4 +1,4 @@
-<li class='nested-fields thoughts add-thougt-box' id="thought_<%= thought.id %>" data-id="<%= thought.id %>">
+<li class="nested-fields thoughts add-thougt-box <%= current_user.active_tasks_in_date_count(key) <= 0 ? 'bt-0' : '' %>" id="thought_<%= thought.id %>" data-id="<%= thought.id %>">
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">

@@ -97,4 +97,8 @@ class User < ApplicationRecord
       0
     end
   end
+
+  def active_tasks_in_date_count(date)
+    self.tasks.active_tasks.where(task_date: date).count
+  end
 end
