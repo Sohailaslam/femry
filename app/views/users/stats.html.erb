@@ -1,16 +1,28 @@
 <div class="container-height p-4 stats-height">
 	
-	<div class="row mt-3 mb-5">
-		<div class="col-md-2">
+	<div class="row mt-3 mb-2">
+		<div class="col-md-12">
 			<h4>Your Stats</h4>
 		</div>
 
-		<div class="col-md-6 text-right" id="stats_count">
+        <div class="profile-tags col-md-4 mt-17">
+      		<span>
+        		<%= @user.tasks.active_tasks.completed_tasks.where.not(title: nil).count %>
+        		Tasks completed
+      		</span>
+      		<span>
+        		<%= @user.streak %> 
+        		<%= @user.streak.to_i > 1 ? 'days' : 'day' %>
+        		streak
+      		</span>
+    	</div>
+		
+		<div class="col-md-4 text-center" id="stats_count">
 			<%= render partial: 'stats_count', locals: {range_filter: false} %>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 mt-16">
 			<%= form_tag user_stats_path(user_id: @user.id), class: " range-filter", id: "date_range_form", method: :get, remote: true do %>
-				<%= text_field_tag 'daterange',nil, class: "form-control", id: 'datefiler' %>
+				<%= text_field_tag 'daterange',nil, class: "form-control text-center", id: 'datefiler' %>
 			<% end %>
 		</div>
 	</div>

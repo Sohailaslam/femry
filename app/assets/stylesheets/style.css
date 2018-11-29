@@ -734,7 +734,7 @@ footer{
 }
 .profile-links{
   border: 1px solid #dadfe2;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 .profile-links ul{
   list-style: none;
@@ -1031,12 +1031,12 @@ footer{
   word-break: break-all;
 }
 
-.public-feed .profile-tags{
+.public-feed .profile-tags, .stats-height .profile-tags{
   float: left;
   margin-top: 2px;
 }
 
-.public-feed .profile-tags span{
+.public-feed .profile-tags span, .stats-height .profile-tags span{
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -1076,11 +1076,9 @@ ul.public-task-list li .completed-task-lists{
 }
 
 .explore-list li span.explore-time{
-  background-color: #fff;
-  color: #333;
-  padding: 4px 8px;
+  color: #b5b5b5;
+  padding: 0 2x;
   font-weight: 600;
-  color: #bfbdbd;
   margin-left: 5px;
 }
 
@@ -1108,6 +1106,19 @@ ul.public-task-list li .completed-task-lists{
     margin-left: -42px;
     display: inline-block;
     padding-left: 50px;
+}
+
+.upgrade-btn {
+  position: relative;
+  top: 2px;
+}
+
+.mt-17 {
+  margin-top: 17px !important;
+}
+
+.mt-16 {
+  margin-top: 16px;
 }
 
 
@@ -1253,6 +1264,10 @@ ul.public-task-list li .completed-task-lists{
 
   .add-task {
     padding-left: 10px;
+  }
+
+  .mt-17 {
+    margin-bottom: 17px !important;
   }
 
  }

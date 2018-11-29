@@ -27,21 +27,39 @@ $(document).ready(function(e){
     }
   });
 
-  $(document).on('click', '#profile_link, #email_link, #password_link', function(e){
+  $(document).on('click', '#profile_link, #email_link, #password_link, #notifications_link, #billing_info', function(e){
     $(this).closest('ul').find('li').removeClass('active');
     $(this).closest('li').addClass('active')
     if ($(this).attr('id') == "profile_link") {
       $('#profile').removeClass('d-none')
       $('#email').addClass('d-none')
       $('#password').addClass('d-none')
+      $('#notifications').addClass('d-none')
+      $('#billing').addClass('d-none')
     } else if ($(this).attr('id') == "email_link") {
       $('#email').removeClass('d-none')
       $('#profile').addClass('d-none')
       $('#password').addClass('d-none')
+      $('#notifications').addClass('d-none')
+      $('#billing').addClass('d-none')
     } else if ($(this).attr('id') == "password_link") {
       $('#password').removeClass('d-none')
       $('#profile').addClass('d-none')
       $('#email').addClass('d-none')
+      $('#notifications').addClass('d-none')
+      $('#billing').addClass('d-none')
+    } else if ($(this).attr('id') == "notifications_link") {
+      $('#notifications').removeClass('d-none')
+      $('#password').addClass('d-none')
+      $('#profile').addClass('d-none')
+      $('#email').addClass('d-none')
+      $('#billing').addClass('d-none')
+    } else if ($(this).attr('id') == "billing_info") {
+      $('#billing').removeClass('d-none')
+      $('#password').addClass('d-none')
+      $('#profile').addClass('d-none')
+      $('#email').addClass('d-none')
+      $('#notifications').addClass('d-none')
     }
   });
 

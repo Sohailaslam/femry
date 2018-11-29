@@ -32,10 +32,3 @@ var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.exten
   });
 initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
 document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].focus();
-
-<% if current_user.tasks.active_tasks.count >= current_user.plan.total_tasks %>
-  $('a#add_task').each(function(data, index){
-    $(this).prop('disabled', 'disabled');
-    $(this).addClass('disabled');
-  });
-<% end %>
