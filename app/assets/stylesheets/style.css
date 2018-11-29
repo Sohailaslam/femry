@@ -665,7 +665,7 @@ footer{
 }
 .drop-setting{
   position: absolute;
-  right: 0;
+  right: 15px;
 }
 .drop-setting .dropdown-menu{
   width: 270px;
@@ -1196,10 +1196,9 @@ ul.public-task-list li .completed-task-lists{
     min-height: auto;
   }
   .header-bg{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    /*z-index: 1500;*/
-    /*position: relative;*/
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+
   }
   .login h1{
     margin-bottom: 20px;
