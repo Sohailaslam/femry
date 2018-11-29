@@ -10,7 +10,8 @@
 
     KEY = {
       RETURN: 13,
-      ESC: 27
+      ESC: 27,
+      DELETE: 46
     };
 
     TEXT_NODE = 3;
@@ -153,6 +154,10 @@
       return this.isAutocompleting() && this._current.autocompleter.abort();
     };
 
+    MentionsKinder.prototype.deleteTodo = function() {
+      this.$editable.parents('.task_detail').find('#delete_button').click();
+    }
+
     MentionsKinder.prototype.handleAutocompleteDone = function(data) {
       var $mention, node;
       data = $.extend({}, this._current, data);
@@ -197,6 +202,8 @@
       switch (e.keyCode) {
         case KEY.ESC:
           this.abortAutocomplete();
+        case KEY.DELETE:
+          this.deleteTodo();
       }
       if (this.isAutocompleting() && !this._isCaretInTempMention()) {
         this.abortAutocomplete();
