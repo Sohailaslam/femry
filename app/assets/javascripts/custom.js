@@ -345,6 +345,10 @@ function initialize_ckeditor(){
     }
   });
 
+  $('body').on('change', '#file-input', function(){
+    $(this).closest('form').submit();
+  })
+
 }
 
 function initializeAutocompleter(task_id, tagAutocompleter) {

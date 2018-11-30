@@ -1052,7 +1052,16 @@ footer{
   margin-top: 2px;
 }
 
-.public-feed .profile-tags span, .stats-height .profile-tags span{
+.admin-users-list td {
+  vertical-align: middle;
+}
+
+.admin-users-list .profile-tags{
+  text-align: center !important;
+  margin-top: 2px;
+}
+
+.public-feed .profile-tags span, .stats-height .profile-tags span, .admin-users-list .profile-tags span{
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -1136,6 +1145,12 @@ ul.public-task-list li .completed-task-lists{
 .mt-16 {
   margin-top: 16px;
 }
+
+.text-premium a{
+  color: #d95739;
+}
+
+
 
 
                       /*********  MObile and Ipad View CSS **********/
