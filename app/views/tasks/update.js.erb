@@ -34,6 +34,11 @@
 		});
 		initializeAutocompleter('<%= task.id %>', tagAutocompleter);
 	<% end %>
+	<% if @task.title.present? %>	
+		$('li#task_<%= @task.id%>').find('div.mentions-kinder').addClass('pointer-cursor'); 
+	<% elsif @task.title.blank? %>		
+		$('li#task_<%= @task.id%>').find('div.mentions-kinder').removeClass('pointer-cursor'); 
+	<% end %>
 	<% if params[:next_task].present? %>
 		document.getElementById('<%= params[:next_task] %>').getElementsByClassName('title')[1].focus();
 	<% end %>

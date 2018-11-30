@@ -91,6 +91,16 @@ body {
   padding: 3px 8px;
   border-radius: 10px;
 }
+
+.quota_container{
+  background-color: rgba(0, 0, 0, 0.3)
+}
+.border-free {
+  border: 1px solid #ddd;
+}
+.mt-21 {
+  margin-top: 21px;
+}
 .where-work h1{
 	font-size: 70px;
 	line-height: 75px;
