@@ -218,6 +218,8 @@ $(document).ready(function(e){
     if(e.keyCode == 13) {
       e.preventDefault();
       date_key = $(this).parents('li.nested-fields').find('#task_date').val()
+      task_id = $(this).closest('li.nested-fields').attr('id');
+      $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
       $('.task_'+ date_key).click();
     }
   })
