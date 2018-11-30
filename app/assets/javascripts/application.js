@@ -39,11 +39,13 @@
 
 
 $(document).ready(function(){
-  var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
-    select2Options: {
-      tags: JSON.parse($('#rails_tags').attr('data-tags'))
-    }
-  });
+  if($('#rails_tags').length > 0){
+    var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+      select2Options: {
+        tags: JSON.parse($('#rails_tags').attr('data-tags'))
+      }
+    });
+  }
   
   $('.tags').mentionsKinder({
     trigger: {

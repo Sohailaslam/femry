@@ -30,7 +30,7 @@
         <h5><b>Profile</b></h5>
         <div class="row form-setting">
           <div class="col-md-12">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true }, remote: true) do |f| %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name, noflash: true), html: { method: :put, :multipart => true }, remote: true) do |f| %>
               <div class="form-group mt-4 image-upload pt-2 pb-2 pl-3 pr-3">
                 <span id="avatar_section">
                   <%= render partial: "users/avatar_section" %>
@@ -43,12 +43,8 @@
                 </label>
                 <%= f.file_field :avatar, class: 'form-control', id: "file-input" %>
               </div>
-              
-
-              <!-- <div class="form-group mt-4">
-                <%#= f.label :avatar %>
-                <%#= f.file_field :avatar, class: 'form-control' %>
-              </div> -->
+            <% end %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true }, remote: true) do |f| %>
               <div class="form-group mt-4">
                 <%= f.label :first_name do %>
                   First Name <span class="text-danger">(required)</span>
