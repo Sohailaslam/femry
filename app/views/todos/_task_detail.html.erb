@@ -5,9 +5,11 @@
 </div>
 <%= text_area_tag :title, task.title, class: 'title tags', placeholder: 'Enter a task here...', readonly: true %>
 <%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
-
-<span class="tag-container"><%= task.tag.try(:title) %></span>
-
+	<span class="tag-container">
+		<% if task.tag %>
+			<span class="tag-style"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>
+		<% end %>		
+	</span>
 <span class="handle-sort pull-right"><i class="fa fa-sort"></i></span>
 
 <div class="pull-right icon-fa close-task">

@@ -85,6 +85,12 @@ body {
 .where-work{
 	transition:all 0.9s ease;
 }
+.tag-style {
+  background-color: #f1f4f5;
+  color: #4f4d4d;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
 .where-work h1{
 	font-size: 70px;
 	line-height: 75px;
