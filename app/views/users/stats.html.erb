@@ -4,6 +4,9 @@
 		<div class="col-md-12">
 			<h4>Your Stats</h4>
 		</div>
+	</div>
+
+	<div class="row mt-3 mb-2">
 
         <div class="profile-tags col-md-4 mt-17">
       		<span>
@@ -20,14 +23,20 @@
 		<div class="col-md-4 text-center" id="stats_count">
 			<%= render partial: 'stats_count', locals: {range_filter: false} %>
 		</div>
+
 		<div class="col-md-4 mt-16">
 			<%= form_tag user_stats_path(user_id: @user.id), class: " range-filter", id: "date_range_form", method: :get, remote: true do %>
 				<%= text_field_tag 'daterange',nil, class: "form-control text-center", id: 'datefiler' %>
 			<% end %>
 		</div>
 	</div>
-	<div id="stats_chart">
-		<%= render partial: 'stats_chart_section' %>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div id="stats_chart">
+				<%= render partial: 'stats_chart_section' %>
+			</div>
+		</div>
 	</div>
 </div>
 
