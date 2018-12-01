@@ -1,4 +1,4 @@
 class Tag < ApplicationRecord
   belongs_to :user
-  has_many :tags
+  has_many :tasks, dependent: :nullify
 end

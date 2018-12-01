@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :users do
     get :stats
   end
-
+  resources :tags, only: :destroy
   namespace :admin do
     root :to => "dashboard#index"
     resources :dashboard, only: :index

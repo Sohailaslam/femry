@@ -17,6 +17,23 @@ $(document).ready(function(e){
     },
   });
 
+  $(document).on('focusout', '.list-container', function(e){
+    $(this).addClass('d-none');
+  });
+
+  $('body').on('click', '.delete-tag', function(e){
+    $.ajax({
+      url: '/tags/'+$(this).attr('id'),
+      method: "DELETE",
+      data: {},
+      success: (function(result) {
+        $('#tag-dropdown'+result['id']).prev("span").remove();
+        $('#tag-dropdown'+result['id']).remove();
+      })
+    });
+
+  });
+
   $(document).on('lcs-statuschange', '.lcs_check', function(e) {
     if ($(this).is(':checked')) {
       $('#user_public_task').val(true)
@@ -174,6 +191,7 @@ $(document).ready(function(e){
         })
       });
     })
+
 
   })
 
@@ -361,6 +379,14 @@ function initializeAutocompleter(task_id, tagAutocompleter) {
     }
   })
 }
+
+function toggleList(thiss) {
+  $("#"+thiss.nextElementSibling.id).removeClass("d-none");
+
+  $("#"+thiss.nextElementSibling.id).find('a:first').focus()
+
+}
+
 
 // function getCaretPosition(editableDiv) {
 //   var caretPos = 0,

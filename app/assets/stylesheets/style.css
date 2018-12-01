@@ -85,6 +85,24 @@ body {
 .where-work{
 	transition:all 0.9s ease;
 }
+.list-container {  
+    background-color: #f1f4f5;
+    float: left;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    text-align: right;
+
+}
+
+.list-container a {
+  float: left;
+  padding: 5px 6px;
+  width: 100%;
+  text-align: left;
+  color: #4f4d4d;
+}
+
 .tag-style {
   background-color: #f1f4f5;
   color: #4f4d4d;
