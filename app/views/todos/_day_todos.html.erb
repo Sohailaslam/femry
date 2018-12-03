@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<div class="row mb-5">
+<div class="row mb-3">
   <div class="col-md-12">
     <% @key = key %>
     <%= link_to 'Add Task', new_task_path(date: key), remote: true, class: "btn btn-success mt-3 task_#{key}", id: 'add_task', data: { disable_with: "Please wait..." }  %>    

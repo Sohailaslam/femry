@@ -1,0 +1,22 @@
+<td><%="#{user.first_name} #{user.last_name}" %></td>
+<td><%= user.email %></td>
+<td class="text-center">
+  <div class="profile-tags">
+    <span>
+      <%= user.tasks.active_tasks.completed_tasks.where.not(title: nil).count %>
+      Tasks completed
+    </span>
+    <span>
+      <%= user.streak %> 
+      <%= user.streak.to_i > 1 ? 'days' : 'day' %>
+      streak
+    </span>
+  </div>
+</td>
+<td class="text-premium">
+  <% if user.is_premium? %>
+    Already Premium
+  <% else %>
+    <%= link_to 'MAKE PREMIUM', make_premium_admin_user_path(id: user.id), id: "make_premium_#{user.id}", remote: true %>
+  <% end %>  
+</td>
