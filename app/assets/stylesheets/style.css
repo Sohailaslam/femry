@@ -509,7 +509,12 @@ ul.sortable li.add-task-box:first-child {
 }
 .navbar-expand-lg .navbar-nav .nav-link{
   padding-right: .8rem;
-    padding-left: .8rem;
+  padding-left: .8rem;
+  padding-top: 13px;
+  color: #fff;
+}
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{
+  color: #d0d6da;
 }
 .task_detail{
   padding-top: 5px;
@@ -680,8 +685,7 @@ footer{
 }
 .header-bg .bg-dark{
   background: #1F2532 !important;
-  padding-left: 0;
-  padding-right: 0;
+  padding:2px 0 6px 0;
 }
 .logo-header{
   top: 2px !important;
@@ -1208,7 +1212,7 @@ ul.public-task-list li .completed-task-lists{
   }
   .drop-setting{
     right: 60px;
-    top: 8px;
+    top: 2px;
   }
   .drop-setting .dropdown-menu{
     position: absolute;
@@ -1221,6 +1225,22 @@ ul.public-task-list li .completed-task-lists{
  	.get-started-from .form-control{
 		width: 100%;
 	}
+  .public-feed .profile-tags, .stats-height .profile-tags{
+    float: initial;
+  }
+  .border-free-center{
+    text-align: center;
+  }
+  .border-free-center .text-success{
+    margin-bottom: 5px;
+  }
+  .public-feed .profile-name{
+    font-size: 14px;
+  }
+  .mt21-0{
+    margin-top: 5px !important;
+    text-align: center !important;
+  }
   .mobile-left-space{
     padding-left: 15px !important;
     padding-right: 15px !important;
