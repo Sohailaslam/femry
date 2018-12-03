@@ -21,7 +21,7 @@
 <script type="text/javascript">
   $('#pincode-input').pincodeInput({
     inputs:6,
-    hideDigits:true,
+    hidedigits: false,
   complete : function(value, e, errorElement){
     $('#verify_code').val(value);
     $('#vaidate_code_form').submit();
