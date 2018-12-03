@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
   prepend_before_action :allow_params_authentication!, only: :create
   prepend_before_action :verify_signed_out_user, only: :destroy
   prepend_before_action(only: [:create, :destroy]) { request.env["devise.skip_timeout"] = true }
-
+  after_action :reset_limit, only: :create
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -81,6 +81,10 @@ class Users::SessionsController < Devise::SessionsController
     users = Devise.mappings.keys.map { |s| warden.user(scope: s, run_callbacks: false) }
 
     users.all?(&:blank?)
+  end
+
+  def reset_limit
+    current_user.update_attributes(last_renewed: current_user.last_renewed + 30.days) if current_user.last_renewed < 30.days.ago
   end
 
   def respond_to_on_destroy
