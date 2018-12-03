@@ -20,7 +20,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       aws_sign_up_resp = resource.add_to_aws_cognito(params[:user][:password])
       if !aws_sign_up_resp.user_confirmed
-        redirect_to aws_auth_path(resource.id)
+        session[:aws_auth_user_id] = resource.id
+        redirect_to aws_auth_path #(resource.id)
       else
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up

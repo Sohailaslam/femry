@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/users/:user_id/auth/', to: 'users#aws_auth', as: 'aws_auth'
+  get '/users/auth/', to: 'users#aws_auth', as: 'aws_auth'
   post '/users/validate_code', to: 'users#validate_code', as: 'validate_code'
 
 

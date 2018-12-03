@@ -30,7 +30,8 @@ class UsersController < ApplicationController
   end
 
   def aws_auth
-    @user = User.find(params[:user_id])
+    user_id = params[:user_id].present? ? params[:user_id] : session[:aws_auth_user_id]
+    @user = User.find(user_id)
   end
 
 	def password_auth
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
 			sign_in(:user, @user)
 			redirect_to root_path, notice: "Please add your to-do’s at the bottom"
     rescue => e
-      redirect_to aws_auth_path(@user.id), notice: e.message
+      redirect_to aws_auth_path, notice: e.message
     end
   end
 
