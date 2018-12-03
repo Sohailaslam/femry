@@ -4,8 +4,12 @@
   </a>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
   	<div class="space-left">
-  		<a href="#" class="btn btn-secondary btn-sm mr-2">FREE PLAN</a>
-  		<a href="#" class="upgrade-btn">Upgrade</a>
+      <% if current_user.is_free? %>
+        <a href="#" class="btn btn-secondary btn-sm mr-2">FREE PLAN</a>
+        <a href="#" class="upgrade-btn">Upgrade</a>
+      <% else %>
+    		<a href="#" class="btn btn-secondary btn-sm mr-2">Premium</a>
+      <% end %>  
   	</div>
   	<div class="dropdown-divider mt-3"></div>
   	<div class="task-details space-left">
@@ -14,17 +18,21 @@
   				Task <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" title="Number of task included in your plan for this billing period"></i>
   			</div>
   			<div class="float-right">
-  				<%= current_user.tasks.active_tasks.count %>
-  				/
-  				100
+  				<% if current_user.is_free? %>
+            <%= current_user.tasks.active_tasks.count %>
+    				/
+    				100
+          <% else %>
+            Unlimited Tasks
+          <% end %>  
   			</div>
   		</div>
   	</div>
   	<div class="space-left width-100">
-  	<div class="progress" style="height: 5px;">
-			  <div class="progress-bar" role="progressbar" style="width: <%= current_user.tasks.active_tasks.count %>%;" aria-valuenow="<%= current_user.tasks.active_tasks.count %>" aria-valuemin="0" aria-valuemax="100"></div>
+  	 <div class="progress" style="height: 5px;">
+			  <div class="progress-bar" role="progressbar" style="width: <%= current_user.tasks.active_tasks.count %>%;" aria-valuenow="<%= current_user.is_free? ? current_user.tasks.active_tasks.count : 2 %>" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
-			</div>
+		</div>
   	<div class="space-left pt-2">
   		<small>
   			Monthly usage resets in

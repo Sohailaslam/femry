@@ -18,25 +18,8 @@
     </thead>
     <tbody>
       <% @users.present? &&  @users.each_with_index do |user, index| %>
-        <tr class="text-center">
-          <td><%="#{user.first_name} #{user.last_name}" %></td>
-          <td><%= user.email %></td>
-          <td class="text-center">
-            <div class="profile-tags">
-              <span>
-                <%= user.tasks.active_tasks.completed_tasks.where.not(title: nil).count %>
-                Tasks completed
-              </span>
-              <span>
-                <%= user.streak %> 
-                <%= user.streak.to_i > 1 ? 'days' : 'day' %>
-                streak
-              </span>
-            </div>
-          </td>
-          <td class="text-premium">
-            <%= link_to 'MAKE PREMIUM', 'javascript:void(0);' %>
-          </td>
+        <tr class="text-center" id="user_<%= user.id %>">
+          <%= render partial: 'user', locals: { user: user } %>          
         </tr>
       <% end %>
     </tbody>

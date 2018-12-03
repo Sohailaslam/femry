@@ -31,7 +31,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to => "dashboard#index"
     resources :dashboard, only: :index
-    resources :users
+    resources :users do
+      member do
+        get :make_premium
+      end
+    end
   end
 
   resources :thoughts, only: [:new, :update, :destroy]
