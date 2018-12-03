@@ -45,7 +45,7 @@ module ApplicationHelper
 	  else
 	    # default_url = "#{root_url}images/logo.jpg"
 	    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-	    "https://gravatar.com/avatar/#{gravatar_id}.png?s=20"
+	    "https://gravatar.com/avatar/#{gravatar_id}.png?s=40"
 	  end
 	end
 end
