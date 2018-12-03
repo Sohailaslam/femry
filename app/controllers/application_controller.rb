@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   private
   def reset_limit
-    current_user.update_attributes(last_renewed: current_user.last_renewed + 30.days) if current_user.present? && current_user.last_renewed < 30.days.ago
+    if current_user.last_renewed.present?
+      current_user.update_attributes(last_renewed: current_user.last_renewed + 30.days) if current_user.present? && current_user.last_renewed < 30.days.ago
+    else
+      current_user.update_attributes(last_renewed: Date.today)
+    end
   end
 end
