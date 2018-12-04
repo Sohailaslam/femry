@@ -1,7 +1,6 @@
 <li class="nested-fields ui-state-default add-task-box bt-1" id="task_<%= task.id %>" data-id="<%= task.id %>" data-pos="<%= task.sort %>">
-  <div class="task_detail">
+  
     <%= render partial: 'todos/task_detail', locals: {task: task} %>  
-  </div>
 
 </li>
 

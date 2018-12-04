@@ -1,23 +1,25 @@
-<div class="checkbox checkbox-success pull-left">
-	<%= check_box_tag 'status', task.status, task.status, id: "check#{task.id}", class: 'styled check-box'   %>
-  <label for="check<%= task.id %>" class="m-0">
-  </label>
-</div>
-<%= text_area_tag :title, task.title, class: "title tags #{task.title.present? ? 'pointer-cursor' : ''}", placeholder: 'Enter a task here...', readonly: true %>
-<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
-	<div class="tag-container">
-		<% if task.tag %>
-			<span class="tag-style" onclick="toggleList(this)"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>
-			<div id="tag-dropdown<%= task.tag.id%>" class="list-container d-none">
-				<a href="javascript:void(0);" class="delete-tag" id="<%= task.tag.id %>">Delete</a>
-			</div>
-		<% end %>		
+<div class="task_detail">
+	<div class="checkbox checkbox-success pull-left">
+		<%= check_box_tag 'status', task.status, task.status, id: "check#{task.id}", class: 'styled check-box'   %>
+	  <label for="check<%= task.id %>" class="m-0">
+	  </label>
 	</div>
-<span class="handle-sort pull-right"><i class="fa fa-sort"></i></span>
+	<%= text_area_tag :title, task.title, class: "title tags #{task.title.present? ? 'pointer-cursor' : ''}", placeholder: 'Enter a task here...', readonly: true %>
+	<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
+		<div class="tag-container">
+			<% if task.tag %>
+				<span class="tag-style" onclick="toggleList(this)"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>
+				<div id="tag-dropdown<%= task.tag.id%>" class="list-container d-none">
+					<a href="javascript:void(0);" class="delete-tag" id="<%= task.tag.id %>">Delete</a>
+				</div>
+			<% end %>		
+		</div>
+	<span class="handle-sort pull-right"><i class="fa fa-sort"></i></span>
 
-<div class="pull-right icon-fa close-task">
-  <%= hidden_field_tag :_destroy, value: false %>
-  <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
-    <i class="fa fa-trash"></i>
-  <% end %>
-</div>
+	<div class="pull-right icon-fa close-task">
+	  <%= hidden_field_tag :_destroy, value: false %>
+	  <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
+	    <i class="fa fa-trash"></i>
+	  <% end %>
+	</div>
+</div>	

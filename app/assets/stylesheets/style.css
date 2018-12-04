@@ -467,6 +467,7 @@ ul.sortable li.add-task-box:first-child {
   position: relative ;
   top: 12px;
   width: 79%;
+  height: 19px;
 }
 
 .add-task ul li .checkbox .check-box {
