@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base 
 	after_action :reset_limit, if: :current_user
+  around_action :user_time_zone, if: :current_user
+
+  def user_time_zone(&block)
+    Time.use_zone(current_user.timezone, &block)
+  end
+  
 	def after_sign_in_path_for(resource)
   	if resource.is_admin?
   		admin_dashboard_index_path
