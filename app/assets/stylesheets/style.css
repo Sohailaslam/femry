@@ -1173,7 +1173,9 @@ ul.public-task-list li .completed-task-lists{
   color: #d95739;
 }
 
-
+.margin-space{
+  margin-left: 15px;
+}
 
 
                       /*********  MObile and Ipad View CSS **********/
@@ -1221,11 +1223,16 @@ ul.public-task-list li .completed-task-lists{
     top: 47px;
   }
  }
-
+ @media (max-width: 1224px){
+.margin-space{
+    margin-left: 0;
+  }
+ }
  @media (max-width: 767px){
  	.get-started-from .form-control{
 		width: 100%;
 	}
+  
   .public-feed .profile-tags, .stats-height .profile-tags{
     float: initial;
   }
