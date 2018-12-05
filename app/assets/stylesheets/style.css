@@ -81,6 +81,11 @@ body {
 .left-image img{
 	width: 100%;
 }
+.tag-dropdown {
+  position: absolute;
+  right: 20px;
+  top: -10px;
+}
 /***Start Where Work Happens  block CSS**/
 .where-work{
 	transition:all 0.9s ease;

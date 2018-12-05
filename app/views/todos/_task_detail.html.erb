@@ -6,18 +6,27 @@
 	</div>
 	<%= text_area_tag :title, task.title, class: "title tags #{task.title.present? ? 'pointer-cursor' : ''}", placeholder: 'Enter a task here...', readonly: true %>
 	<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
-		<div class="tag-container">
+		<div class="tag-container" id="tag-container<%= task.id %>">
 			<% if task.tag %>
 				<span class="tag-style" onclick="toggleList(this)"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>
-				<div id="tag-dropdown<%= task.tag.id%>" class="list-container d-none">
-					<a href="javascript:void(0);" class="delete-tag" id="<%= task.tag.id %>">Delete</a>
-				</div>
+<!-- 				<a href="javascript:void(0);" class="delete-tag" id="<%#= task.tag.id %>">Delete</a> -->
+
+			
 			<% end %>		
 		</div>
+		<% if task.tag %>
+			<div class="dropdown" id="tag-dropdown<%= task.id %>">
+				<a class="tag-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-down" style="color:#ddd;"></i>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+			    <a class="dropdown-item delete-tag" href="javascript:void(0);" data-task-id="<%= task.id %>" id="<%= task.tag.id %>">Delete</a>
+			  </div>
+			</div>
+		<% end %>	  
 	<span class="handle-sort pull-right"><i class="fa fa-sort"></i></span>
 
 	<div class="pull-right icon-fa close-task">
-	  <%= hidden_field_tag :_destroy, value: false %>
+	  <%= hidden_field_tag :_destroy, '', value: false %>
 	  <%= link_to 'javascript:void(null);', :partial => 'task_fields', id: 'delete_button' do %>
 	    <i class="fa fa-trash"></i>
 	  <% end %>
