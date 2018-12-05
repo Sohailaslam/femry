@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = current_user.tasks.create!(task_date: params[:date])
+    @task = current_user.tasks.create!(task_date: params[:date].to_time)
   end
 
   def create
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
         else
           @tag = current_user.tags.find_by_title(last_tag)
         end
-        @day_tasks = current_user.tasks.where(task_date: @task.task_date)
+        @day_tasks = current_user.tasks.where(task_date: @task.task_date_converted)
         params[:task].merge!(tag_id: @tag.id)
       end
     end

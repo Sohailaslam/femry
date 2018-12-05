@@ -1,11 +1,11 @@
 <% if @task.present? %>
-	<% today_tasks = today_task(nil, @task.task_date, current_user) %>
+	<% today_tasks = today_task(nil, @task.task_date_converted, current_user) %>
 	<% completed_tasks = today_tasks.completed_tasks %>
 	<%# if params[:task][:title].present? %>
-		// $('li#task_<%= @task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: @task.task_date, task: @task }))%>');
+		// $('li#task_<%= @task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: @task.task_date_converted, task: @task }))%>');
 	<%# end %>
-	$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
-	$("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
+	$('#progress_<%= @task.task_date_converted %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date_converted, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
+	$("#progress_loader_<%= @task.task_date_converted %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
 	    animationStep: 5,
 	    foregroundBorderWidth: 70,
 	    backgroundBorderWidth: 70,
@@ -18,7 +18,7 @@
 	
 	tags = tags.replace(/&quot;/g, '"')	
 	$('#rails_tags').attr('data-tags', tags);
-	$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 2000");
+	$('#progress_loader_<%= @task.task_date_converted %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 2000");
 	// var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
 	// 	select2Options: {
 	// 	  tags: JSON.parse(tags)
@@ -26,7 +26,7 @@
 	// });
 	// initializeAutocompleter('<%#= @task.id %>', tagAutocompleter);
 	<% @day_tasks.present? && @day_tasks.each do |task| %>
-		$('li#task_<%= task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: task.task_date, task: task }))%>');
+		$('li#task_<%= task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: task.task_date_converted, task: task }))%>');
 		var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
 			select2Options: {
 			  tags: JSON.parse(tags)
