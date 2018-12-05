@@ -27,7 +27,8 @@ $(document).ready(function(e){
       method: "DELETE",
       data: {},
       success: (function(result) {
-        $('#tag-dropdown'+result['id']).prev("span").remove();
+        $('#tag-container'+result['id']).prev("span").remove();
+        $('#tag-container'+result['id']).remove();
         $('#tag-dropdown'+result['id']).remove();
       })
     });
