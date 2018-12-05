@@ -88,8 +88,8 @@ class UsersController < ApplicationController
       @date_to = to_date
       @completed_range_tasks = @user.tasks.active_tasks.date_range_tasks(@date_from, @date_to).completed_tasks.count
     else
-      @date_from = Time.current.in_time_zone(@user.timezone)-29.days
-      @date_to = Time.current.in_time_zone(@user.timezone)
+      @date_from = (Time.current.in_time_zone(@user.timezone)-29.days).to_date
+      @date_to = Time.current.in_time_zone(@user.timezone).to_date
     end
 
   end
