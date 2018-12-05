@@ -30,8 +30,8 @@ class User < ApplicationRecord
   end
 
   def incomplete_tasks
-    incomplete_tasks = tasks.where(status: 0).where.not("Date(task_date) = ?", Time.now.to_date)
-    incomplete_tasks.map{|task| task.update_attributes(task_date: Time.now.to_date)} if incomplete_tasks.present?
+    incomplete_tasks = tasks.where(status: 0).where.not("Date(task_date) = ?", Time.current.in_time_zone(self.timezone).to_date)
+    incomplete_tasks.map{|task| task.update_attributes(task_date: Time.current.in_time_zone(self.timezone).to_date)} if incomplete_tasks.present?
   end
 
   def add_to_aws_cognito(password)

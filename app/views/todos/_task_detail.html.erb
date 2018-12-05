@@ -5,7 +5,7 @@
 	  </label>
 	</div>
 	<%= text_area_tag :title, task.title, class: "title tags #{task.title.present? ? 'pointer-cursor' : ''}", placeholder: 'Enter a task here...', readonly: true %>
-	<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date_converted : Time.now.to_date %>
+	<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date_converted : Time.current.in_time_zone(@user.timezone).to_date %>
 		<div class="tag-container" id="tag-container<%= task.id %>">
 			<% if task.tag %>
 				<span class="tag-style" onclick="toggleList(this)"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>

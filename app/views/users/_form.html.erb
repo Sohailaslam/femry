@@ -15,7 +15,7 @@
           <% end %>
         </ul>
       <% else %>
-          <%= render partial: 'form_parts', locals: {f: f, key: Time.now.in_time_zone(user.timezone).to_date, task: nil} %>
+          <%= render partial: 'form_parts', locals: {f: f, key: Time.current.in_time_zone(user.timezone).to_date, task: nil} %>
           <%= f.submit '', style: "display:none;", class: 'hidden', id: 'submit_tag' %> 
       <% end %>
       <% if keys.present? && keys.count > 14 %>

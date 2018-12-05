@@ -1,6 +1,6 @@
 module ApplicationHelper
 	def local_date timezone
-		Time.now.in_time_zone(timezone).to_date
+		Time.current.in_time_zone(timezone).to_date
 	end
 
 	def display_date(key, date)
