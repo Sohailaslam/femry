@@ -14,7 +14,7 @@ class TodosController < ApplicationController
 
     @user.tasks.create(task_date: Time.current.in_time_zone(@user.timezone), status: false) unless @user.tasks.present?
     @grouped_tasks = @user.tasks.active_tasks.where(task_date: Time.current.in_time_zone(@user.timezone).to_date)
-    @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.to_date}
+    @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.in_time_zone(@user.timezone).to_date}
     # @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
     unless @grouped_tasks.present?
       @grouped_tasks = {Time.current.in_time_zone(@user.timezone).to_date => []}.merge!(@grouped_tasks)
