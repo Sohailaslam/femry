@@ -207,8 +207,8 @@
       switch (e.keyCode) {
         case KEY.ESC:
           this.abortAutocomplete();
-        case KEY.DELETE:
-          this.deleteTodo();
+        // case KEY.DELETE:
+        //   this.deleteTodo();
       }
       if (this.isAutocompleting() && !this._isCaretInTempMention()) {
         this.abortAutocomplete();

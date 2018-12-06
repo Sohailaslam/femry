@@ -21,13 +21,6 @@ $(document).ready(function(e){
     $(this).addClass('d-none');
   });
   
-  $('body').on('click', '#add_task', function(e){
-    if ($(this).hasClass('qouta_exceeded')) {
-      e.preventDefault();
-      $('#qouta_exceeded_modal').modal('show');
-    }
-  });
-
   $('body').on('click', '.delete-tag', function(e){
     $.ajax({
       url: '/tags/'+$(this).attr('id'),
@@ -223,6 +216,7 @@ $(document).ready(function(e){
     });
   });
 
+
   $('body').on('focusin', '.title', function(e){
     date_key = $(this).parents('li.nested-fields').find('#task_date').val();
     task_id = $(this).closest('li.nested-fields').attr('id');
@@ -259,6 +253,9 @@ $(document).ready(function(e){
       task_id = $(this).closest('li.nested-fields').attr('id');
       // $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
       $('.task_'+ date_key).click();
+    } else if(e.keyCode == 46) {
+      $(this).closest("li.nested-fields").find('a#delete_button').click();
+
     }
   })
 
@@ -432,3 +429,12 @@ function toggleList(thiss) {
 //   }
 //   return caretPos;
 // }
+
+
+function triggerMe(event, _this) {
+  if ($(_this).hasClass('qouta_exceeded')) {
+    $('#qouta_exceeded_modal').modal('show');
+    event.stopImmediatePropagation();
+    event.preventDefault();
+  } 
+}

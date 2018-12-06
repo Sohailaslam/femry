@@ -50,7 +50,7 @@
                 100 / 100 tasks
               </div>
               <div class="col-md-6 text-right mt-21 mt21-0">
-                Renewed in 6 days
+                Renewed in <%= distance_of_time_in_words(Date.strptime((current_user.last_renewed.present? ? current_user.last_renewed + 30.days : current_user.created_at).strftime("%m/%d/%Y"), "%m/%d/%Y"), Date.current) %>
               </div>
             </div>
           </div>
