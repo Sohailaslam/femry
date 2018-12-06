@@ -20,6 +20,13 @@ $(document).ready(function(e){
   $(document).on('focusout', '.list-container', function(e){
     $(this).addClass('d-none');
   });
+  
+  $('body').on('click', '#add_task', function(e){
+    if ($(this).hasClass('qouta_exceeded')) {
+      e.preventDefault();
+      $('#qouta_exceeded_modal').modal('show');
+    }
+  });
 
   $('body').on('click', '.delete-tag', function(e){
     $.ajax({

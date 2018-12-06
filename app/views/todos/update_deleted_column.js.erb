@@ -15,9 +15,8 @@
 
 	$('#progress_loader_<%= @task.task_date_converted %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
 	<% if current_user.tasks.active_tasks.count < current_user.plan.total_tasks %>
-	  $('a#add_task').each(function(data, index){
-	    $(this).removeAttr('disabled');
-	    $(this).removeClass('disabled');
+	   $('a#add_task').each(function(data, index){
+	    $(this).removeClass('qouta_exceeded');
 	  });
 	<% end %>	
 <% elsif @thought.present? %>

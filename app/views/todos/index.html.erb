@@ -29,7 +29,7 @@
 </div>
 
 
-<div class="modal fade show quota_container" data-backdrop="static" id="qouta_exceeded_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="<%= current_user.tasks.active_tasks.count >= current_user.plan.total_tasks ? 'padding-right: 15px; display: block;' : '' %>">
+<div class="modal fade show quota_container" id="qouta_exceeded_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
