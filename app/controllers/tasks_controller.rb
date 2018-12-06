@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = current_user.tasks.create!(task_date: params[:date].to_time)
+    @task = current_user.tasks.create!(task_date: params[:date].in_time_zone(current_user.get_timezone))
   end
 
   def create

@@ -13,7 +13,7 @@
         <% end %>
       </ul>
     <% else %>
-        <%= render partial: 'day_todos', locals: {key:Time.current.in_time_zone(current_user.timezone).to_date, task: nil} %>
+        <%= render partial: 'day_todos', locals: {key:Time.current.in_time_zone(current_user.get_timezone).to_date, task: nil} %>
     <% end %>
     <% if keys.present? && keys.count > 14 %>
       <div class="loader d-none" id="infinite-scrolling" data-page="<%= params[:page].present? ? params[:page].to_i + 1 : 2 %>">Loading...

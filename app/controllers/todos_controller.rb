@@ -10,14 +10,14 @@ class TodosController < ApplicationController
     puts "TIMEZONE"*50
     puts Time.now
     puts Time.current
-    puts Time.current.in_time_zone(@user.timezone)
+    puts Time.current.in_time_zone(@user.get_timezone)
 
-    @user.tasks.create(task_date: Time.current.in_time_zone(@user.timezone), status: false) unless @user.tasks.present?
-    @grouped_tasks = @user.tasks.active_tasks.where(task_date: Time.current.in_time_zone(@user.timezone).to_date)
-    @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.in_time_zone(@user.timezone).to_date}
+    @user.tasks.create(task_date: Time.current.in_time_zone(@user.get_timezone), status: false) unless @user.tasks.present?
+    @grouped_tasks = @user.tasks.active_tasks.where(task_date: Time.current.in_time_zone(@user.get_timezone).to_date)
+    @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.in_time_zone(@user.get_timezone).to_date}
     # @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
     unless @grouped_tasks.present?
-      @grouped_tasks = {Time.current.in_time_zone(@user.timezone).to_date => []}.merge!(@grouped_tasks)
+      @grouped_tasks = {Time.current.in_time_zone(@user.get_timezone).to_date => []}.merge!(@grouped_tasks)
     end    
     @grouped_tasks = @grouped_tasks.to_a.paginate(:page => 1, :per_page => (params[:page].present? ? params[:page].to_i : 1) * 14)
   end
