@@ -470,9 +470,11 @@ ul.sortable li.add-task-box:first-child {
   background-color: #FBFBFB;
   border: none;
   position: relative ;
-  top: 12px;
+  padding-top: 12px;
+  padding-bottom: 18px;
   width: 79%;
-  height: 19px;
+
+  /*height: 33px;*/
 }
 
 .add-task ul li .checkbox .check-box {
@@ -523,7 +525,8 @@ ul.sortable li.add-task-box:first-child {
   color: #d0d6da;
 }
 .task_detail{
-  padding-top: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .select2-container{
   position: absolute !important;
@@ -532,7 +535,7 @@ ul.sortable li.add-task-box:first-child {
     width: 84% !important;
 }
 .add-task ul li{
-  padding-bottom: 28px;
+  padding-bottom: 0px;
   padding-top: 0px;
 }
 .select2-search-field{
