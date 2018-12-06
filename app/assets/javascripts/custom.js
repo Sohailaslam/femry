@@ -27,7 +27,7 @@ $(document).ready(function(e){
       method: "DELETE",
       data: {},
       success: (function(result) {
-        $('#tag-container'+result['id']).prev("span").remove();
+        $('#tag-container'+result['id']).find("span").remove();
         $('#tag-container'+result['id']).remove();
         $('#tag-dropdown'+result['id']).remove();
       })
@@ -216,6 +216,18 @@ $(document).ready(function(e){
     });
   });
 
+  $('body').on('focusin', '.title', function(e){
+    date_key = $(this).parents('li.nested-fields').find('#task_date').val();
+    task_id = $(this).closest('li.nested-fields').attr('id');
+    href = $('.task_'+ date_key).attr('href');
+    if (href.indexOf("&prev_li_id") > -1) {
+      href = href.split('&')[0] + "&prev_li_id=" + task_id;
+    } else {
+      href = href +"&prev_li_id=" + task_id;
+    }
+    $('.task_'+ date_key).attr('href', href);
+  });
+
   $('body').on('focusout', '.title', function(e) {
     next_task = ((e.originalEvent.relatedTarget === null) ? null : e.originalEvent.relatedTarget.offsetParent.id)
     if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#" && $(this).prev('textarea').val() !== undefined) {
@@ -238,7 +250,7 @@ $(document).ready(function(e){
       e.preventDefault();
       date_key = $(this).parents('li.nested-fields').find('#task_date').val()
       task_id = $(this).closest('li.nested-fields').attr('id');
-      $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
+      // $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
       $('.task_'+ date_key).click();
     }
   })
