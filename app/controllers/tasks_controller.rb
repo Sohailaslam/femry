@@ -43,7 +43,7 @@ class TasksController < ApplicationController
         else
           @tag = current_user.tags.find_by_title(last_tag)
         end
-        @day_tasks = current_user.tasks.where(task_date: @task.task_date_converted)
+        @day_tasks = current_user.tasks.where("Date(task_date) = ? ", @task.task_date_converted)
         params[:task].merge!(tag_id: @tag.id)
       end
     end
