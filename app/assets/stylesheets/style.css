@@ -1396,6 +1396,7 @@ ul.public-task-list li .completed-task-lists{
   .explore-list li span.explore-time{
     display: inline-block;
     width: 100%;
+    margin-left: 0;
   }
   
 }
