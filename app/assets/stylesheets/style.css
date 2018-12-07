@@ -1251,7 +1251,7 @@ ul.public-task-list li .completed-task-lists{
   }
  @media (max-width: 767px){
   .public-feed .profile-tags span, .stats-height .profile-tags span, .admin-users-list .profile-tags span{
-    padding: 4px 5px 6px 5px;
+    padding: 3px 3px 3px 3px;
     font-size: 12px;
   }
   #avatar_section .avatar-circle{

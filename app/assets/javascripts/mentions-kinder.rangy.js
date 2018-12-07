@@ -159,7 +159,7 @@
     }
 
     MentionsKinder.prototype.handleAutocompleteDone = function(data) {
-      if (this.$editable[0].children.length > 2) {
+      if (this.$editable[0].children.length >= 2) {
         console.log("more than 1");
         old_tag_text = this.$editable[0].firstElementChild.textContent;
         this.$editable[0].firstElementChild.replaceWith(old_tag_text);
