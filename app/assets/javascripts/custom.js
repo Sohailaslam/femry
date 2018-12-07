@@ -22,14 +22,15 @@ $(document).ready(function(e){
   });
   
   $('body').on('click', '.delete-tag', function(e){
+    task_id = $(this).closest('li.nested-fields').attr('data-id');
     $.ajax({
-      url: '/tags/'+$(this).attr('id'),
+      url: '/tags/'+$(this).attr('id')+ "?task_id="+task_id,
       method: "DELETE",
       data: {},
       success: (function(result) {
-        $('#tag-container'+result['id']).find("span").remove();
-        $('#tag-container'+result['id']).remove();
-        $('#tag-dropdown'+result['id']).remove();
+        $('#tag-container'+result['task_id']).find("span").remove();
+        $('#tag-container'+result['task_id']).remove();
+        $('#tag-dropdown'+result['task_id']).remove();
       })
     });
 
@@ -397,12 +398,12 @@ function initializeAutocompleter(task_id, tagAutocompleter) {
   })
 }
 
-function toggleList(thiss) {
-  $("#"+thiss.nextElementSibling.id).removeClass("d-none");
+// function toggleList(thiss) {
+//   $("#"+thiss.nextElementSibling.id).removeClass("d-none");
 
-  $("#"+thiss.nextElementSibling.id).find('a:first').focus()
+//   $("#"+thiss.nextElementSibling.id).find('a:first').focus()
 
-}
+// }
 
 
 // function getCaretPosition(editableDiv) {

@@ -8,10 +8,7 @@
 	<%= hidden_field_tag :task_date, task.task_date.present? ? task.task_date_converted : Time.current.in_time_zone(@user.get_timezone).to_date %>
 		<div class="tag-container" id="tag-container<%= task.id %>">
 			<% if task.tag %>
-				<span class="tag-style" onclick="toggleList(this)"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>
-<!-- 				<a href="javascript:void(0);" class="delete-tag" id="<%#= task.tag.id %>">Delete</a> -->
-
-			
+				<span class="tag-style"><%= truncate task.tag.try(:title), length: 10, separator: /\w+/ %></span>			
 			<% end %>		
 		</div>
 		<% if task.tag %>
