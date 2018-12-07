@@ -35,12 +35,12 @@
                 <span id="avatar_section">
                   <%= render partial: "users/avatar_section" %>
                 </span>
-                <small>If you'd like to customize your avatar image, you can do it</small>
-                <label for="file-input">
-                  <span>
+                <small>If you'd like to customize your avatar image, you can do it<span for="file-input">
+                  
                     <small class="text-primary">here.</small>                
-                  </span>
-                </label>
+                
+                </span></small>
+                
                 <%= f.file_field :avatar, class: 'form-control', id: "file-input" %>
               </div>
             <% end %>

@@ -470,8 +470,8 @@ ul.sortable li.add-task-box:first-child {
   background-color: #FBFBFB;
   border: none;
   position: relative ;
-  padding-top: 12px;
-  padding-bottom: 18px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   width: 79%;
 
   /*height: 33px;*/
@@ -1017,6 +1017,9 @@ footer{
 .image-upload {
   border: 1px solid #ddd;
   border-radius: .25rem;
+  float: left;
+  width: 100%;
+  padding: 10px !important;
 }
 .image-upload > input
 {
@@ -1032,6 +1035,9 @@ footer{
 
 .image-upload small{
   font-size: 13px;
+  margin-left: 6px;
+    margin-top: 6px;
+    display: inline-block;
 }
 
 .task-count {
@@ -1141,6 +1147,8 @@ ul.public-task-list li .completed-task-lists{
 .avatar-circle {
   width: 40px;
   height: 40px;
+  float: left;
+  line-height: 39px;
   text-align: center;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -1152,7 +1160,6 @@ ul.public-task-list li .completed-task-lists{
 .initials {
   position: relative;
   font-size: 16px; /* 50% of parent */
-  line-height: 42px; /* 50% of parent */
   color: #fff;
   font-weight: bold;
 }
@@ -1232,11 +1239,31 @@ ul.public-task-list li .completed-task-lists{
   }
  }
  @media (max-width: 1224px){
-.margin-space{
+  .margin-space{
     margin-left: 0;
   }
+  
  }
+  @media (max-width: 990px){
+    .image-upload small{
+    display: initial;
+  }
+  }
  @media (max-width: 767px){
+  .public-feed .profile-tags span, .stats-height .profile-tags span, .admin-users-list .profile-tags span{
+    padding: 4px 5px 6px 5px;
+    font-size: 12px;
+  }
+  #avatar_section .avatar-circle{
+    margin-right: 5px;
+  }
+  .image-upload small{
+    display: inline-block;
+    margin-left: 0px
+  }
+  .profile-info {
+    width: 102%;
+  }
  	.get-started-from .form-control{
 		width: 100%;
 	}
@@ -1252,7 +1279,10 @@ ul.public-task-list li .completed-task-lists{
   }
   .public-feed .profile-name{
     font-size: 14px;
+    width: 100%;
+    margin-top: 0px;
   }
+
   .mt21-0{
     margin-top: 5px !important;
     text-align: center !important;
@@ -1356,4 +1386,16 @@ ul.public-task-list li .completed-task-lists{
   }
 
  }
-
+@media (max-width: 495px){
+.image-upload small{
+    display: initial;
+    margin-left: 0;
+  }
+}
+@media (max-width: 430px){
+  .explore-list li span.explore-time{
+    display: inline-block;
+    width: 100%;
+  }
+  
+}
