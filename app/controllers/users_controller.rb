@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 		  	force_alias_creation: false,
 			})
 			sign_in(:user, @user)
-			redirect_to root_path, notice: "Please add your to-do’s at the bottom"
+			redirect_to edit_user_registration_path, notice: "Please add your First name and Last name"
     rescue => e
       redirect_to aws_auth_path, notice: e.message
     end

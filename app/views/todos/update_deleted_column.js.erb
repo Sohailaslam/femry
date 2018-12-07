@@ -19,6 +19,10 @@
 	    $(this).removeClass('qouta_exceeded');
 	  });
 	<% end %>	
+	if ($('li#task_<%= @task.id %>').hasClass('d-none')) {
+		new_href = $('li#task_<%= @task.id %>').closest('div#tasks').next().find('a#add_task').attr('href').split("&")[0];
+		$('li#task_<%= @task.id %>').closest('div#tasks').next().find('a#add_task').attr('href', new_href);
+	}
 <% elsif @thought.present? %>
 	$(".ant_<%= @thought.thought_date %>").removeClass('d-none');
 <% end %>
