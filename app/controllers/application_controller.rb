@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base 
-	after_action :reset_limit, if: :current_user
+	before_action :reset_limit, if: :current_user
   # around_action :user_time_zone, if: :current_user
 
   # def user_time_zone(&block)
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   private
   def reset_limit
     if current_user.last_renewed.present?
-      current_user.update_attributes(last_renewed: current_user.last_renewed + 30.days) if current_user.present? && current_user.last_renewed < 30.days.ago
+      current_user.update_attributes(last_renewed: Date.current) if current_user.present? && current_user.last_renewed <= 30.days.ago
     else
       current_user.update_attributes(last_renewed: Date.current)
     end
