@@ -5,10 +5,10 @@
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
   	<div class="space-left">
       <% if current_user.is_free? %>
-        <a href="#" class="btn btn-secondary btn-sm mr-2">FREE PLAN</a>
-        <a href="#" class="upgrade-btn">Upgrade</a>
+        <span class="btn btn-secondary btn-disabled btn-sm mr-2">FREE PLAN</span>
+        <%= link_to 'Upgrade', edit_user_registration_path(section: 'billing'), class: 'upgrade-btn' %>
       <% else %>
-    		<a href="#" class="btn btn-secondary btn-sm mr-2">Premium</a>
+    		<span class="btn btn-secondary btn-disabled btn-sm mr-2">Premium</span>
       <% end %>  
   	</div>
   	<div class="dropdown-divider mt-3"></div>
