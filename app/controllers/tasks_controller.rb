@@ -47,6 +47,9 @@ class TasksController < ApplicationController
         params[:task].merge!(tag_id: @tag.id)
       end
     end
+    if params[:task][:status].present?
+      params[:task].merge!(completed_at: DateTime.current)
+    end
     @task.update(task_params) if @task.present?
     @task.update_streak if @task.status
   end
@@ -63,7 +66,7 @@ class TasksController < ApplicationController
   end
   private
   def task_params
-    params[:task].permit(:status, :title, :thought, :user_id, :tag_id)
+    params[:task].permit(:status, :title, :completed_at, :thought, :user_id, :tag_id)
   end
 
   def set_task

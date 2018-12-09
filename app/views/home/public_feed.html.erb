@@ -13,7 +13,6 @@
                   </h4>
                 </div>
               </div>
-
               <% key[1].group_by(&:user_id).each do |data| %>
                 <% task_user = User.find_by(id: data[0]) %>
                 <div class="add-task public-feed-task pr-3 pl-3 pt-0 pb-0 mb-2">
@@ -51,7 +50,9 @@
                         <div class="public-title">
                           <%= task.title %>
                           <span class="explore-time">
-                            <%= "#{time_ago_in_words(task.updated_at)} ago" %>
+                            <% if task.completed_at.present? %>
+                            <%= "#{time_ago_in_words(task.completed_at)} ago" %>
+                            <% end %>
                           </span>
                         </div>
                       </li>
