@@ -254,7 +254,7 @@ $(document).ready(function(e){
       task_id = $(this).closest('li.nested-fields').attr('id');
       // $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
       $('.task_'+ date_key).click();
-    } else if(e.keyCode == 46) {
+    } else if(e.keyCode == 46 || e.keyCode == 51) {
       $(this).closest("li.nested-fields").find('a#delete_button').click();
 
     }
