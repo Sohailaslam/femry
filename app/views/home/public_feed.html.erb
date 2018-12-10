@@ -27,7 +27,7 @@
                           <%= "#{task_user.first_name} #{task_user.last_name}" %>
                         </div>
 
-                        <div class="profile-tags">
+                        <div class="public-tags">
                           <span>
                             <%= task_user.tasks.active_tasks.completed_tasks.where.not(title: nil).count %>
                             Tasks completed

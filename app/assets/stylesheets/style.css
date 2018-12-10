@@ -770,6 +770,7 @@ footer{
   padding: 3px 10px;
   font-size: 12px;
   font-weight: 700;
+  pointer-events: none;
 }
 .profile-container{
     width: 100%;
@@ -1027,6 +1028,8 @@ footer{
 }
 .image-upload > label{
   cursor:pointer;
+  position: relative;
+  z-index: 100;
 }
 
 .image-upload img {
@@ -1035,9 +1038,8 @@ footer{
 
 .image-upload small{
   font-size: 13px;
-  margin-left: 6px;
-    margin-top: 6px;
-    display: inline-block;
+  margin-top: 10px;
+  display: inline-block;
 }
 
 .task-count {
@@ -1097,8 +1099,17 @@ footer{
   text-align: center !important;
   margin-top: 2px;
 }
-
-.public-feed .profile-tags span, .stats-height .profile-tags span, .admin-users-list .profile-tags span{
+.stats-height .profile-tags span {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #333;
+  padding: 4px 15px 6px 15px;
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: normal;
+}
+.public-feed .profile-tags span,  .admin-users-list .profile-tags span{
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -1109,7 +1120,20 @@ footer{
   font-weight: 600;
 
 }
+ .public-tags {
+  margin-top: 2px;
+ }
+.public-tags span{
+  background-color: #5cb85c;
+  border: 1px solid #ddd;
+  color: #fff;
+  border-radius: 5px;
+  padding: 4px 15px 6px 15px;
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: 600;
 
+}
 .explore-list li {
   padding-top: 14px !important;
   padding-bottom: 14px !important;
@@ -1188,8 +1212,11 @@ ul.public-task-list li .completed-task-lists{
   color: #d95739;
 }
 
+#datefiler {
+  font-size: 14px;
+}
 .margin-space{
-  margin-left: 15px;
+  margin-left: 31px;
 }
 
 
@@ -1250,10 +1277,11 @@ ul.public-task-list li .completed-task-lists{
   }
   }
  @media (max-width: 767px){
-  .public-feed .profile-tags span, .stats-height .profile-tags span, .admin-users-list .profile-tags span{
+  .public-tags span {
     padding: 3px 3px 3px 3px;
     font-size: 12px;
   }
+
   #avatar_section .avatar-circle{
     margin-right: 5px;
   }
