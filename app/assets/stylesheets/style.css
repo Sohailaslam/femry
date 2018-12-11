@@ -544,7 +544,6 @@ ul.sortable li.add-task-box:first-child {
 .select2-container{
   position: absolute !important;
       z-index: 10;
-    margin-top: 15px !important;
     width: 84% !important;
 }
 .add-task ul li{
