@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
   # attr_accessible :first_name, :last_name, :tasks_attributes
   has_many :tasks, dependent: :destroy
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
@@ -13,7 +14,8 @@ class User < ApplicationRecord
 
   has_many :tags, dependent: :destroy
 
-  has_one_attached :avatar
+  # has_one_attached :avatar
+
   
   belongs_to :plan, optional: true
 
