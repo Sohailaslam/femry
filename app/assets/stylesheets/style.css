@@ -86,6 +86,16 @@ body {
   right: 20px;
   top: -32px;
 }
+.tag-dropdown  i{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 10px;
+  color: #1f1e1e;
+}
+.tag-container:hover  i{
+  color: #007bff;
+}
 /***Start Where Work Happens  block CSS**/
 .where-work{
 	transition:all 0.9s ease;
@@ -111,7 +121,7 @@ body {
 .tag-style {
   background-color: #f1f4f5;
   color: #4f4d4d;
-  padding: 3px 8px;
+  padding: 3px 14px 3px 8px;
   border-radius: 10px;
 }
 
@@ -395,6 +405,7 @@ input[type="radio"] .styled:checked + label::after {
 	width: 100%;
   padding-top: 5px;
   position: relative;
+  min-height: 51px;
   padding-bottom: 5px;
 }
 
@@ -487,7 +498,7 @@ ul.sortable li.add-task-box:first-child {
   border: none;
   width: 88%;
   resize: none;
-  line-height: 17px;
+  line-height: 22px;
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
@@ -526,6 +537,9 @@ ul.sortable li.add-task-box:first-child {
 .task_detail{
   padding-top: 0px;
   padding-bottom: 0px;
+}
+.task_detail .checkbox{
+  margin-top: 3px;
 }
 .select2-container{
   position: absolute !important;
@@ -1398,13 +1412,8 @@ ul.public-task-list li .completed-task-lists{
     width: 100%;
   }
 
-  .add-task ul li .icon-fa{
-    opacity: 1;
-  }
 
-  .add-task ul li .handle-sort{
-    opacity: 1;
-  }
+
 
   .add-task {
     padding-left: 10px;
@@ -1414,7 +1423,7 @@ ul.public-task-list li .completed-task-lists{
     margin-bottom: 17px !important;
   }
   .progress-loader{
-    margin-right: -5px !important;
+    margin-right: -2px !important;
   }
 
  }
