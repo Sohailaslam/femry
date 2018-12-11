@@ -3,13 +3,13 @@ module ApplicationHelper
 		Time.current.in_time_zone(timezone).to_date
 	end
 
-	def display_date(key, date)
+	def display_date(key, date, month)
 		if key.to_date == date
-			"<b>Today,</b> ".html_safe + key.strftime("%B #{key.day}")
+			"<b>Today,</b> ".html_safe + key.strftime("%#{month} #{key.day}")
 		elsif key.to_date == date - 1
-			"<b>Yesterday,</b> ".html_safe + key.strftime("%B #{key.day}")
+			"<b>Yesterday,</b> ".html_safe + key.strftime("%#{month} #{key.day}")
 		else
-			"<b>#{key.strftime('%A')},</b> ".html_safe + key.strftime("%B #{key.day.ordinalize}")
+			"<b>#{key.strftime('%A')},</b> ".html_safe + key.strftime("%#{month} #{key.day.ordinalize}")
 		end
 	end
 

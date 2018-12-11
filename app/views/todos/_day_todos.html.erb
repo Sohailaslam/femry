@@ -1,8 +1,8 @@
 <div id='tasks'>
   <div class="row mt-2">
     <div class="col-10 mb-2">
-      <% day = key.present? ? display_date(key, local_date(current_user.timezone)) : 'Today' %>
-      <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone))) : "<b>Today</b>".html_safe %></h4>
+      <% day = key.present? ? display_date(key, local_date(current_user.timezone), 'b') : 'Today' %>
+      <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), 'b')) : "<b>Today</b>".html_safe %></h4>
     </div>
     <div class="col-2" id="progress_<%= key %>">
       <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
@@ -13,7 +13,7 @@
     <div class="col-md-12">     
       <div class="<%= current_user.tasks.active_tasks.present? ? 'add-task' : 'd-none' %> pr-4 pl-3 pt-0 pb-0 todos-list">           
         <ul id="sortable<%= key %>" class="sortable ui-sortable">
-          <% if key == display_date(key, local_date(current_user.timezone)) && current_user.tasks.active_tasks.where("DATE(task_date = ?)", key).blank? %>
+          <% if key == display_date(key, local_date(current_user.timezone), 'B') && current_user.tasks.active_tasks.where("DATE(task_date = ?)", key).blank? %>
             <p id="no_task_text">No task to show</p>
           <% else %>
             <% current_user.tasks.active_tasks.order("DATE(task_date) DESC").order(:sort).each do |task| %>
