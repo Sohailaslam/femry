@@ -23,7 +23,10 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
+gem 'carrierwave', '~> 1.0'
+gem 'rmagick'
 gem 'aws-sdk', '~> 3'
+gem 'fog-aws'
 gem "figaro"
 gem "cocoon"
 gem 'jquery-ui-rails'
@@ -44,7 +47,7 @@ gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+# gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
