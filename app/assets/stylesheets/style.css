@@ -454,9 +454,7 @@ ul.sortable li.add-task-box:first-child {
   padding-bottom: 0px;
 }
 
-.public-feed-task ul li:last-child {
-  padding-bottom: 10px !important;
-}
+
 
 .add-task ul li:hover label{
 	cursor: pointer;
@@ -1148,6 +1146,7 @@ ul.public-task-list li .completed-task-lists{
 .explore-list li i{
   font-size: 20px;
   color: #5cb85c;
+  margin-top: 1px;
   margin-right: 8px;
   float: left;
 }
@@ -1363,12 +1362,13 @@ ul.public-task-list li .completed-task-lists{
 
   }
   ul.read-more-wrap li .col-10{
-    max-width: 68%;
-    flex: 68%;
+    max-width: 71%;
+    flex: 71%;
+    padding-right: 0px;
   }
   ul.read-more-wrap li .col-2{
-    max-width: 31%;
-    flex: 31%;
+    max-width: 29%;
+    flex: 29%;
   }
   ul.read-more-wrap li  h4.mb-3{
     margin-bottom: 5px !important;
@@ -1412,6 +1412,9 @@ ul.public-task-list li .completed-task-lists{
 
   .mt-17 {
     margin-bottom: 17px !important;
+  }
+  .progress-loader{
+    margin-right: -5px !important;
   }
 
  }
