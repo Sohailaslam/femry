@@ -493,6 +493,7 @@ ul.sortable li.add-task-box:first-child {
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
+  min-height: 50px;
 }
 .add-task ul li textarea{
   border: none;
