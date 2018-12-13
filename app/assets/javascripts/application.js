@@ -38,6 +38,7 @@
 //= require daterangepicker
 
 
+
 $(document).ready(function(){
   if($('#rails_tags').length > 0){
     var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
