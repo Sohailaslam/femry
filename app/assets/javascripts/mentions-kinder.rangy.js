@@ -50,12 +50,12 @@
         $value = $("<span class='" + data.triggerOptions.triggerName + "-value'></span>").text(data.name);
         $mention = $('<span class="mention label" contenteditable="false"></span>');
         $deleteHandle = $("<span class='delete-mention " + data.triggerOptions.triggerName + "-delete'><i class='icon-remove'></i></span>");
-        $mention.append([$trigger, $value, $deleteHandle]);
+        $mention.append([' ', $trigger, $value, $deleteHandle]);
         $mention.attr('serialized-mention', data.serializedMention);
         return $mention;
       },
       serializer: function(data) {
-        return "[" + data.trigger + data.name + "](" + data.triggerOptions.triggerName + ":" + data.value + ")";
+        return " [" + data.trigger + data.name + "](" + data.triggerOptions.triggerName + ":" + data.value + ") ";
       }
     };
 
@@ -115,6 +115,7 @@
         $tempMention: $("<span class='mention temp-mention label'>" + triggerChar + "</span>")
       };
       tempMention = this._current.$tempMention.get(0);
+      
       this._insertNode(tempMention);
       this._current.autocompleter = new this._current.triggerOptions.autocompleter({
         mentionsKind: this
@@ -162,7 +163,11 @@
       if (this.$editable[0].children.length >= 2) {
         console.log("more than 1");
         old_tag_text = this.$editable[0].firstElementChild.textContent;
-        this.$editable[0].firstElementChild.replaceWith(old_tag_text);
+        if (this.$editable[0].firstElementChild.innerText == "#") {
+           this.$editable[0].lastElementChild.replaceWith(" ");
+        } else {
+          this.$editable[0].firstElementChild.replaceWith(" ");
+        }
       }
       var $mention, node;
       data = $.extend({}, this._current, data);
@@ -173,6 +178,7 @@
       this.$editable.focus();
       this._setCaretToEndOf(node);
       this._current.$tempMention.replaceWith($mention);
+      $($mention).append(" ");
       return this._current = null;
     };
 
@@ -257,6 +263,15 @@
     };
 
     MentionsKinder.prototype.handleDelete = function(e) {
+      task_id = $(e.currentTarget).closest('li.nested-fields').attr('data-id');
+      $.ajax({
+        url: '/tags/'+task_id,
+        method: "DELETE",
+        data: {},
+        success: (function(result) {
+          
+        })
+      });
       var $currentMentionNode, nextNode;
       e.preventDefault();
       $currentMentionNode = $(e.target).parents('.mention');
@@ -312,6 +327,7 @@
     MentionsKinder.prototype._setupEvents = function() {
       var form,
         _this = this;
+
       this.$editable.bind('keypress', this.handleInput);
       this.$editable.bind('keyup', this.handleKeyup);
       this.$editable.bind('paste', this.handlePaste);

@@ -24,20 +24,20 @@ class TasksController < ApplicationController
     if params[:task].present? && params[:task][:title].present?
       if params[:task][:title].include?("tag:")
         current_tags = current_user.tags.present? ? current_user.tags.map(&:title) : []
-        
         last_tag = identify_last_tag(params[:task][:title].split(" "))
-        params[:task][:title].gsub!(last_tag, "")
         last_tag = sanitize_title_str(last_tag)
-        # tags = identify_last_tag(params[:task][:title].split(" ")) 
-        remaining_tags = params[:task][:title].split(" ").select{|c| c.include?("tag:")}
-        sanitize_title(params[:task][:title].split(" "), remaining_tags)
-
         new_tag = if current_tags.present? && current_tags.include?(last_tag)
           nil
         else
           last_tag
         end
-        
+        tag = params[:task][:title].split(" ").select{|c| c.include?("tag:")}.last
+        params[:task][:title] = params[:task][:title] + " " + tag
+        params[:task][:title].gsub!(")[#", ") [#") if params[:task][:title].include?(")[#")
+        tag_index = params[:task][:title].split(" ").find_index(tag)
+        title = params[:task][:title].split(" ")
+        title.delete_at(tag_index)
+        params[:task][:title] = title.join(" ")
         if new_tag.present? 
           @tag = current_user.tags.find_or_create_by(user_id: current_user.id, title: new_tag)
         else
@@ -50,6 +50,7 @@ class TasksController < ApplicationController
     if params[:task][:status].present?
       params[:task].merge!(completed_at: DateTime.current)
     end
+
     @task.update(task_params) if @task.present?
     @task.update_streak if @task.status
   end
@@ -74,8 +75,6 @@ class TasksController < ApplicationController
   end
 
   def identify_last_tag(title_array)
-    # title_tags = title_array.select{|title| title.include?("#")}
-    # tags = title_tags.map{|c| c.split("tag:").last.gsub(")", "")}
     params[:task][:title].split(" ").select{|c| c.include?("tag:")}.last
   end
 

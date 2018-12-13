@@ -21,21 +21,6 @@ $(document).ready(function(e){
     $(this).addClass('d-none');
   });
   
-  $('body').on('click', '.delete-tag', function(e){
-    task_id = $(this).closest('li.nested-fields').attr('data-id');
-    $.ajax({
-      url: '/tags/'+$(this).attr('id')+ "?task_id="+task_id,
-      method: "DELETE",
-      data: {},
-      success: (function(result) {
-        $('#tag-container'+result['task_id']).find("span").remove();
-        $('#tag-container'+result['task_id']).remove();
-        $('#tag-dropdown'+result['task_id']).remove();
-      })
-    });
-
-  });
-
   $(document).on('lcs-statuschange', '.lcs_check', function(e) {
     if ($(this).is(':checked')) {
       $('#user_public_task').val(true)
@@ -129,9 +114,6 @@ $(document).ready(function(e){
     $(this).closest('li.nested-fields').addClass('d-none').removeClass('add-task-box')
 
     if ($(this).attr('id') == "delete_thought_button"){
-      // data_id = $(this).parents('div#thoughts').attr('class').split('_')[1]
-      // $('.ant_'+data_id).removeClass('d-none')
-      // $("st_"+data_id).addClass('d-none');
       if ($(this).parents('li.add-thougt-box:visible').length < 1){
         $(this).parents('.todos-list').find('div#thoughts li').addClass('bt-0')
       }
@@ -165,20 +147,12 @@ $(document).ready(function(e){
       timer = setTimeout( function(){ 
         $('#'+previous_destroy_field).val(1)
         
-        // $('.undo-alert').fadeTo(3000, 0.01, function(){ 
           $('.undo-alert').slideUp(500, function() {
             $(this).addClass("d-none")
 
             $(this).removeAttr('style');
           }); 
           $('#'+li_id).closest('ul').find('li.d-none').remove()
-        // });
-        // $.ajax({
-        //   url: '/tasks/'+task_id,
-        //   method: "DELETE",
-        //   success: (function(result) {
-        //   })
-        // });
       }  , 5000 );
     }
 
@@ -207,14 +181,6 @@ $(document).ready(function(e){
 
 
   })
-
-  // $('body').on('keyup', 'textarea', function(e){
-  //   debugger
-  //   while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-  //     $(this).height($(this).height()+1);
-  //   };
-  // })
-
   
   $('body').on('change', '.check-box', function(e) {
     task_id = $(this).closest('li.nested-fields').attr('data-id')
@@ -339,16 +305,6 @@ function multiline_support(){
   });
 }
 
-// function loadEditor(id){
-//   var instance = CKEDITOR.instances[id];
-//   if(instance)
-//   {
-//       CKEDITOR.remove(instance);
-//   }
-//   CKEDITOR.disableAutoInline = true;
-//   CKEDITOR.inline( id);
-// }
-
 function initialize_progress_loader(){
   $('.progress-loader').circliful({
     animationStep: 5,
@@ -363,7 +319,6 @@ function initialize_progress_loader(){
 
 function initialize_ckeditor(){
   $(document).on("trix-initialize", function(event) {
-    // $('trix-editor').focus()
   });
   document.addEventListener("trix-focus", function(event) {
     var toolbar, toolbar_id;
@@ -409,40 +364,6 @@ function initializeAutocompleter(task_id, tagAutocompleter) {
     }
   })
 }
-
-// function toggleList(thiss) {
-//   $("#"+thiss.nextElementSibling.id).removeClass("d-none");
-
-//   $("#"+thiss.nextElementSibling.id).find('a:first').focus()
-
-// }
-
-
-// function getCaretPosition(editableDiv) {
-//   var caretPos = 0,
-//     sel, range;
-//   if (window.getSelection) {
-//     sel = window.getSelection();
-//     if (sel.rangeCount) {
-//       range = sel.getRangeAt(0);
-//       if (range.commonAncestorContainer.parentNode == editableDiv) {
-//         caretPos = range.endOffset;
-//       }
-//     }
-//   } else if (document.selection && document.selection.createRange) {
-//     range = document.selection.createRange();
-//     if (range.parentElement() == editableDiv) {
-//       var tempEl = document.createElement("span");
-//       editableDiv.insertBefore(tempEl, editableDiv.firstChild);
-//       var tempRange = range.duplicate();
-//       tempRange.moveToElementText(tempEl);
-//       tempRange.setEndPoint("EndToEnd", range);
-//       caretPos = tempRange.text.length;
-//     }
-//   }
-//   return caretPos;
-// }
-
 
 function triggerMe(event, _this) {
   if ($(_this).hasClass('qouta_exceeded')) {

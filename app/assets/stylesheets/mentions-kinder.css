@@ -1,6 +1,6 @@
 .mention {
   font-weight: normal;
-    background-color: #5fb760;
+    background-color: #dddddd;
     color: #fff;
     padding: 2px 3px;
     border-radius: 2px;
@@ -25,7 +25,7 @@
 }
 
 .temp-mention {
-  background-color: #000000;
+  background-color: #dddddd;
   color: #ffffff;
 }
 

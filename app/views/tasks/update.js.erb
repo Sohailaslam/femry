@@ -19,12 +19,6 @@
 	tags = tags.replace(/&quot;/g, '"')	
 	$('#rails_tags').attr('data-tags', tags);
 	$('#progress_loader_<%= @task.task_date_converted %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 2000");
-	// var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
-	// 	select2Options: {
-	// 	  tags: JSON.parse(tags)
-	// 	}
-	// });
-	// initializeAutocompleter('<%#= @task.id %>', tagAutocompleter);
 	<% @day_tasks.present? && @day_tasks.each do |task| %>
 		$('li#task_<%= task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: task.task_date_converted, task: task }))%>');
 		var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
