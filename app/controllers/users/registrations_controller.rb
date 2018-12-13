@@ -62,8 +62,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       bypass_sign_in resource, scope: resource_name
       # respond_with resource, location: after_update_path_for(resource)
     else
-      if resource.errors.messages.keys.map(&:to_s).include? "password"
-        set_flash_message :alert, "Password must contain"
+      if resource.errors.present? && resource.errors.full_messages.present?
+        flash[:alert] = resource.errors.full_messages.join(',')
       end
       clean_up_passwords resource
       set_minimum_password_length

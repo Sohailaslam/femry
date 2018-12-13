@@ -67,6 +67,9 @@ $(document).ready(function(e){
       $('#email').addClass('d-none')
       $('#notifications').addClass('d-none')
       $('#billing').addClass('d-none')
+      $('#user_password_confirmation').val("")
+      $('#user_password').val("")
+      $('#user_current_password').val("")
     } else if ($(this).attr('id') == "notifications_link") {
       $('#notifications').removeClass('d-none')
       $('#password').addClass('d-none')
