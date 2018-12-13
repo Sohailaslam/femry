@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-12 col-lg-8">
+    <%# debugger %>
     <ul class="read-more-wrap list-style-none public-task-list">
       <li>
         <div id="public_tasks">
@@ -8,8 +9,9 @@
             <div class="completed-task-lists mb-4" id="completed_task">
               <div class="row mt-2">
                 <div class="col-lg-12">
-                  <h4 class="mb-3">
-                    <%= display_date(key[0], local_date(Time.zone.name), 'b') %>
+                  <h4 class="mb-3"> 
+                    
+                    <%= display_date(key[0], local_date(Time.zone.name), agent_type(request)) %>
                   </h4>
                 </div>
               </div>

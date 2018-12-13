@@ -48,4 +48,9 @@ module ApplicationHelper
 	    "https://gravatar.com/avatar/#{gravatar_id}.png?s=40"
 	  end
 	end
+
+	def agent_type(request)
+		request.user_agent.include?("Mobile") ? 'b' : 'B'
+	end
+
 end

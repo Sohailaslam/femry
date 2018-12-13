@@ -1,8 +1,8 @@
 <div id='tasks'>
   <div class="row mt-2">
     <div class="col-10 mb-2">
-      <% day = key.present? ? display_date(key, local_date(current_user.timezone), 'b') : 'Today' %>
-      <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), 'b')) : "<b>Today</b>".html_safe %></h4>
+      <% day = key.present? ? display_date(key, local_date(current_user.timezone), agent_type(request)) : 'Today' %>
+      <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), agent_type(request))) : "<b>Today</b>".html_safe %></h4>
     </div>
     <div class="col-2" id="progress_<%= key %>">
       <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
