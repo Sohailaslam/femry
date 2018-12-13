@@ -185,7 +185,15 @@ $(document).ready(function(e){
         method: "POST",
         data: {id: task_id, button_type: button_type, button_action: 'make_active'},
         success: (function(result) {
-          $('#'+li_id).removeClass('d-none').addClass('add-task-box');
+          if (button_type == "thought") {
+            $('#'+li_id).removeClass('d-none');
+            $('#'+li_id).removeClass('bt-0');
+          } else {
+            if ($('#'+li_id).index() == 0) {
+            $('#'+li_id).closest('ul').find('li').eq(1).addClass('bt-1');
+            }
+            $('#'+li_id).removeClass('d-none').addClass('add-task-box');
+          }
           clearTimeout(timer);
           $('.undo-alert').addClass("d-none")
           $('.ant_'+data_id).addClass('d-none')
