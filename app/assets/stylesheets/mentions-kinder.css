@@ -1,7 +1,7 @@
 .mention {
   font-weight: normal;
     background-color: #dddddd;
-    color: #fff;
+    color: #343a40;
     padding: 2px 3px;
     border-radius: 2px;
     display: inline-block;
@@ -11,7 +11,7 @@
 
 .mention .delete-mention {
   font-family: 'Open Sans', sans-serif;
-  color: #ffffff;
+  color: #343a40;
   margin-left: 5px;
   cursor: pointer;
 }
@@ -26,7 +26,7 @@
 
 .temp-mention {
   background-color: #dddddd;
-  color: #ffffff;
+  color: #343a40;
 }
 
 .mentions-kinder-multiline {

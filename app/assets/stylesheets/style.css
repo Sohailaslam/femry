@@ -496,7 +496,7 @@ ul.sortable li.add-task-box:first-child {
 }
 .textarea-style{
   border: none;
-  width: 88%;
+  width: 98%;
   resize: none;
   line-height: 22px;
   font-size: 14px;
@@ -1426,8 +1426,8 @@ ul.public-task-list li .completed-task-lists{
     width: 60px;
   }
   .textarea-style{
-    padding-right: 65px;
-    width: 100%;
+    /*padding-right: 65px;*/
+    width: 95%;
   }
 
   .add-task {
