@@ -50,7 +50,12 @@
                       <li class="add-task-box bt-1">
                         <i class="fa fa-check-square" style="width: 25px; float: left; margin-right: 0;"></i>
                         <div class="public-title">
-                          <%= task.title %>
+                          <% if task.title.include?("[#") %>
+                            <% title_arr =  task.title.split(" ") %>
+                            <%= title_arr.take(title_arr.size - 1).join(" ") %>
+                          <% else %>
+                            <%= task.title %>
+                          <% end %>  
                           <span class="explore-time">
                             <% if task.completed_at.present? %>
                             <%= "#{time_ago_in_words(task.completed_at)} ago" %>
