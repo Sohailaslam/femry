@@ -63,15 +63,7 @@ class User < ApplicationRecord
 
   def authenticate_with_aws password
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
-    resp = client.admin_initiate_auth({
-      user_pool_id: ENV["AWS_COGNITO_USER_POOL_ID"],
-      client_id: ENV["AWS_COGNITO_CLIENT_ID"],
-      auth_flow: "ADMIN_NO_SRP_AUTH",
-      auth_parameters: {
-        "USERNAME" => self.email,
-        "PASSWORD" => password
-      },
-    })
+    resp = client.admin_initiate_auth({  user_pool_id: ENV["AWS_COGNITO_USER_POOL_ID"], client_id: ENV["AWS_COGNITO_CLIENT_ID"], auth_flow: "ADMIN_NO_SRP_AUTH",  auth_parameters: {  "USERNAME" => self.email,   "PASSWORD" => password  },})
     resp
   end
 
@@ -93,6 +85,18 @@ class User < ApplicationRecord
     begin
       resp = client.update_user_attributes({user_attributes: [{name: "name",value: full_name,},],access_token: self.access_token,})
     rescue
+    end
+  end
+
+  def aws_update_password(current_password, password)
+    client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
+    begin
+      auth_resp = client.initiate_auth({  auth_flow: "USER_PASSWORD_AUTH", auth_parameters: { "USERNAME" => self.email,"PASSWORD" => current_password },  client_id: ENV["AWS_COGNITO_CLIENT_ID"]})
+      resp = client.change_password({ previous_password: current_password, proposed_password: password, access_token: auth_resp.authentication_result.access_token })
+    rescue
+      exception = StandardError.new("No Results Found")
+      exception.set_backtrace(caller)
+      raise exception
     end
   end
 
