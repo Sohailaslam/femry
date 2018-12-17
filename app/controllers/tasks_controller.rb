@@ -31,13 +31,15 @@ class TasksController < ApplicationController
         else
           last_tag
         end
+        
+        params[:task][:title].gsub!(")", ") ") if params[:task][:title].include?(")")
         tag = params[:task][:title].split(" ").select{|c| c.include?("tag:")}.last
         params[:task][:title] = params[:task][:title] + " " + tag
         params[:task][:title].gsub!(")[#", ") [#") if params[:task][:title].include?(")[#")
         tag_index = params[:task][:title].split(" ").find_index(tag)
         title = params[:task][:title].split(" ")
         title.delete_at(tag_index)
-        params[:task][:title] = title.join(" ")
+        params[:task][:title] = title.join(" ") + "   "
         if new_tag.present? 
           @tag = current_user.tags.find_or_create_by(user_id: current_user.id, title: new_tag)
         else
