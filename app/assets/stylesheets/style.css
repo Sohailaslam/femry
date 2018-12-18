@@ -100,6 +100,10 @@ body {
     background-color: #ffffff !important; 
     opacity: 1;
 }
+.blue-color {
+  background-color: #4285f4 !important;
+  border-color: #4285f4 !important;
+}
 /***Start Where Work Happens  block CSS**/
 .where-work{
 	transition:all 0.9s ease;
