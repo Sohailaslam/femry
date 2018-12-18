@@ -96,6 +96,10 @@ body {
 .tag-container:hover  i{
   color: #007bff;
 }
+.form-control[readonly] {
+    background-color: #ffffff !important; 
+    opacity: 1;
+}
 /***Start Where Work Happens  block CSS**/
 .where-work{
 	transition:all 0.9s ease;
