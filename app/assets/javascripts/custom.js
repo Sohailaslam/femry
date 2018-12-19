@@ -231,11 +231,15 @@ $(document).ready(function(e){
       task_id = $(this).closest('li.nested-fields').attr('id');
       // $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
       $('.task_'+ date_key).click();
-    } else if (e.keyCode == 46 || (navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i) == true && e.keyCode == 51)) {
-      debugger
-      $(this).closest("li.nested-fields").find('a#delete_button').click();
-
+    } else if (e.keyCode == 46) {
+      alert("Please send this text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which );
+      // $(this).closest("li.nested-fields").find('a#delete_button').click();
+    } else if (navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i) == true) {
+      alert("Please send this IPAD text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which + "shiftkey: " + e.shiftKey );
+    } else {
+      alert("Please send this text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which + "shiftkey: " + e.shiftKey );
     }
+
   })
 
   $('body').on('focusout', '.new-title', function(e) {
