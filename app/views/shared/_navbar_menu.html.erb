@@ -1,54 +1,30 @@
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle btn btn-sm btn-outline-dark profile-image" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  	<%= show_avatar(current_user) %>
-  </a>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-  	<div class="space-left">
+<div class="task-details space-left">
+  <div class="count-number">
+    <div class="float-left">
+      Task <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" title="Number of task included in your plan for this billing period"></i>
+    </div>
+    <div class="float-right">
       <% if current_user.is_free? %>
-        <span class="btn btn-secondary btn-disabled btn-sm mr-2">FREE PLAN</span>
-        <%= link_to 'Upgrade', edit_user_registration_path(section: 'billing'), class: 'upgrade-btn' %>
+        <%= current_user.tasks.active_tasks.count %>
+        /
+        100
       <% else %>
-    		<span class="btn btn-secondary btn-disabled btn-sm mr-2">Premium</span>
+        Unlimited Tasks
       <% end %>  
-  	</div>
-  	<div class="dropdown-divider mt-3"></div>
-  	<div class="task-details space-left">
-  		<div class="count-number">
-  			<div class="float-left">
-  				Task <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" title="Number of task included in your plan for this billing period"></i>
-  			</div>
-  			<div class="float-right">
-  				<% if current_user.is_free? %>
-            <%= current_user.tasks.active_tasks.count %>
-    				/
-    				100
-          <% else %>
-            Unlimited Tasks
-          <% end %>  
-  			</div>
-  		</div>
-  	</div>
-  	<div class="space-left width-100">
-  	 <div class="progress" style="height: 5px;">
-			  <div class="progress-bar" role="progressbar" style="width: <%= current_user.tasks.active_tasks.count %>%;" aria-valuenow="<%= current_user.is_free? ? current_user.tasks.active_tasks.count : 2 %>" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-		</div>
-    <% if current_user.is_free? %>
-    	<div class="space-left pt-2">
-    		<small>
-    			Monthly usage resets in
-          <% days = distance_of_time_in_words(Date.strptime((current_user.last_renewed.present? ? current_user.last_renewed + 30.days : current_user.created_at).strftime("%m/%d/%Y"), "%m/%d/%Y"), Date.current) %>
-          <%= days.eql?("about 1 month") ? "30 days" : days %>
-    		</small>
-    	</div>
-    <% end %>  
-  	<div class="dropdown-divider mt-2 mb-0"></div>
-  	<%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-  		<i class="fa fa-gear mr-2"></i>Settings
-  	<% end %>
-
-  	<%= link_to destroy_user_session_path, class: 'dropdown-item', method: :delete do %>
-    	<i class="fa fa-power-off mr-2"></i>Log out
-    <% end %>
+    </div>
   </div>
-</li>
+</div>
+<div class="space-left width-100">
+  <div class="progress" style="height: 5px;">
+    <div class="progress-bar" role="progressbar" style="width: <%= current_user.tasks.active_tasks.count %>%;" aria-valuenow="<%= current_user.is_free? ? current_user.tasks.active_tasks.count : 2 %>" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
+<% if current_user.is_free? %>
+  <div class="space-left pt-2">
+    <small>
+      Monthly usage resets in
+      <% days = distance_of_time_in_words(Date.strptime((current_user.last_renewed.present? ? current_user.last_renewed + 30.days : current_user.created_at).strftime("%m/%d/%Y"), "%m/%d/%Y"), Date.current) %>
+      <%= days.eql?("about 1 month") ? "30 days" : days %>
+    </small>
+  </div>
+<% end %>

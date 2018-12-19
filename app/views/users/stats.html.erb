@@ -26,7 +26,7 @@
 
 		<div class="col-lg-4 col-md-12 mt-16 mb-2">
 			<%= form_tag user_stats_path(user_id: @user.id), class: " range-filter mr-1", id: "date_range_form", method: :get, remote: true do %>
-				<%= text_field_tag 'daterange',nil, class: "form-control text-center", id: 'datefiler' %>
+				<%= text_field_tag 'daterange',nil, class: "form-control text-center", id: 'datefiler', readonly: true %>
 			<% end %>
 		</div>
 	</div>
