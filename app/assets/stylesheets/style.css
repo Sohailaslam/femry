@@ -423,6 +423,13 @@ input[type="radio"] .styled:checked + label::after {
   padding-bottom: 5px;
 }
 
+.add-task ol li{
+  float: inherit;
+
+  position: relative;
+  min-height: auto;
+  padding-bottom: 0;
+}
 .add-task ul li .tag-container {
   position: absolute;
   right: 20px;
@@ -570,6 +577,16 @@ ul.sortable li.add-task-box:first-child {
 .thought-area{
   min-height: 80px;
   height: auto;
+}
+
+.thought-area ul{
+  width: 93%;
+}
+
+.thought-area ul li{
+    width: 93%;
+    float: inherit;
+    min-height: auto
 }
 
 trix-toolbar { display: none; }
@@ -1008,20 +1025,20 @@ footer{
 }
 
 .add-thougt-box .editor {
-  float: left;
+
   width: 100%;
   margin-bottom: 20px !important;
 }
 .add-thougt-box .editor ul{
   margin-left: 25px;
   list-style: initial;
-  float: left;
+  /*float: left;*/
   width: 100%;
 }
 
 .add-thougt-box .editor ol {
   margin-left: 25px;
-  float: left;
+  /*float: left;*/
   width: 100%;
   padding-left: 0; 
 } 
