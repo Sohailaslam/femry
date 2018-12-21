@@ -1,13 +1,28 @@
 <div id='tasks'>
   <div class="row mt-2">
-    <div class="col-10 mb-2">
+    <div class="col-8 mb-2">
       <% day = key.present? ? display_date(key, local_date(current_user.timezone), agent_type(request)) : 'Today' %>
       <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), agent_type(request))) : "<b>Today</b>".html_safe %></h4>
     </div>
+    <% if index == 0 %>
+      <div class="col-1 mt-2">
+        <%= link_to root_path(date: "#{key - 1}"), remote: true do %>
+          <i class="fa fa-angle-left"></i>
+        <% end %>
+        <%= link_to "#{ key == Date.current ? 'javascript:void(0);' : root_path(date: "#{key + 1}") }", class: 'ml-3', remote: true do %>
+          <i class="fa fa-angle-right"></i>
+        <% end %>
+      </div>
+      <div class="col-1 mt-2">
+        <input type="text" id="daterangepicker" name="" class="daterange" value="", style="border:none; box-shadow:none; width:0">
+        <label class="input-group-addon btn daterange-label" for="daterange">
+           <span class="fa fa-calendar open-datetimepicker"></span>
+        </label>
+      </div>
+    <% end %>  
     <div class="col-2" id="progress_<%= key %>">
       <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
     </div>
-  
   </div>  
   <div class="row">
     <div class="col-md-12">     
@@ -55,7 +70,7 @@
   }
 
   ready = function(){
-    
+     $('input[class="daterange"]').daterangepicker(); 
     set_positions();
     $( ".sortable" ).sortable({
       axis: "y",
@@ -84,6 +99,29 @@
         url: '/tasks/sort',
         data: { order: updated_order }
       });
+    });
+   
+    $('.open-datetimepicker').click(function(event){
+      $(this).closest('label').prev().daterangepicker({
+        autoApply: true,
+        singleDatePicker: true,
+        startDate: moment().subtract(1, 'days').format("YYYY-MM-DD"),
+        maxDate: new Date(),
+        locale: {
+          "format": "YYYY-MM-DD",
+          "separator": "/"
+        },
+        onSelect: function(dateText, inst) {
+        }
+      }).on("change.daterangepicker", function(ev) {
+        $.ajax({
+          type: "GET",
+          url: '/?date='+$(this).val(),
+          data: {},
+          success: (function(result) {   
+          })
+        });
+      }).focus();
     });
   }
 

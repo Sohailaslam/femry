@@ -13,13 +13,22 @@ class TodosController < ApplicationController
     puts Time.current.in_time_zone(@user.get_timezone)
 
     @user.tasks.create(task_date: Time.current, status: false) unless @user.tasks.present?
-    @grouped_tasks = @user.tasks.active_tasks.where(task_date: Time.current.in_time_zone(@user.get_timezone).to_date)
-    @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.in_time_zone(@user.get_timezone).to_date}
+    if params[:date].present?
+      @grouped_tasks = @user.tasks.active_tasks.where("Date(task_date) = ?", Date.strptime(params[:date], "%Y-%m-%d").in_time_zone(@user.get_timezone).to_date)
+      @grouped_tasks = @grouped_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.in_time_zone(@user.get_timezone).to_date}      
+    else
+      @grouped_tasks = @user.tasks.active_tasks.where(task_date: Time.current.in_time_zone(@user.get_timezone).to_date)
+      @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by{|t| t.task_date.in_time_zone(@user.get_timezone).to_date}
     # @grouped_tasks = @user.tasks.active_tasks.order("task_date DESC").order(:sort).group_by(&:task_date)
-    unless @grouped_tasks.present?
-      @grouped_tasks = {Time.current.in_time_zone(@user.get_timezone).to_date => []}.merge!(@grouped_tasks)
-    end    
+      unless @grouped_tasks.present?
+        @grouped_tasks = {Time.current.in_time_zone(@user.get_timezone).to_date => []}.merge!(@grouped_tasks)
+      end
+    end
+    @day_tasks = current_user.tasks.where("Date(task_date) = ? ", Date.strptime(params[:date], "%Y-%m-%d").in_time_zone(@user.get_timezone).to_date) if params[:date].present? 
     @grouped_tasks = @grouped_tasks.to_a.paginate(:page => 1, :per_page => (params[:page].present? ? params[:page].to_i : 1) * 14)
+    if params[:date].present?
+      render 'index.js'
+    end
   end
 
   def update_deleted_column

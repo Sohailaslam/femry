@@ -1,0 +1,16 @@
+<% keys = params[:date].present? ? @grouped_tasks.map{|c| c[0]} : get_date_keys(@grouped_tasks, local_date(current_user.timezone)) %>
+
+$('#todos_container').html('<%= escape_javascript(render(:partial => "todos", :locals => { keys: keys }))%>');
+tags = '<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>';
+	
+	tags = tags.replace(/&quot;/g, '"')	
+	$('#rails_tags').attr('data-tags', tags);
+<% @day_tasks.present? && @day_tasks.each do |task| %>
+	$('li#task_<%= task.id%>').html('<%= escape_javascript(render(:partial => "todos/task_detail", :locals => {key: task.task_date_converted, task: task }))%>');
+	var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+		select2Options: {
+		  tags: JSON.parse(tags)
+		}
+	});
+	initializeAutocompleter('<%= task.id %>', tagAutocompleter);
+<% end %>

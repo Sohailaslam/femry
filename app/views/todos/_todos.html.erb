@@ -1,0 +1,17 @@
+<% if (params[:date].present? && @grouped_tasks.present?) || (!params[:date].present? && current_user.tasks.active_tasks.present?) %>
+  <ul class="read-more-wrap list-style-none">
+    <% keys.each_with_index do |key, index| %>
+      <% tasks_count = @grouped_tasks.select{|c| c[0] == key} %>
+      <% tasks_count = tasks_count.present? ? tasks_count.flatten(1).last.count : 0 %>
+      <li class="<%=  index > 14 ? 'read-more-target' : '' %>">
+        <%= render partial: 'day_todos', locals: {key: key, index: index} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+    <%= render partial: 'day_todos', locals: {key: params[:date].present? ? Date.strptime(params[:date], "%Y-%m-%d").in_time_zone(@user.get_timezone).to_date : Time.current.in_time_zone(current_user.get_timezone).to_date, task: nil} %>
+<% end %>
+<% if keys.present? && keys.count > 14 %>
+  <div class="loader d-none" id="infinite-scrolling" data-page="<%= params[:page].present? ? params[:page].to_i + 1 : 2 %>">Loading...
+  </div>
+<% end %>
