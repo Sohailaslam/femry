@@ -49,7 +49,7 @@ var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.exten
 initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
 // alert(document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].classList);
 document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].focus();
-document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].focus();
+document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].click();
 <% if current_user.tasks.active_tasks.count >= current_user.plan.total_tasks %>
   $('a#add_task').each(function(data, index){
     $(this).addClass('qouta_exceeded');
