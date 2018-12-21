@@ -78,6 +78,28 @@ body {
 .left-image{
 
 }
+.icon-style {
+      position: absolute;
+    right: 121px;
+    width: 80px;
+}
+.icon-style .fa{
+  color: #b3afaf;
+}
+.icon-style a.disabled {
+  pointer-events: none;
+}
+.icon-style .disabled .fa{
+  color: #b3afaf;
+  pointer-events: none;
+}
+.icon-style .disabled:hover i{
+  color: #b3afaf;
+  pointer-events: none;
+}
+.icon-style .fa:hover{
+  color: #5fb760;
+}
 .label-default {
   background-color: #dfdfdf;
   border-radius: 4px;
@@ -462,7 +484,9 @@ input[type="radio"] .styled:checked + label::after {
 .daterange-label {
   position: absolute;
   top: -8px;
-  left: 10px;
+  right: 0px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .add-task ul li .handle-sort i{
   color: #ddd;
@@ -1342,6 +1366,11 @@ ul.public-task-list li .completed-task-lists{
     padding: 3px 10px 3px 10px;
     font-size: 12px;
   }
+  .icon-style {
+    right: 78px;
+    z-index: 100;
+    width: 58px;
+  }
   .image-upload{
     display: inline-flex;
   }
@@ -1484,6 +1513,10 @@ ul.public-task-list li .completed-task-lists{
   .stats-height .profile-tags span{
     padding-left: 9px;
     padding-right: 9px;
+  }
+
+  .read-more-wrap h4 {
+    font-size: 15px;
   }
 
  }
