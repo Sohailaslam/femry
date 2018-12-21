@@ -47,7 +47,7 @@ var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.exten
     }
   });
 initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
-alert(document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].classList);
+// alert(document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].classList);
 
 document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].focus();
 
