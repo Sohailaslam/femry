@@ -4,20 +4,20 @@
       <% day = key.present? ? display_date(key, local_date(current_user.timezone), agent_type(request)) : 'Today' %>
       <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), agent_type(request))) : "<b>Today</b>".html_safe %></h4>
     </div>
-    <div class=" mt-2 icon-style">
+    <div class="mt-2 icon-style">
       <% if index == 0 %>
-        <%= link_to root_path(date: "#{key - 1}"), remote: true do %>
+        <%= link_to root_path(date: "#{key - 1}"), class: 'left-padding', remote: true do %>
           <i class="fa fa-chevron-left"></i>
         <% end %>
-        <%= link_to "#{ key == Date.current ? 'javascript:void(0);' : root_path(date: "#{key + 1}") }", class: "ml-1 #{ key == Date.current ? 'disabled' : '' }", remote: true do %>
+        <%= link_to "#{ key == Date.current ? 'javascript:void(0);' : root_path(date: "#{key + 1}") }", class: " ml-1 #{ key == Date.current ? 'disabled' : '' }", remote: true do %>
           <i class="fa fa-chevron-right"></i>
         <% end %>
       <% end %>  
 
       <% if index == 0 %>
         <input type="text" id="daterangepicker" name="" class="daterange" value="", style="border:none; box-shadow:none; width:0">
-        <label class="input-group-addon btn daterange-label" for="daterange">
-           <span class="fa fa-calendar open-datetimepicker"></span>
+        <label class="icon-style-calendar input-group-addon btn daterange-label" for="daterange">
+           <i class="fa fa-calendar open-datetimepicker"></i>
         </label>
       <% end %>  
     </div>
@@ -70,7 +70,6 @@
   }
 
   ready = function(){
-     $('input[class="daterange"]').daterangepicker(); 
     set_positions();
     $( ".sortable" ).sortable({
       axis: "y",
@@ -103,17 +102,18 @@
    
     $('.open-datetimepicker').click(function(event){
       $(this).closest('label').prev().daterangepicker({
-        autoApply: true,
         singleDatePicker: true,
+        autoApply: true,
+        autoUpdateInput: true,
         startDate: moment().format("YYYY-MM-DD"),
-        maxDate: new Date(),
+        endDate: moment().format("YYYY-MM-DD"),
         locale: {
           "format": "YYYY-MM-DD",
           "separator": "/"
         },
         onSelect: function(dateText, inst) {
         }
-      }).on("change.daterangepicker", function(ev) {
+      }).on("apply.daterangepicker", function(ev) {
         $.ajax({
           type: "GET",
           url: '/?date='+$(this).val(),

@@ -320,9 +320,8 @@ function initialize_progress_loader(){
 function initialize_ckeditor(){
   $(document).on("trix-initialize", function(event) {
     ss = event.originalEvent.srcElement.id;
-    $('#'+ss).html(($('#'+ss).closest('div').next().val()))
-
-
+    $('#'+ss).val(($('#'+ss).closest('div').next().val()));
+    
   });
   document.addEventListener("trix-focus", function(event) {
     var toolbar, toolbar_id;

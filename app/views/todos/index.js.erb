@@ -14,5 +14,4 @@ tags = '<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>'
 	});
 	initializeAutocompleter('<%= task.id %>', tagAutocompleter);
 <% end %>
-	initialize_ckeditor();
-  initialize_progress_loader();
+initialize_progress_loader();

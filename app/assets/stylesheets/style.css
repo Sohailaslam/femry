@@ -79,9 +79,13 @@ body {
 
 }
 .icon-style {
-      position: absolute;
-    right: 121px;
-    width: 80px;
+  position: absolute;
+  right: 121px;
+  width: 80px;
+}
+
+.icon-style a{
+  text-decoration: none;
 }
 .icon-style .fa{
   color: #b3afaf;
@@ -99,6 +103,13 @@ body {
 }
 .icon-style .fa:hover{
   color: #5fb760;
+}
+
+.icon-style label:hover{
+  color: #5fb760;
+}
+.left-padding {
+  padding-left: 48px;
 }
 .label-default {
   background-color: #dfdfdf;
@@ -480,11 +491,13 @@ input[type="radio"] .styled:checked + label::after {
   transition-duration: 1s;
 
 }
-
+.icon-style-calendar {
+  z-index: 200;
+}
 .daterange-label {
   position: absolute;
   top: -8px;
-  right: 0px;
+  right: -28px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -1370,6 +1383,16 @@ ul.public-task-list li .completed-task-lists{
     right: 78px;
     z-index: 100;
     width: 58px;
+  }
+  .daterange-label {
+    position: absolute;
+    top: -8px;
+    right: 9px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .left-padding {
+    padding-left: 0;
   }
   .image-upload{
     display: inline-flex;
