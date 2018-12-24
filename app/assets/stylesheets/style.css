@@ -78,6 +78,9 @@ body {
 .left-image{
 
 }
+.select2-container-multi .select2-choices {
+  height: 30px !important;
+}
 .icon-style {
   position: absolute;
   right: 121px;
@@ -142,6 +145,16 @@ body {
 .blue-color {
   background-color: #4285f4 !important;
   border-color: #4285f4 !important;
+}
+
+.blue-color:hover {
+  background-color: #276ada;
+  border-color: #276ada !important;
+}
+
+.blue-color:focus {
+  background-color: #276ada;
+  border-color: #276ada !important;
 }
 /***Start Where Work Happens  block CSS**/
 .where-work{
