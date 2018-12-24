@@ -30,7 +30,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-     process :resize_to_fill => [50, 50]
+    process :fix_exif_rotation
+    process :resize_to_fill => [50, 50]
     # process :custom_resize
   end
 
@@ -38,6 +39,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_whitelist
     %w(jpg jpeg gif png)
+  end
+
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
   end
 
   # Override the filename of the uploaded files:
