@@ -27,13 +27,18 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
+  def auto_orient
+    manipulate! do |img|
+      img = img.auto_orient
+    end
+  end
   # Create different versions of your uploaded files:
   version :thumb do
+    process :auto_orient
     process :resize_to_fill => [50, 50]
     # process :custom_resize
   end
-  process :fix_exif_rotation
+  process :auto_orient
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -41,12 +46,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-  def fix_exif_rotation #this is my attempted solution
-    manipulate! do |img|
-      img.tap(&:auto_orient)
-    end
-  end
-
+  
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
