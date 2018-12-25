@@ -196,8 +196,8 @@ $(document).ready(function(e){
 
 
   $('body').on('focusin', '.title', function(e){
-    date_key = $(this).parents('li.nested-fields').find('#task_date').val();
     task_id = $(this).closest('li.nested-fields').attr('id');
+    date_key = $(this).parents('li.nested-fields').find('#task_date').val();
     href = $('.task_'+ date_key).attr('href');
     if (href.indexOf("&prev_li_id") > -1) {
       href = href.split('&')[0] + "&prev_li_id=" + task_id;
@@ -208,6 +208,12 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', '.title', function(e) {
+    if (href.indexOf("&") > -1) {
+      date_key = $(this).parents('li.nested-fields').find('#task_date').val();
+      href = $('.task_'+ date_key).attr('href');
+      new_href = href.split("&")[0];
+      $('.task_'+ date_key).attr('href', new_href);
+    }
     next_task = ((e.originalEvent.relatedTarget === null) ? null : e.originalEvent.relatedTarget.offsetParent.id)
     if ($('#select2-drop').length == 0 && $(this).prev('textarea').val() != "#" && $(this).prev('textarea').val() !== undefined) {
       task_id = $(this).closest('li.nested-fields').attr('data-id')
