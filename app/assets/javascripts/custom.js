@@ -229,17 +229,9 @@ $(document).ready(function(e){
       e.preventDefault();
       date_key = $(this).parents('li.nested-fields').find('#task_date').val()
       task_id = $(this).closest('li.nested-fields').attr('id');
-      // $('.task_'+ date_key).attr('href', $('.task_'+ date_key).attr('href') + '&prev_li_id='+task_id);
       $('.task_'+ date_key).click();
-    } else if (e.keyCode == 46 || navigator.userAgent.match(/(Mac|iPhone|iPod|iPad)/i) != undefined && !e.shiftKey && e.keyCode == 8) {
-      // alert("Please send this text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which );
+    } else if (e.keyCode == 46 || navigator.userAgent.match(/(Mac|iPhone|iPod|iPad)/i) != undefined && !e.shiftKey && e.keyCode == 8) {      
       $(this).closest("li.nested-fields").find('a#delete_button').click();
-    } else if (navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i) == true && e.keyCode == 8) {
-      alert("Please send BOTH text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which );
-    } else if (navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i) == true) {
-      alert("Please send IOS text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which );      
-    } else if (e.keyCode == 8) {
-      alert("Please send 8 text to zeeshan: keycode:" + e.keyCode + "charcode:" + e.charCode + "ctrlKey: "+ e.ctrlKey + "which: " + e.which +  "shiftkey: " + e.shiftkey + "platform: " + navigator.userAgent);
     }
 
   })
