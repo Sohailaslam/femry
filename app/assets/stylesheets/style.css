@@ -148,12 +148,12 @@ body {
 }
 
 .blue-color:hover {
-  background-color: #276ada;
+  background-color: #276ada !important;
   border-color: #276ada !important;
 }
 
 .blue-color:focus {
-  background-color: #276ada;
+  background-color: #276ada !important; 
   border-color: #276ada !important;
 }
 /***Start Where Work Happens  block CSS**/
@@ -1319,6 +1319,8 @@ ul.public-task-list li .completed-task-lists{
 
 #datefiler {
   font-size: 14px;
+  max-width: 291px;
+  float: right;
 }
 .margin-space{
   margin-left: 32px;
@@ -1391,6 +1393,11 @@ ul.public-task-list li .completed-task-lists{
   .public-tags span {
     padding: 3px 10px 3px 10px;
     font-size: 12px;
+  }
+
+  #datefiler {
+    float: initial;
+    margin: auto
   }
   .icon-style {
     right: 78px;
