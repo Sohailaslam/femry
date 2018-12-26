@@ -1272,7 +1272,9 @@ ul.public-task-list li .completed-task-lists{
 #avatar_section .avatar-circle {
   margin-right: 10px;
 }
-
+.select2-container-multi .select2-choices .select2-search-field {
+  min-height: 15px;
+}
 .avatar-circle {
   width: 40px;
   height: 40px;
