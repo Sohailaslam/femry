@@ -1266,8 +1266,8 @@ ul.public-task-list li .completed-task-lists{
 .explore-list li span.explore-time{
   color: #b5b5b5;
   padding: 0 2x;
-  font-weight: 600;
-  margin-left: 5px;
+  font-size: 12px;
+  margin-left: 2px;
 }
 #avatar_section .avatar-circle {
   margin-right: 10px;
