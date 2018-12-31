@@ -208,7 +208,7 @@ $(document).ready(function(e){
   });
 
   $('body').on('focusout', '.title', function(e) {
-    if (href.indexOf("&") > -1) {
+    if (href.indexOf("&") > -1 && e.originalEvent.relatedTarget == null) {
       date_key = $(this).parents('li.nested-fields').find('#task_date').val();
       href = $('.task_'+ date_key).attr('href');
       new_href = href.split("&")[0];
@@ -231,12 +231,13 @@ $(document).ready(function(e){
 
 
   $('body').on('keydown', '.title', function(e) {
+    
     if(e.keyCode == 13) {
       e.preventDefault();
       date_key = $(this).parents('li.nested-fields').find('#task_date').val()
       task_id = $(this).closest('li.nested-fields').attr('id');
       $('.task_'+ date_key).click();
-    } else if (e.keyCode == 46 || navigator.userAgent.match(/(Mac|iPhone|iPod|iPad)/i) != undefined && !e.shiftKey && e.keyCode == 8) {      
+    } else if (e.keyCode == 46 || (navigator.userAgent.match(/(Mac|iPhone|iPod|iPad)/i) != undefined && !e.shiftKey && e.keyCode == 8 && $(this).prev().val() == "")) {
       $(this).closest("li.nested-fields").find('a#delete_button').click();
     }
 

@@ -52,5 +52,9 @@ initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
     $(this).addClass('qouta_exceeded');
   });
 <% end %>
-document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].focus();
-document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].click();
+// document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[].focus();
+
+$('#task_<%= @task.id %>').find('textarea.title').focus();
+
+// document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].attr("tabindex",-1).focus().blur().focus();
+// .focus();
