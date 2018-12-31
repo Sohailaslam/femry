@@ -24,6 +24,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
 gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-imageoptimizer'
+
 gem 'rmagick'
 gem 'aws-sdk', '~> 3'
 gem 'fog-aws'
