@@ -237,7 +237,7 @@ $(document).ready(function(e){
       date_key = $(this).parents('li.nested-fields').find('#task_date').val()
       task_id = $(this).closest('li.nested-fields').attr('id');
       $('.task_'+ date_key).click();
-    } else if (e.keyCode == 46 || (navigator.userAgent.match(/(Mac|iPhone|iPod|iPad)/i) != undefined && !e.shiftKey && e.keyCode == 8 && $(this).prev().val() == "")) {
+    } else if ((e.keyCode == 46 && $(this).prev().val() == "") || (navigator.userAgent.match(/(Mac|iPhone|iPod|iPad)/i) != undefined && !e.shiftKey && e.keyCode == 8 && $(this).prev().val() == "")) {
       $(this).closest("li.nested-fields").find('a#delete_button').click();
     }
 

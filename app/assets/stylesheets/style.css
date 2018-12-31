@@ -1273,7 +1273,7 @@ ul.public-task-list li .completed-task-lists{
   margin-right: 10px;
 }
 .select2-container-multi .select2-choices .select2-search-field {
-  min-height: 15px;
+  min-height: 10px !important;
 }
 .avatar-circle {
   width: 40px;
