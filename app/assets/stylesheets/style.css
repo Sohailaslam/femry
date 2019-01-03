@@ -84,7 +84,8 @@ body {
 .icon-style {
   position: absolute;
   right: 121px;
-  width: 80px;
+  width: 31px;
+  height: 20px;
 }
 
 .icon-style a{
@@ -111,9 +112,9 @@ body {
 .icon-style label:hover{
   color: #5fb760;
 }
-.left-padding {
+/*.left-padding {
   padding-left: 48px;
-}
+}*/
 .label-default {
   background-color: #dfdfdf;
   border-radius: 4px;
@@ -1248,7 +1249,6 @@ ul.public-task-list li .completed-task-lists{
 .explore-list li i{
   font-size: 20px;
   color: #5cb85c;
-  margin-top: 1px;
   margin-right: 8px;
   float: left;
 }
@@ -1262,12 +1262,16 @@ ul.public-task-list li .completed-task-lists{
 .explore-list li:hover{
   cursor: inherit !important;
 }
-
+textarea, input.text,input[type="text"],input[type="submit"],input[type="button"].input-checkbox {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
 .explore-list li span.explore-time{
   color: #b5b5b5;
   padding: 0 2x;
   font-size: 12px;
-  margin-left: 2px;
+  margin-left: 1px;
+  display: inline-block;
 }
 #avatar_section .avatar-circle {
   margin-right: 10px;
@@ -1301,7 +1305,9 @@ ul.public-task-list li .completed-task-lists{
     display: inline-block;
     padding-left: 50px;
 }
-
+.select2-results {
+  margin-top: -10px !important;
+}
 .upgrade-btn {
   position: relative;
   top: 2px;
@@ -1585,6 +1591,7 @@ ul.public-task-list li .completed-task-lists{
     display: inline-block;
     width: 100%;
     margin-left: 0;
+    display: inline-block;
   }
   
 }
