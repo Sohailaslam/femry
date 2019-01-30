@@ -578,12 +578,21 @@ ul.sortable li.add-task-box:first-child {
   background: #fbfbfb;
   height: 50px !important;
 }
-
 .add-task ul li textarea:nth-child(1){
   display: none !important;
 }
 .add-task ul li textarea:nth-child(2){
-  background: transparent !important;
+    border: none;
+    width: 100%;
+    resize: none;
+    line-height: 22px;
+    font-size: 14px;
+    overflow: hidden;
+    background: #fbfbfb;
+    height: 50px !important;
+    position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
 .add-task ul li textarea{
 /*  border: none;

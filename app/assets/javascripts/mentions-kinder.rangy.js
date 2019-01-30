@@ -306,7 +306,7 @@
       var autofocus, placeholder;
       this.$wrap = $('<div class="mentions-kinder-wrap"></div>');
       if (placeholder = this.$originalInput.attr('placeholder')) {
-      this.$editable = $('<textarea class="textarea-style task-form-control mentions-kinder" contenteditable="true" placeholder="' + placeholder + '"></textarea>');
+      this.$editable = $('<textarea class="mentions-kinder" contenteditable="true" placeholder="' + placeholder + '"></textarea>');
       }
       this.$editable.addClass("mentions-kinder-" + (this.multiline ? 'multiline' : 'singleline'));
       this.$editable.addClass(this.$originalInput.attr("class"));
