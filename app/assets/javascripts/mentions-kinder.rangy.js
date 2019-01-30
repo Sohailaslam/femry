@@ -305,7 +305,9 @@
     MentionsKinder.prototype._setupElements = function() {
       var autofocus, placeholder;
       this.$wrap = $('<div class="mentions-kinder-wrap"></div>');
-      this.$editable = $('<div class="textarea-style task-form-control mentions-kinder" contenteditable="true"></div>');
+      if (placeholder = this.$originalInput.attr('placeholder')) {
+      this.$editable = $('<textarea class="textarea-style task-form-control mentions-kinder" contenteditable="true" placeholder="' + placeholder + '"></textarea>');
+      }
       this.$editable.addClass("mentions-kinder-" + (this.multiline ? 'multiline' : 'singleline'));
       this.$editable.addClass(this.$originalInput.attr("class"));
       if (autofocus = this.$originalInput.attr('autofocus')) {
@@ -314,10 +316,10 @@
       if (this.$originalInput.val() !== '') {
         this.deserializeFromInput();
       }
-      if (placeholder = this.$originalInput.attr('placeholder')) {
-        this.$placeholder = $("<span class='placeholder'>" + placeholder + "</span>");
-        this.handlePlaceholder();
-      }
+      // if (placeholder = this.$originalInput.attr('placeholder')) {
+      //   this.$placeholder = $("<span class='placeholder'>" + placeholder + "</span>");
+      //   this.handlePlaceholder();
+      // }
       this.$wrap.insertAfter(this.$originalInput);
       this.$originalInput.appendTo(this.$wrap).addClass('mentions-kinder-hidden');
       this.$editable.appendTo(this.$wrap);

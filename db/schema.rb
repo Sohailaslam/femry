@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_26_185749) do
+ActiveRecord::Schema.define(version: 2018_12_11_090125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,11 +57,12 @@ ActiveRecord::Schema.define(version: 2018_11_26_185749) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "task_date"
+    t.datetime "task_date"
     t.integer "sort"
     t.boolean "status", default: false
     t.boolean "is_deleted", default: false
     t.bigint "tag_id"
+    t.datetime "completed_at"
     t.index ["tag_id"], name: "index_tasks_on_tag_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -92,9 +93,9 @@ ActiveRecord::Schema.define(version: 2018_11_26_185749) do
     t.datetime "streak_start"
     t.datetime "streak_end"
     t.boolean "public_task", default: true
-    t.datetime "last_renenwed"
     t.bigint "plan_id", default: 1
     t.datetime "last_renewed"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["plan_id"], name: "index_users_on_plan_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

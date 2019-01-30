@@ -5,6 +5,6 @@
 <%= puts "COMPLETEWD++++", completed_tasks.inspect %>
 <div class="progress-loader float-right ml-2" id="progress_loader_<%=key%>" data-animation="1" data-animationStep="5" data-percent="<%= completed_percentage(today_tasks, completed_tasks) %>"></div>
 
-<div class="float-right ml-2 mt-2">
+<div class="float-right ml-2 tasks_number">
   <small class="text-muted"><%= completed_status(today_tasks, completed_tasks) %></small>
 </div>

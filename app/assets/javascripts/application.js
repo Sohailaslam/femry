@@ -56,4 +56,16 @@ $(document).ready(function(){
       }
     }
   })
+// $("body").on('mouseover', 'a', function (e) {
+//     var $link = $(this),
+//         href = $link.attr('href') || $link.data("href");
+
+//     $link.off('click.chrome');
+//     $link.on('click.chrome', function () {
+//         window.location.href = href;
+//     })
+//     .attr('data-href', href) //keeps track of the href value
+//     .css({ cursor: 'pointer' })
+//     .removeAttr('href'); // <- this is what stops Chrome to display status bar
+// });
 });

@@ -2,15 +2,18 @@
     <% if value.class == Array %>
         <div class="<%= flash_class(key) %>"  style="transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <% value.each do |message| %>  
+            <% value.each do |message| %> 
                 <%= message %>
-                </br>
             <% end %>
         </div>
     <% else %>
         <div class="<%= flash_class(key) %>"  style="transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <%= value %>
+            <ul>
+                <li class="d-inine-block">
+                    <%= value %>
+                </li>
+            </ul>
         </div>
     <% end %>
 <% end %>

@@ -1,28 +1,28 @@
 <div id='tasks'>
-  <div class="row mt-2">
-    <div class="col-10 mb-2">
+  <div class="row mt-2 align-items-center">
+    <div class="col-9 mb-2">
       <% day = key.present? ? display_date(key, local_date(current_user.timezone), agent_type(request)) : 'Today' %>
       <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), agent_type(request))) : "<b>Today</b>".html_safe %></h4>
     </div>
-    <div class="mt-2 icon-style">
+    <div class="col-3 text-right">
       <% if index == 0 %>
-        <%= link_to root_path(date: "#{key - 1}"), class: 'left-padding', remote: true do %>
+        <%= link_to root_path(date: "#{key - 1}"), class: 'left-padding icon-style', remote: true do %>
           <i class="fa fa-chevron-left"></i>
         <% end %>
-        <%= link_to root_path(date: "#{key + 1}"), class: " ml-1", remote: true do %>
+        <%= link_to root_path(date: "#{key + 1}"), class: "icon-style ml-2", remote: true do %>
           <i class="fa fa-chevron-right"></i>
         <% end %>
       <% end %>  
 
       <% if index == 0 %>
-        <input type="text" id="daterangepicker" name="" class="daterange" value="", style="border:none; box-shadow:none; width:0;" readonly="true">
-        <label class="icon-style-calendar input-group-addon btn daterange-label" for="daterange">
+        <input type="text" id="daterangepicker" name="" class="daterange d-none" value="", readonly="true">
+        <label class="icon-style-calendar input-group-addon btn daterange-label icon-style" for="daterange">
            <i class="fa fa-calendar open-datetimepicker"></i>
         </label>
       <% end %>  
-    </div>
-    <div class="col-2 pull-right" id="progress_<%= key %>">
-      <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
+      <div class="d-inline-block align-middle" id="progress_<%= key %>">
+        <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
+      </div>
     </div>
   </div>  
   <div class="row">

@@ -82,16 +82,14 @@ body {
   height: 30px !important;
 }
 .icon-style {
-  position: absolute;
-  right: 121px;
-  width: 31px;
-  height: 20px;
+  text-decoration: none !important;
 }
 
 .icon-style a{
   text-decoration: none;
 }
 .icon-style .fa{
+  line-height: 30px !important;
   color: #b3afaf;
 }
 .icon-style a.disabled {
@@ -509,11 +507,10 @@ input[type="radio"] .styled:checked + label::after {
   z-index: 200;
 }
 .daterange-label {
-  position: absolute;
-  top: -8px;
-  right: -28px;
-  padding-left: 0;
+  margin-bottom: 0;
+  padding-top: 0;
   padding-right: 0;
+  padding-bottom: 0;
 }
 .add-task ul li .handle-sort i{
   color: #ddd;
@@ -573,21 +570,20 @@ ul.sortable li.add-task-box:first-child {
 }
 .textarea-style{
   border: none;
-  width: 98%;
+  width: 100%;
   resize: none;
   line-height: 22px;
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
-  min-height: 50px;
+  height: 50px !important;
 }
-.add-task ul li textarea{
-  border: none;
-  height: 0px;
-  width: 0px;
-  opacity: 0;
-  resize: none;
-  background: #fbfbfb;
+
+.add-task ul li textarea:nth-child(1){
+  display: none !important;
+}
+.add-task ul li textarea:nth-child(2){
+  background: transparent !important;
 }
 .add-task ul li textarea{
 /*  border: none;
@@ -782,7 +778,7 @@ cursor: pointer;
 }
 footer{
   background: #1F2532;
-    position: absolute;
+    position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
@@ -1256,7 +1252,6 @@ ul.public-task-list li .completed-task-lists{
   margin-left: -4px;
   padding-left: 31px;
   width: 100%;
-  word-break: break-all;
 }
 
 .explore-list li:hover{
@@ -1268,7 +1263,7 @@ textarea, input.text,input[type="text"],input[type="submit"],input[type="button"
 }
 .explore-list li span.explore-time{
   color: #b5b5b5;
-  padding: 0 2x;
+  padding: 0 2px;
   font-size: 12px;
   margin-left: 1px;
   display: inline-block;
@@ -1593,5 +1588,11 @@ textarea, input.text,input[type="text"],input[type="submit"],input[type="button"
     margin-left: 0;
     display: inline-block;
   }
-  
+}
+#avatar_section{
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+.tasks_number{
+  line-height: 30px;
 }
