@@ -5,4 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(email: "test@react.com", password: "test123")
+# User.create!(email: "test@react.com", password: "test123")
+Plan.find_or_create_by(title: "Free", total_tasks: 100)
+Plan.find_or_create_by(title: "Premium", total_tasks: 1000000)

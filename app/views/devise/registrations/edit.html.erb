@@ -1,11 +1,12 @@
-<div class="row alert-height" id="profile_alert_box"></div>
+<div class="row alert-height" id="profile_alert_box">
+</div>
 
 <div class="row mb-4">
   <div class="col-md-3 col-lg-2 p-0 mobile-left-space mb-3">
     <div class="profile-links">
       <h6>SETTINGS</h6>
       <ul>
-        <li class="active">
+        <li class="<%= params[:section].eql?('billing') ? '' : 'active' %>">
           <a href="javascript:void(0);" id="profile_link">Profile</a>
         </li>
         <li>
@@ -15,51 +16,45 @@
           <a href="javascript:void(0);" id="password_link">Password</a>
         </li>
         <li>
-          <a href="#">Email Notifications</a>
+          <a href="javascript:void(0);" id="notifications_link">Email Notifications</a>
         </li>
-        <li>
-          <a href="#">Billing & Usage</a>
+        <li class="<%= params[:section].eql?('billing') ? 'active' : '' %>">
+          <a href="javascript:void(0);" id="billing_info">Billing & Usage</a>
         </li>
       </ul>
     </div>
   </div>
 
   <div class="col-md-8 col-lg-7 login profile-container">
-    <div class="row mt-3 mb-4" id="profile">
+    <div class="row mt-3 mb-4 <%= params[:section].eql?('billing') ? 'd-none' : '' %>" id="profile">
       <div class="col-md-12 login profile-container">
         <h5><b>Profile</b></h5>
         <div class="row form-setting">
           <div class="col-md-12">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true, :multipart => true }, remote: true) do |f| %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name, noflash: true), html: { method: :put, :multipart => true }, remote: true) do |f| %>
               <div class="form-group mt-4 image-upload pt-2 pb-2 pl-3 pr-3">
-                <span id="avatar_section">
-                  <%= render partial: "users/avatar_section" %>
-                </span>
+                <div id="avatar_section" class="avatar-circle mr-2" style="background:url(<%= current_user.avatar.url(:thumb).to_s %>) center center;">
+                </div>
+               
                 <small>If you'd like to customize your avatar image, you can do it</small>
-                <label for="file-input">
-                  <span>
-                    <small class="text-primary">here.</small>                
-                  </span>
+                <label class="file-name" for="file-input">
+                     <small class="text-primary">here.</small>                
                 </label>
                 <%= f.file_field :avatar, class: 'form-control', id: "file-input" %>
               </div>
-              
-
-              <!-- <div class="form-group mt-4">
-                <%#= f.label :avatar %>
-                <%#= f.file_field :avatar, class: 'form-control' %>
-              </div> -->
+            <% end %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true }, remote: true) do |f| %>
               <div class="form-group mt-4">
                 <%= f.label :first_name do %>
                   First Name <span class="text-danger">(required)</span>
                 <% end %>
-                <%= f.text_field :first_name, autofocus: true, required: true, class: 'form-control' %>
+                <%= f.text_field :first_name, required: true, class: 'form-control' %>
               </div>
               <div class="form-group mt-4">
                 <%= f.label :last_name do %>
-                  Last Name <span class="text-muted text-optional">(optional)</span>
+                  Last Name <span class="text-danger">(required)</span>
                 <% end %>
-                <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                <%= f.text_field :last_name, required: true, class: 'form-control' %>
               </div>
               <div class="form-group mt-4">
                 <%= f.label :timezone do %>
@@ -69,7 +64,7 @@
               
               </div>
               <div class="form-group mt-4">
-                <%= f.label :last_name do %>
+                <%= f.label :public_task do %>
                   Make Tasks Public
                 <% end %>
                 <%= f.check_box :public_task, { class: 'lcs_check lcs_tt1', autocomplete: true }, true, false %>
@@ -89,7 +84,7 @@
         <h5><b>Email</b></h5>
         <div class="row form-setting">
           <div class="col-md-12">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true }, remote: true) do |f| %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, remote: true) do |f| %>
               <div class="form-group mt-4">
                 <%= f.label :email do %>
                   Email <span class="text-danger">(required)</span>
@@ -111,24 +106,24 @@
         <h5><b>Password</b></h5>
         <div class="row form-setting">
           <div class="col-md-12">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, "data-parsley-validate" => true }, remote: true) do |f| %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, remote: true) do |f| %>
               
               <div class="form-group mt-4">
                 <%= f.label :current_password %>
-                <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control' %>
+                <%= f.password_field :current_password, autocomplete: "off", class: "form-control", value: "", required: true %>
               </div>
 
               <div class="form-group mt-4">
                 <%= f.label :password do %>
-                  Password <span class="text-danger">(required)</span>
+                  New Password <span class="text-danger">(required)</span>
                 <% end %>
-                <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control' %>
+                <%= f.password_field :password, autocomplete: "off", class: "form-control", value: "", required: true %>
               </div>
               <div class="form-group mt-4">
                 <%= f.label :password_confirmation do %>
-                  Password Confirmation <span class="text-danger">(required)</span>
+                  Confirm New Password <span class="text-danger">(required)</span>
                 <% end %>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control' %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", value: "", required: true %>
               </div>
               <div class="form-group mt-4">
                 <div class="text-right">
@@ -140,10 +135,24 @@
         </div>
       </div>
     </div>
+    <div class="row mt-3 mb-4 d-none" id="notifications">
+      <div class="col-md-12 login profile-container text-center">
+        <h1><b>Coming Soon!</b></h1>
+      </div>
+    </div>
+    <div class="row mt-3 mb-4 <%= params[:section].eql?('billing') ? '' : 'd-none' %>" id="billing">
+      <div class="col-md-12 login profile-container text-center">
+        <h1><b>Coming Soon!</b></h1>
+      </div>
+    </div>
   </div>
   <div class="col-md-2">
   </div>
 </div>
 <script type="text/javascript">
   $('input').lc_switch();
+  $(document).bind('keyup mouseup change mouseover click', function() {
+  $(".alert-danger").fadeOut(3000);
+  });
+  $(".alert-danger").fadeOut(3000);
 </script>

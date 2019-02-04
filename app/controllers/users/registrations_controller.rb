@@ -14,12 +14,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
+    resource.last_renewed = DateTime.current
     resource.save
     yield resource if block_given?
     if resource.persisted?
       aws_sign_up_resp = resource.add_to_aws_cognito(params[:user][:password])
       if !aws_sign_up_resp.user_confirmed
-        redirect_to aws_auth_path(resource.id)
+        session[:aws_auth_user_id] = resource.id
+        redirect_to aws_auth_path #(resource.id)
       else
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up
@@ -46,27 +48,46 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   # We need to use a copy of the resource because we don't want to change
   # the current user in place.
+
+  def update_password
+    @user = current_user
+    if @user.update_with_password(user_params)
+      # Sign in the user by passing validation in case their password changed
+      bypass_sign_in(@user)
+      redirect_to root_path
+    else
+      render "edit"
+    end
+  end
+
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-    # prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    resource_updated = update_resource(resource, account_update_params)
-    yield resource if block_given?
-    if resource_updated
-      # if is_flashing_format?
-      #   # flash_key = :updated
-      # end
-      resource.aws_update_firstname_and_last_name(params[:user][:first_name], params[:user][:last_name])
-      #set_flash_message :notice, :updated
-      bypass_sign_in resource, scope: resource_name
-      # respond_with resource, location: after_update_path_for(resource)
+    if params[:user][:password].present?
+      if resource.update_with_password(user_params) && resource.aws_update_password(params[:user][:current_password], params[:user][:password])   
+        bypass_sign_in(resource)
+      else
+        flash[:alert] = resource.errors.full_messages
+      end 
     else
-      if resource.errors.messages.keys.map(&:to_s).include? "password"
-        set_flash_message :alert, "Password must contain"
+      resource_updated = update_resource(resource, account_update_params)
+      yield resource if block_given?
+      if resource_updated
+        # if is_flashing_format?
+        #   # flash_key = :updated
+        # end
+        resource.aws_update_firstname_and_last_name(params[:user][:first_name], params[:user][:last_name])
+        #set_flash_message :notice, :updated
+        bypass_sign_in resource, scope: resource_name
+        # respond_with resource, location: after_update_path_for(resource)
+      else
+        if resource.errors.present? && resource.errors.full_messages.present?
+          flash[:alert] = resource.errors.full_messages
+        end
+        clean_up_passwords resource
+        set_minimum_password_length
+        # respond_with resource
       end
-      clean_up_passwords resource
-      set_minimum_password_length
-      # respond_with resource
-    end
+    end  
   end
 
   # DELETE /resource
@@ -148,6 +169,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def account_update_params
     params.require(:user).permit(:first_name, :last_name, :public_task, :email, :timezone, :password, :password_confirmation, :avatar)
+  end
+
+  def user_params
+    params[:user].permit(:current_password, :password, :password_confirmation)
   end
 
   def translation_scope

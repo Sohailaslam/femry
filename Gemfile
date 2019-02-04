@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
+gem 'rails-ujs'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
@@ -23,7 +24,14 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
+gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-imageoptimizer'
+
+gem "loofah", ">= 2.2.3"
+gem "rack", ">= 2.0.6"
+gem 'rmagick'
 gem 'aws-sdk', '~> 3'
+gem 'fog-aws'
 gem "figaro"
 gem "cocoon"
 gem 'jquery-ui-rails'
@@ -44,7 +52,7 @@ gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+# gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

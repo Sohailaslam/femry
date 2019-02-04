@@ -1,55 +1,70 @@
-
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-12 col-lg-8">
+    <%# debugger %>
     <ul class="read-more-wrap list-style-none public-task-list">
       <li>
         <div id="public_tasks">
           <% @grouped_tasks.each_with_index do |key, index| %>
-            <div class="completed-task-lists" id="completed_task">
+            <div class="completed-task-lists mb-4" id="completed_task">
               <div class="row mt-2">
                 <div class="col-lg-12">
-                  <h4 class="mb-3">
-                    <b>Explore</b>
-                    <%= display_date(key[0], local_date(Time.zone.name)) %>
+                  <h4 class="mb-3"> 
+                    
+                    <%= display_date(key[0], local_date(Time.zone.name), agent_type(request)) %>
                   </h4>
                 </div>
               </div>
-
               <% key[1].group_by(&:user_id).each do |data| %>
                 <% task_user = User.find_by(id: data[0]) %>
-                <div class="add-task public-feed-task pr-3 pl-3 pt-0 pb-0 mb-3">
+                <div class="add-task public-feed-task pr-3 pl-3 pt-0 pb-0 mb-2">
                   <div class="mt-2">
                     <div class="public-feed">
                       <div class="profile-img">
                         <%= show_avatar(task_user) %>
                       </div>
 
-                      <div class="profile-name">
-                        <%= "#{task_user.first_name} #{task_user.last_name}" %>
+                      <div class="profile-info">
+                        <div class="profile-name">
+                          <%= "#{task_user.first_name} #{task_user.last_name}" %>
+                        </div>
+
+                        <div class="public-tags">
+                          <span>
+                            <%= task_user.tasks.active_tasks.completed_tasks.where.not(title: nil).count %>
+                            Tasks completed
+                          </span>
+                          <span>
+                            <%= task_user.streak %> 
+                            <%= task_user.streak.to_i > 1 ? 'days' : 'day' %>
+                            streak
+                          </span>
+                        </div>
                       </div>
 
-                      <div class="profile-tags">
-                        <span>
-                          <%= task_user.tasks.active_tasks.completed_tasks.count %>
-                          Tasks completed
-                        </span>
-                        <span>
-                          <%= task_user.streak %> 
-                          day streak
-                        </span>
-                      </div>
                     </div>
                   </div>
 
                   <ul class="explore-list">
-                    <% data[1].each do |task| %>
+                    <% data[1].each do |task| %> 
                       <li class="add-task-box bt-1">
-                        <i class="fa fa-check-square"></i>
-                        <%= task.title %>
-                        <span class="explore-time">
-                          <%= "#{time_ago_in_words(task.updated_at)} ago" %>
-                        </span>
+                        <i class="fa fa-check-square" style="width: 25px; float: left; margin-right: 0;"></i>
+                        <div class="public-title">
+                          <% if task.title.include?("[#") %>
+                            <% title_arr =  task.title.split(" ") %>
+                            <%= title_arr.take(title_arr.size - 1).join(" ") %>
+                          <% else %>
+                            <%= task.title %>
+                          <% end %>  
+                          <% if task.tag.present? %>
+                            <span class="label label-default">#<%= task.tag.title %></span>
+                          <% end %>  
+                          <span class="explore-time">
+                            <% if task.completed_at.present? %>
+                            <%= "#{time_ago_in_words(task.completed_at)} ago" %>
+                            <% end %>
+                          </span>
+                        </div>
                       </li>
                     <% end %>
                   </ul>

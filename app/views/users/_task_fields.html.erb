@@ -1,3 +1,4 @@
+<% if false %>
 <li class="nested-fields ui-state-default ui-sortable-handle add-task-box bb-1" id="task_<%= f.object.id %>" data-id="<%= f.object.id %>" data-pos="<%= f.object.sort %>">
   <div class="checkbox checkbox-success pull-left">
 		<%= f.check_box :status, id: "check#{f.object.id}", class: 'styled check-box'  %>
@@ -5,7 +6,7 @@
       <%= f.text_area :title, class: 'm-0 title', placeholder: 'Enter a task here...' %>
     </label>
   </div>
-  <%= f.hidden_field :task_date, value: f.object.task_date.present? ? f.object.task_date : Time.now.in_time_zone(@user.timezone).to_date %>
+  <%= f.hidden_field :task_date, value: f.object.task_date.present? ? f.object.task_date : Time.current.in_time_zone(@user.get_timezone).to_date %>
   <div class="pull-right icon-fa close-task">
     <%= f.hidden_field :_destroy, value: false %>
     <% if @user.tasks.count > 1 %>
@@ -15,4 +16,5 @@
     <% end %>
   </div>
 </li>
+<% end %>
 

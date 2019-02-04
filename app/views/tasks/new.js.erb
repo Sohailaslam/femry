@@ -1,8 +1,8 @@
-<% today_tasks = today_task(nil, @task.task_date, current_user) %>
+<% today_tasks = today_task(nil, @task.task_date_converted, current_user) %>
 <% completed_tasks = today_tasks.completed_tasks %>
-$('#progress_<%= @task.task_date %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
-<%= puts "CUREENTTTTTTTTTT", current_user.tasks.active_tasks.current_tasks(@task.task_date).count %>
-$("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
+$('#progress_<%= @task.task_date_converted %>').html('<%= escape_javascript(render(:partial => "todos/progress_container", :locals => {f: nil, key: @task.task_date_converted, user: current_user, today_tasks: today_tasks, completed_tasks: completed_tasks  }))%>');
+$('#navbar_menu').html('<%= escape_javascript(render(:partial => "shared/navbar_menu" ))%>');
+$("#progress_loader_<%= @task.task_date_converted %>").empty().removeData().attr('data-percent', '<%= completed_percentage(today_tasks, completed_tasks) %>').circliful({
     animationStep: 5,
     foregroundBorderWidth: 70,
     backgroundBorderWidth: 70,
@@ -11,21 +11,50 @@ $("#progress_loader_<%= @task.task_date %>").empty().removeData().attr('data-per
     noPercentageSign: true,
     fontColor: '#fff'
 });
-$('#progress_loader_<%= @task.task_date %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
+$('#progress_loader_<%= @task.task_date_converted %>').children("svg").eq(0).children("circle").eq(1).css("stroke-dasharray", '<%= completed_percentage(today_tasks, completed_tasks)*3.6 %>' + ", 20000");
+<% if params[:prev_li_id].present? %>
+  task_id = '<%= params[:prev_li_id] %>';
+  partial_to_be_rendered = '<%= escape_javascript(render(:partial => "todos/task", :locals => {key: @task.task_date_converted, task: @task }))%>';
+  $(partial_to_be_rendered).insertAfter($("li#"+task_id));
+  updated_order = []
+  set_positions();
+  $('.ui-state-default').each(function(i){
+    updated_order.push({ id: $(this).data("id"), position: i+1 });
+  });
 
+  $.ajax({
+    type: "PUT",
+    url: '/tasks/sort',
+    data: { order: updated_order }
+  });
+<% else %>
+  $('#sortable<%= @task.task_date_converted %>').append('<%= escape_javascript(render(:partial => "todos/task", :locals => {key: @task.task_date_converted, task: @task }))%>');
+<% end %>  
+// $('#sortable<%= @task.task_date %>').children('li:visible').last().find('textarea').focus();
 
-$('#sortable<%= @task.task_date %>').append('<%= escape_javascript(render(:partial => "todos/task", :locals => {key: @task.task_date, task: @task }))%>');
-$('#sortable<%= @task.task_date %>').children('li:visible').last().find('textarea').focus();
-
-if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date %>').children('li:visible').length == 1) {
-  $('#thoughts<%= @task.task_date %>').children('li:visible').last().removeClass('bt-0')
-  $('#thoughts<%= @task.task_date %>').children('li:visible').last().css('border-top', '1px solid #ddd')
-  $('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
+if ($('#sortable<%= @task.task_date_converted %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date_converted %>').children('li:visible').length == 1) {
+  $('#thoughts<%= @task.task_date_converted %>').children('li:visible').last().removeClass('bt-0')
+  $('#thoughts<%= @task.task_date_converted %>').children('li:visible').last().css('border-top', '1px solid #ddd')
+  $('#sortable<%= @task.task_date_converted %>').children('li:visible').last().removeClass('bt-1')
 }
 
-if ($('#sortable<%= @task.task_date %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date %>').children('li:visible').length == 0) {
-	$('#sortable<%= @task.task_date %>').children('li:visible').last().removeClass('bt-1')
+if ($('#sortable<%= @task.task_date_converted %>').children('li:visible').length == 1 && $('#thoughts<%= @task.task_date_converted %>').children('li:visible').length == 0) {
+  $('#sortable<%= @task.task_date_converted %>').children('li:visible').last().removeClass('bt-1')
 }
+var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
+    select2Options: {
+      tags: JSON.parse($('#rails_tags').attr('data-tags'))
+    }
+  });
+initializeAutocompleter('<%= @task.id %>', tagAutocompleter);
+<% if current_user.tasks.active_tasks.count >= current_user.plan.total_tasks %>
+  $('a#add_task').each(function(data, index){
+    $(this).addClass('qouta_exceeded');
+  });
+<% end %>
+// document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[].focus();
 
-console.log('clicked')
+$('#task_<%= @task.id %>').find('textarea.title').focus();
 
+// document.getElementById("task_<%= @task.id %>").getElementsByClassName('title')[1].attr("tabindex",-1).focus().blur().focus();
+// .focus();

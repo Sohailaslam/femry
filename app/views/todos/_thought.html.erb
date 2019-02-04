@@ -1,4 +1,4 @@
-<li class='nested-fields thoughts add-thougt-box' id="thought_<%= thought.id %>" data-id="<%= thought.id %>">
+<li class="nested-fields thoughts add-thougt-box <%= current_user.active_tasks_in_date_count(key) <= 0 ? 'bt-0' : '' %>" id="thought_<%= thought.id %>" data-id="<%= thought.id %>">
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
@@ -11,7 +11,8 @@
             <%#= thought.title.present? ? thought.title.html_safe : '' %>
           </div> -->
         </div>
-        <%= hidden_field_tag :thought_title, thought.title, id: "thought_title_#{key}" %>
+        
+        <%= hidden_field_tag :thought_title, thought.title, id: "thought_title_#{key}", data: { behavior: "trix-editor" } %>
         <%#= text_area_tag "thought_title", thought.title, class: 'm-0 thought-area form-control editor', id: "myeditor_#{key}", 'data-id': key, contenteditable: "true" %>
       </div>
       <%= hidden_field_tag :thought_date, thought.thought_date %>

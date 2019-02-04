@@ -1,29 +1,44 @@
 <div id='tasks'>
-  <div class="row mt-2">
-    <div class="col-10">
-      <% day = key.present? ? display_date(key, local_date(current_user.timezone)) : 'Today' %>
-      <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone))) : "<b>Today</b>".html_safe %></h4>
+  <div class="row mt-2 align-items-center">
+    <div class="col-9 mb-2">
+      <% day = key.present? ? display_date(key, local_date(current_user.timezone), agent_type(request)) : 'Today' %>
+      <h4 class="mb-2"><%= key.present? ? (display_date(key, local_date(current_user.timezone), agent_type(request))) : "<b>Today</b>".html_safe %></h4>
     </div>
-    <div class="col-2 mb-2" id="progress_<%= key %>">
-      <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
+    <div class="col-3 text-right">
+      <% if index == 0 %>
+        <%= link_to root_path(date: "#{key - 1}"), class: 'left-padding icon-style', remote: true do %>
+          <i class="fa fa-chevron-left"></i>
+        <% end %>
+        <%= link_to root_path(date: "#{key + 1}"), class: "icon-style ml-2", remote: true do %>
+          <i class="fa fa-chevron-right"></i>
+        <% end %>
+      <% end %>  
+
+      <% if index == 0 %>
+        <input type="text" id="daterangepicker" name="" class="daterange" value="" style="border:none; box-shadow:none; width:0;" readonly="true">
+        <label class="icon-style-calendar input-group-addon btn daterange-label icon-style" for="daterange">
+           <i class="fa fa-calendar open-datetimepicker"></i>
+        </label>
+      <% end %>  
+      <div class="d-inline-block align-middle" id="progress_<%= key %>">
+        <%= render partial: 'progress_container', locals: { f: current_user, key: key, user: nil } %>
+      </div>
     </div>
-  
   </div>  
   <div class="row">
     <div class="col-md-12">     
       <div class="<%= current_user.tasks.active_tasks.present? ? 'add-task' : 'd-none' %> pr-4 pl-3 pt-0 pb-0 todos-list">           
         <ul id="sortable<%= key %>" class="sortable ui-sortable">
-          <% if key == display_date(key, local_date(current_user.timezone)) && current_user.tasks.active_tasks.where(task_date: key).blank? %>
+          <% if key == display_date(key, local_date(current_user.timezone), 'B') && current_user.tasks.active_tasks.where("DATE(task_date = ?)", key).blank? %>
             <p id="no_task_text">No task to show</p>
           <% else %>
-            <% current_user.tasks.active_tasks.order("task_date DESC").order(:sort).each do |task| %>
+            <% current_user.tasks.active_tasks.order("DATE(task_date) DESC").order(:sort).each do |task| %>
               <%= render 'task', :task => task if key == task.task_date.to_date %>
             <% end %>
           <% end %>
         </ul>
         <div id='thoughts' class="thoughts_<%= key %>">  
           <ul id="thoughts<%=key%>" 'data-id'=<%= key %>>
-
             <% current_user.thoughts.active_thoughts.order("thought_date DESC").each do |thought| %>
               <%= render 'thought', :thought => thought, :key => key  if key == thought.thought_date.to_date %>
             <% end %>     
@@ -34,16 +49,15 @@
   </div>
 </div>
 
-<div class="row mb-5">
+<div class="row mb-3">
   <div class="col-md-12">
     <% @key = key %>
-    
-    <%= link_to 'Add Task', new_task_path(date: key), remote: true, class: "btn btn-success mt-3 task_#{key}", data: { disable_with: "Please wait..." } %>
-    
+    <%= link_to 'Add Task', new_task_path(date: key), onclick: "return triggerMe(event, this);", remote: true, class: "btn btn-success mt-3 task_#{key} #{current_user.tasks.active_tasks.count >= current_user.plan.total_tasks ? 'qouta_exceeded' : '' }", id: 'add_task', data: { disable_with: "Please wait...", date: key, id: '' }  %>    
     <%= link_to 'Add Thought', new_thought_path(date: key), remote: true, class: "add-thoughts btn btn-outline-dark mt-3 ant_#{key} #{current_user.thoughts.active_thoughts.find_by_thought_date(key).present? ? 'd-none': ''}", id: 'add_new_thoughts', 'data-id' => key %>
     <%= link_to 'Save Thought', 'javascript:void(0);', class: "save-thoughts btn btn-outline-dark mt-3 d-none st_#{key}", id: 'save_thoughts', 'data-id' => key %>
   </div>
 </div>
+<div id="rails_tags" data-tags="<%= current_user.tags.present? ? current_user.tags.map(&:title) : [] %>"></div>
 
 <script type="text/javascript">
 
@@ -56,7 +70,6 @@
   }
 
   ready = function(){
-    
     set_positions();
     $( ".sortable" ).sortable({
       axis: "y",
@@ -85,6 +98,30 @@
         url: '/tasks/sort',
         data: { order: updated_order }
       });
+    });
+   
+    $('.open-datetimepicker').click(function(event){
+      $(this).closest('label').prev().daterangepicker({
+        singleDatePicker: true,
+        autoApply: true,
+        autoUpdateInput: true,
+        startDate: moment().format("YYYY-MM-DD"),
+        endDate: moment().format("YYYY-MM-DD"),
+        locale: {
+          "format": "YYYY-MM-DD",
+          "separator": "/"
+        },
+        onSelect: function(dateText, inst) {
+        }
+      }).on("apply.daterangepicker", function(ev) {
+        $.ajax({
+          type: "GET",
+          url: '/?date='+$(this).val(),
+          data: {},
+          success: (function(result) {   
+          })
+        });
+      }).focus();
     });
   }
 

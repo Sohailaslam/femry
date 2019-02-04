@@ -1,29 +1,50 @@
 <% keys = get_date_keys(@grouped_tasks, local_date(current_user.timezone)) %>
 <div class="row">
   <div class="col-md-2"></div>  
-  <div class="col-md-12 col-lg-8">
-    <% if current_user.tasks.active_tasks.present? %>
-      <ul class="read-more-wrap list-style-none">
-        <% keys.each_with_index do |key, index| %>
-          <% tasks_count = @grouped_tasks.select{|c| c[0] == key} %>
-          <% tasks_count = tasks_count.present? ? tasks_count.flatten(1).last.count : 0 %>
-          <li class="<%=  index > 14 ? 'read-more-target' : '' %>">
-            <%= render partial: 'day_todos', locals: {key: key} %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-        <%= render partial: 'day_todos', locals: {key: Time.now.in_time_zone(current_user.timezone).to_date, task: nil} %>
-    <% end %>
-    <% if keys.present? && keys.count > 14 %>
-      <div class="loader d-none" id="infinite-scrolling" data-page="<%= params[:page].present? ? params[:page].to_i + 1 : 2 %>">Loading...
-      </div>
-    <% end %>
-
+  <div class="col-md-12 col-lg-8" id="todos_container">
+    <%= render partial: 'todos', locals: {keys: keys} %>
   </div>  
 </div>
 
 
 <div class="alert alert-success undo-alert d-none">
   <i class="fa fa-check text-success"></i> The <span id='to_type'>to-do</span> is in trash <a href="javascript:void(0);" id="undo">Undo</a>
+</div>
+
+
+<div class="modal fade show quota_container" id="qouta_exceeded_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="mt-3 mb-4"><b>You've reached your monthly qouta</b></h5>
+        <p>You've used all your tasks with your current free plan</p>
+        <p>If you wish to continue using Femry we recommend switching to paid plan</p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="border-free border-free-center p-2 pl-3 pr-3">
+              <div class="row">
+              <div class="col-md-4">
+                <div class="text-success">
+                  Free plan
+                </div>  
+                100 / 100 tasks
+              </div>
+              <div class="col-md-8 text-right mt-21 mt21-0">
+                <% days = distance_of_time_in_words(Date.strptime((current_user.last_renewed.present? ? current_user.last_renewed + 30.days : current_user.created_at).strftime("%m/%d/%Y"), "%m/%d/%Y"), Date.current) %>
+                Monthly usage resets in <%= days.eql?("about 1 month") ? "30 days" : days %>
+              </div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Upgrade my account', edit_user_registration_path(section: 'billing'), class: 'btn btn-large btn-success btn-block' %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,5 @@
 <div class="height">
   <div class="row">
-  <div class="col-md-2"></div>
     <div class="col-md-8">
       <h3 class="mb-1 mt-5">
         Total Users
@@ -8,21 +7,23 @@
       </h3>
     </div>
   </div>
-  <% @users.present? &&  @users.each do |user| %>
-    <div class="row mt-2">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div class="border-bottom">
-          <h4 class="mb-0"><%= user.first_name %></h4>
-          <a href="#" class="text-muted"><%= user.email %></a>
-          <div class="mb-3"></div>
-          <% user.tasks.present? && user.tasks.each do |task| %>
-            <p class="mb-1"><i class="fa fa-check-square <%= task.status? ? 'text-success' : ''%>"></i> <%= task.title %></p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>  
+  <table class="table mt-3 admin-users-list table-responsive">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Task / Streak </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.present? &&  @users.each_with_index do |user, index| %>
+        <tr class="text-center" id="user_<%= user.id %>">
+          <%= render partial: 'user', locals: { user: user } %>          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 

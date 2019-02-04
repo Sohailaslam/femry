@@ -1,0 +1,30 @@
+<div class="task-details space-left">
+  <div class="count-number">
+    <div class="float-left">
+      Task <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom" title="Number of task included in your plan for this billing period"></i>
+    </div>
+    <div class="float-right">
+      <% if current_user.is_free? %>
+        <%= current_user.tasks.active_tasks.count %>
+        /
+        100
+      <% else %>
+        Unlimited Tasks
+      <% end %>  
+    </div>
+  </div>
+</div>
+<div class="space-left width-100">
+  <div class="progress" style="height: 5px;">
+    <div class="progress-bar" role="progressbar" style="width: <%= current_user.tasks.active_tasks.count %>%;" aria-valuenow="<%= current_user.is_free? ? current_user.tasks.active_tasks.count : 2 %>" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
+<% if current_user.is_free? %>
+  <div class="space-left pt-2">
+    <small>
+      Monthly usage resets in
+      <% days = distance_of_time_in_words(Date.strptime((current_user.last_renewed.present? ? current_user.last_renewed + 30.days : current_user.created_at).strftime("%m/%d/%Y"), "%m/%d/%Y"), Date.current) %>
+      <%= days.eql?("about 1 month") ? "30 days" : days %>
+    </small>
+  </div>
+<% end %>

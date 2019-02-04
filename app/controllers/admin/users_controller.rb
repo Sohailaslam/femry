@@ -10,6 +10,10 @@ class Admin::UsersController < Admin::DashboardController
 		end
 	end
 
+	def make_premium
+		@user.update_attributes(plan_id: User::PREMIUM)
+	end
+
 	private
 	def set_user
 		@user = User.find(params[:id])

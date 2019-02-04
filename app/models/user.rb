@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
   # attr_accessible :first_name, :last_name, :tasks_attributes
   has_many :tasks, dependent: :destroy
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
@@ -11,11 +12,28 @@ class User < ApplicationRecord
   has_many :thoughts, dependent: :destroy
   accepts_nested_attributes_for :thoughts, reject_if: :all_blank, allow_destroy: true
 
-  has_one_attached :avatar
+  has_many :tags, dependent: :destroy
+
+  # has_one_attached :avatar
+
   
+  belongs_to :plan, optional: true
+
+
+  FREE = 1
+  PREMIUM = 2
+
+  def is_free?
+    self.plan_id == FREE
+  end
+
+  def is_premium?
+    self.plan_id == PREMIUM
+  end
+
   def incomplete_tasks
-    incomplete_tasks = tasks.where(status: 0).where.not(task_date: Time.now.in_time_zone(self.timezone).to_date)
-    incomplete_tasks.map{|task| task.update_attributes(task_date: Time.now.in_time_zone(self.timezone).to_date)} if incomplete_tasks.present?
+    incomplete_tasks = tasks.where(status: 0).where.not("Date(task_date) = ?", Time.current.in_time_zone(self.get_timezone).to_date)
+    incomplete_tasks.map{|task| task.update_attributes(task_date: Time.current.in_time_zone(self.get_timezone).to_date)} if incomplete_tasks.present?
   end
 
   def add_to_aws_cognito(password)
@@ -45,15 +63,7 @@ class User < ApplicationRecord
 
   def authenticate_with_aws password
     client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
-    resp = client.admin_initiate_auth({
-      user_pool_id: ENV["AWS_COGNITO_USER_POOL_ID"],
-      client_id: ENV["AWS_COGNITO_CLIENT_ID"],
-      auth_flow: "ADMIN_NO_SRP_AUTH",
-      auth_parameters: {
-        "USERNAME" => self.email,
-        "PASSWORD" => password
-      },
-    })
+    resp = client.admin_initiate_auth({  user_pool_id: ENV["AWS_COGNITO_USER_POOL_ID"], client_id: ENV["AWS_COGNITO_CLIENT_ID"], auth_flow: "ADMIN_NO_SRP_AUTH",  auth_parameters: {  "USERNAME" => self.email,   "PASSWORD" => password  },})
     resp
   end
 
@@ -78,6 +88,18 @@ class User < ApplicationRecord
     end
   end
 
+  def aws_update_password(current_password, password)
+    client = Aws::CognitoIdentityProvider::Client.new(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"])
+    begin
+      auth_resp = client.initiate_auth({  auth_flow: "USER_PASSWORD_AUTH", auth_parameters: { "USERNAME" => self.email,"PASSWORD" => current_password },  client_id: ENV["AWS_COGNITO_CLIENT_ID"]})
+      resp = client.change_password({ previous_password: current_password, proposed_password: password, access_token: auth_resp.authentication_result.access_token })
+    rescue
+      exception = StandardError.new("No Results Found")
+      exception.set_backtrace(caller)
+      raise exception
+    end
+  end
+
   def delete_inactive_todos
     tasks.deleted_tasks.destroy_all
     thoughts.deleted_thoughts.destroy_all
@@ -93,5 +115,13 @@ class User < ApplicationRecord
     else
       0
     end
+  end
+
+  def active_tasks_in_date_count(date)
+    self.tasks.active_tasks.where("Date(task_date) = ?", date).count
+  end
+
+  def get_timezone
+    self.timezone.present? ? self.timezone : Time.zone.name
   end
 end

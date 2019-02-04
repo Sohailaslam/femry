@@ -28,10 +28,11 @@
 }
 
 .svg-container {
-    width: 40%;
+    width: 30px;
     margin: 0 auto;
     overflow: visible;
     position: relative;
+    margin-right: -3px;
 }
 
 svg .icon {

@@ -1,0 +1,29 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle btn btn-sm btn-outline-dark profile-image" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  	<%= show_avatar(current_user) %>
+  </a>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+  	<div class="space-left">
+      <% if current_user.is_free? %>
+        <span class="btn btn-secondary btn-disabled btn-sm mr-2">FREE PLAN</span>
+        <%= link_to 'Upgrade', edit_user_registration_path(section: 'billing'), class: 'upgrade-btn' %>
+      <% else %>
+    		<span class="btn btn-secondary btn-disabled btn-sm mr-2">Premium</span>
+      <% end %>  
+  	</div>
+    <div class="dropdown-divider mt-3"></div>
+    <div id="navbar_menu">
+      
+      <%= render partial: 'shared/navbar_menu'%>
+    	
+    </div>  
+  	<div class="dropdown-divider mt-2 mb-0"></div>
+  	<%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+  		<i class="fa fa-gear mr-2"></i>Settings
+  	<% end %>
+
+  	<%= link_to destroy_user_session_path, class: 'dropdown-item', method: :delete do %>
+    	<i class="fa fa-power-off mr-2"></i>Log out
+    <% end %>
+  </div>
+</li>
