@@ -793,6 +793,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-ujs (0.1.0)
+      railties (>= 3.1)
     rails_sortable (1.2.1)
     railties (5.2.1)
       actionpack (= 5.2.1)
@@ -895,6 +897,7 @@ DEPENDENCIES
   pg (~> 0.18.4)
   puma (~> 3.11)
   rails (~> 5.2.1)
+  rails-ujs
   rails_sortable
   remotipart (~> 1.2)
   rmagick

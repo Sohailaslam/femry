@@ -1,4 +1,5 @@
-<div class="row alert-height" id="profile_alert_box"></div>
+<div class="row alert-height" id="profile_alert_box">
+</div>
 
 <div class="row mb-4">
   <div class="col-md-3 col-lg-2 p-0 mobile-left-space mb-3">
@@ -47,13 +48,13 @@
                 <%= f.label :first_name do %>
                   First Name <span class="text-danger">(required)</span>
                 <% end %>
-                <%= f.text_field :first_name, autofocus: true, required: true, class: 'form-control' %>
+                <%= f.text_field :first_name, required: true, class: 'form-control' %>
               </div>
               <div class="form-group mt-4">
                 <%= f.label :last_name do %>
                   Last Name <span class="text-danger">(required)</span>
                 <% end %>
-                <%= f.text_field :last_name, autofocus: true, required: true, class: 'form-control' %>
+                <%= f.text_field :last_name, required: true, class: 'form-control' %>
               </div>
               <div class="form-group mt-4">
                 <%= f.label :timezone do %>
@@ -150,4 +151,8 @@
 </div>
 <script type="text/javascript">
   $('input').lc_switch();
+  $(document).bind('keyup mouseup change mouseover click', function() {
+  $(".alert-danger").fadeOut(3000);
+  });
+  $(".alert-danger").fadeOut(3000);
 </script>

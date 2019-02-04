@@ -570,29 +570,21 @@ ul.sortable li.add-task-box:first-child {
 }
 .textarea-style{
   border: none;
-  width: 100%;
+  width: 98%;
   resize: none;
   line-height: 22px;
   font-size: 14px;
   overflow: hidden;
   background: #fbfbfb;
-  height: 50px !important;
+  min-height: 50px;
 }
-.add-task ul li textarea:nth-child(1){
-  display: none !important;
-}
-.add-task ul li textarea:nth-child(2){
-    border: none;
-    width: 100%;
-    resize: none;
-    line-height: 22px;
-    font-size: 14px;
-    overflow: hidden;
-    background: #fbfbfb;
-    height: 50px !important;
-    position: relative;
-    padding-top: 14px;
-    padding-bottom: 14px;
+.add-task ul li textarea{
+  border: none;
+  height: 0px;
+  width: 0px;
+  opacity: 0;
+  resize: none;
+  background: #fbfbfb;
 }
 .add-task ul li textarea{
 /*  border: none;
@@ -1258,6 +1250,7 @@ ul.public-task-list li .completed-task-lists{
   float: left;
 }
 .explore-list li .public-title{
+  line-height: 18px;
   margin-left: -4px;
   padding-left: 31px;
   width: 100%;
@@ -1604,4 +1597,21 @@ textarea, input.text,input[type="text"],input[type="submit"],input[type="button"
 }
 .tasks_number{
   line-height: 30px;
+}
+.drp-calendar{
+  width: 50% !important;
+}
+@media (min-width: 564px){
+.stats-page .daterangepicker {
+    width: 500px !important;
+}
+ .stats-page .daterangepicker:after{
+    left: 191px !important;
+  }
+  .stats-page .daterangepicker:before{
+    left: 190px !important;
+  }
+}
+span.placeholder:before{
+  content: "Enter a task here...";
 }

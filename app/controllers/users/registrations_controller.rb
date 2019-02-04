@@ -66,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.update_with_password(user_params) && resource.aws_update_password(params[:user][:current_password], params[:user][:password])   
         bypass_sign_in(resource)
       else
-        flash[:alert] = resource.errors.full_messages.join(',')
+        flash[:alert] = resource.errors.full_messages
       end 
     else
       resource_updated = update_resource(resource, account_update_params)
@@ -81,7 +81,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # respond_with resource, location: after_update_path_for(resource)
       else
         if resource.errors.present? && resource.errors.full_messages.present?
-          flash[:alert] = resource.errors.full_messages.join(',')
+          flash[:alert] = resource.errors.full_messages
         end
         clean_up_passwords resource
         set_minimum_password_length

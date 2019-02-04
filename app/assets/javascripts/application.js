@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+// require rails-ujs
 //= require cocoon
 // require turbolinks
 //= require jquery-ui
@@ -21,25 +22,30 @@
 //= require bootstrap-pincode-input
 //= require lc_switch
 //= require parsley
+
 //= require mentions-kinder
 //= require select2-autocompleter
-//= require mentions-kinder.rangy
+// require mentions-kinder.rangy
+
 //= require custom
-// require ckeditor/init
-//= require js.cookie
-//= require jstz
-//= require browser_timezone_rails/set_time_zone
 //= require circliful.min
-//= require trix
-//= require jquery.remotipart
-//= require Chart.bundle
-//= require chartkick
 //= require moment
 //= require daterangepicker
+/// require ckeditor/init
+// require js.cookie
+// require jstz
+// require browser_timezone_rails/set_time_zone
+// require trix
+// require jquery.remotipart
+// require Chart.bundle
+// require chartkick
+
 
 
 
 $(document).ready(function(){
+  // $('.alert.alert-dismissable.alert-danger').hide();
+  $('.stats-height').closest('body').addClass('stats-page');
   if($('#rails_tags').length > 0){
     var tagAutocompleter = $.MentionsKinder.Autocompleter.Select2Autocompleter.extend({
       select2Options: {
@@ -55,7 +61,14 @@ $(document).ready(function(){
         autocompleter: tagAutocompleter
       }
     }
-  })
+  });
+// $(document).bind('keyup mouseup change mouseover click', function() {
+//   $('.add-task ul li textarea:nth-child(2)').keyup(function() {
+//     var this_val = $(this).val();
+//     $(this).closest('li').find('textarea:nth-child(1)').val(this_val);
+//   })
+// });
+  
 // $("body").on('mouseover', 'a', function (e) {
 //     var $link = $(this),
 //         href = $link.attr('href') || $link.data("href");
@@ -69,3 +82,9 @@ $(document).ready(function(){
 //     .removeAttr('href'); // <- this is what stops Chrome to display status bar
 // });
 });
+
+// <script>
+    // var $i = $.noConflict(true);
+    // $.noConflict(true);
+    // alert($i.fn.jquery);
+// </script> 
