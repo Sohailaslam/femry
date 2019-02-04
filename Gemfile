@@ -27,6 +27,8 @@ gem 'font-awesome-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-imageoptimizer'
 
+gem "loofah", ">= 2.2.3"
+gem "rack", ">= 2.0.6"
 gem 'rmagick'
 gem 'aws-sdk', '~> 3'
 gem 'fog-aws'
